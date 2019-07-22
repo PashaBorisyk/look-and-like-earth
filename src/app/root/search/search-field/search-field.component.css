@@ -1,0 +1,28 @@
+.search-field{
+  min-width: 400px;
+}
+
+.search-input-placeholder {
+  color: #7b8579;
+  font-size: 15px;
+}
+
+.currency-icon {
+  margin-top: -80px;
+  margin-left: 323px;
+}
+
+.gender-icon {
+  margin-top: -20px;
+  margin-left: 350px;
+}
+
+.calendar-icon {
+  margin-top: -35px;
+  margin-left: 370px;
+}
+
+.position-field {
+  margin-left: 500px;
+  margin-top: 30px;
+}

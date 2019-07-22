@@ -15,6 +15,9 @@ import { GenderComponent } from './root/search/search-field/gender/gender.compon
 import { CurrencyComponent } from './root/search/search-field/currency/currency.component';
 import { ResultItemComponent } from './root/search/results-list/result-item/result-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -34,7 +37,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-search-field',
@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchFieldComponent implements OnInit {
 
-  constructor() { }
+  constructor() {  }
 
   ngOnInit() {
+  }
+
+  onBlur(value: string) {
+    alert(value);
   }
 
 }

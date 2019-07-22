@@ -1,3 +1,17 @@
-<p>
-  search-field works!
-</p>
+<form>
+  <div class='position-field'>
+    <mat-form-field class='search-field' [floatLabel]="'never'">
+      <input matInput (blur)="onBlur($event.target.value)" class='search-input-field'>
+      <mat-placeholder class='search-input-placeholder'>Введите название вещи</mat-placeholder>
+    </mat-form-field>
+    <div class='currency-icon'>
+      <app-currency currency="BYN"></app-currency>
+    </div>
+    <div class='gender-icon'>
+      <app-gender></app-gender>
+    </div>
+    <div class='calendar-icon'>
+      <app-calendar></app-calendar>
+    </div>
+  </div>
+</form>
