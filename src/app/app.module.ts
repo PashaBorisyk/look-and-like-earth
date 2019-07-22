@@ -14,6 +14,7 @@ import { CalendarComponent } from './root/search/search-field/calendar/calendar.
 import { GenderComponent } from './root/search/search-field/gender/gender.component';
 import { CurrencyComponent } from './root/search/search-field/currency/currency.component';
 import { ResultItemComponent } from './root/search/results-list/result-item/result-item.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ResultItemComponent } from './root/search/results-list/result-item/resu
     ResultItemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
