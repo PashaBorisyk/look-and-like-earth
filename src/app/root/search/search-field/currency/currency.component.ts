@@ -24,8 +24,9 @@ export class CurrencyComponent implements OnInit {
   changeCurrency() {
     if (this.nowPosition === this.lastPosition) {
       this.nowPosition = 0;
+    } else {
+      this.nowPosition++;
     }
-    this.nowPosition++;
     this.currency = this.currencyService.getCurrencyByPosition(this.nowPosition);
   }
 }
