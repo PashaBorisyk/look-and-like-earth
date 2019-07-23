@@ -16,6 +16,8 @@ import { CurrencyComponent } from './root/search/search-field/currency/currency.
 import { ResultItemComponent } from './root/search/results-list/result-item/result-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { GenderService } from './service/gender.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [GenderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
