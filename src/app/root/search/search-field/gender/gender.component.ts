@@ -7,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GenderComponent implements OnInit {
 
+  gender = 'male';
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  changeGender() {
+    if (this.isMale()) {
+      this.gender = 'female';
+    } else {
+      this.gender = 'male';
+    }
+  }
+
+  isMale(): boolean {
+    return this.gender === 'male';
   }
 
 }
