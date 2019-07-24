@@ -15,8 +15,13 @@ import { GenderComponent } from './root/search/search-field/gender/gender.compon
 import { CurrencyComponent } from './root/search/search-field/currency/currency.component';
 import { ResultItemComponent } from './root/search/results-list/result-item/result-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { GenderService } from './service/gender.service';
 import { MatButtonModule, MatCardModule } from '@angular/material';
+import { CurrencyService } from './service/currency.service';
+import { MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateModule} from '@angular/material';
+import { SatNativeDateModule, SatDatepickerModule } from 'saturn-datepicker';
+
 
 @NgModule({
   declarations: [
@@ -38,9 +43,26 @@ import { MatButtonModule, MatCardModule } from '@angular/material';
     BrowserModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    SatDatepickerModule,
+    SatNativeDateModule
   ],
-  providers: [GenderService],
+  exports: [
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    SatNativeDateModule,
+    SatDatepickerModule
+  ],
+  providers: [
+    GenderService,
+    CurrencyService
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

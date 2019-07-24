@@ -13,27 +13,42 @@
 
     </mat-card-title>
   </mat-card-header>
-  <img mat-card-image src="https://static.pullandbear.net/2/photos/2019/I/0/1/p/5689/303/427/5689303427_1_1_3.jpg?t=1563380325482" alt="Photo of a Shiba Inu">
+  <img mat-card-image src="https://static.pullandbear.net/2/photos/2019/I/0/1/p/5689/303/427/5689303427_1_1_3.jpg?t=1563380325482">
   <mat-card-content>
     <div class="type">
-      Джинсы
+      {{thing.name}}
     </div>
     <div class="price">
-      60.00 р.
+      {{thing.price}} {{thing.currency}}
     </div>
   </mat-card-content>
-  <mat-card-footer *ngIf="description" class="cart-footer">
-    <p>
-      Цвет: Синие
-    </p>
-    <p>
-      Фасон: зауженные
-    </p>
-    <p>
-      Материал: Стрейч
-    </p>
-    <p>
-      Дата выпуска: Март 2019
-    </p>
+  <mat-card-footer *ngIf="description">
+    <hr color="#E5E5E5" size="0.5" />
+    <div class="cart-footer">
+      <div class="description-type">
+        Цвет:
+        <span class="description-value">
+        {{thing.color}}
+      </span>
+      </div>
+      <div class="description-type">
+        Материал:
+        <span class="description-value">
+        {{thing.material}}
+      </span>
+      </div>
+      <div class="description-type">
+        Фасон:
+        <span class="description-value">
+        {{thing.style}}
+      </span>
+      </div>
+      <div class="description-type">
+        Дата выпуска:
+        <span class="description-value">
+        {{thing.date}}
+      </span>
+      </div>
+    </div>
   </mat-card-footer>
 </mat-card>
