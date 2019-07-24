@@ -15,8 +15,8 @@ import { GenderComponent } from './root/search/search-field/gender/gender.compon
 import { CurrencyComponent } from './root/search/search-field/currency/currency.component';
 import { ResultItemComponent } from './root/search/results-list/result-item/result-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { GenderService } from './service/gender.service';
+import { MatButtonModule, MatCardModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,9 @@ import { GenderService } from './service/gender.service';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [GenderService],
   bootstrap: [AppComponent]

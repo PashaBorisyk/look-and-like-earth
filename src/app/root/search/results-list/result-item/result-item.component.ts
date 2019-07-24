@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultItemComponent implements OnInit {
 
-  constructor() { }
+  description: boolean;
+
+  constructor() {
+    this.description = false;
+  }
 
   ngOnInit() {
   }

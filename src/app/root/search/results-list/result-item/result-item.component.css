@@ -1,0 +1,21 @@
+.example-card {
+  min-width: 220px;
+  max-width: 220px;
+  margin-left: 500px;
+  margin-top: 50px;
+}
+
+.type{
+  color: #C0C0C0;
+  font-size: 12px;
+}
+
+.price {
+  margin-top: -15px;
+  margin-left: 160px;
+  font-size: 13px;
+}
+
+.cart-footer {
+  font-size: 11px;
+}
