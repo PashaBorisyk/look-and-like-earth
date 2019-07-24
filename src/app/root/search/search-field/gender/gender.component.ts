@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GenderService } from '../../../../service/gender.service';
 
 @Component({
   selector: 'app-gender',
@@ -7,23 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GenderComponent implements OnInit {
 
-  gender = 'male';
+  gender: string;
 
-  constructor() { }
+  constructor(private genderService: GenderService) {
+    this.gender = genderService.getMale();
+  }
+
 
   ngOnInit() {
   }
 
   changeGender() {
-    if (this.isMale()) {
-      this.gender = 'female';
+    if (GenderService.isMale(this.gender)) {
+      this.gender = this.genderService.getFemale();
     } else {
-      this.gender = 'male';
+      this.gender = this.genderService.getMale();
     }
   }
 
-  isMale(): boolean {
-    return this.gender === 'male';
+  isMale() {
+    return GenderService.isMale(this.gender);
   }
-
 }

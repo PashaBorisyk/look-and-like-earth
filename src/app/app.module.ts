@@ -15,9 +15,13 @@ import { GenderComponent } from './root/search/search-field/gender/gender.compon
 import { CurrencyComponent } from './root/search/search-field/currency/currency.component';
 import { ResultItemComponent } from './root/search/results-list/result-item/result-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
-import { FormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
+
+import { CurrencyService } from './service/currency.service';
+import { GenderService } from './service/gender.service';
+import { MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateModule } from '@angular/material';
+import { SatNativeDateModule, SatDatepickerModule } from 'saturn-datepicker';
+
 
 @NgModule({
   declarations: [
@@ -41,9 +45,24 @@ import { FormsModule } from "@angular/forms";
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatNativeDateModule,
+    MatInputModule,
+    SatDatepickerModule,
+    SatNativeDateModule
   ],
-  providers: [],
+  exports: [
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    SatNativeDateModule,
+    SatDatepickerModule
+  ],
+  providers: [
+    GenderService,
+    CurrencyService
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
