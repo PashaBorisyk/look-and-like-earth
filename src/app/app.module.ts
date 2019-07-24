@@ -18,6 +18,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CurrencyService } from './service/currency.service';
 import { GenderService } from './service/gender.service';
+import { MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateModule} from '@angular/material';
+import { SatNativeDateModule, SatDatepickerModule } from 'saturn-datepicker';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +40,21 @@ import { GenderService } from './service/gender.service';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    SatDatepickerModule,
+    SatNativeDateModule
+  ],
+  exports: [
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    SatNativeDateModule,
+    SatDatepickerModule
   ],
   providers: [
     GenderService,
