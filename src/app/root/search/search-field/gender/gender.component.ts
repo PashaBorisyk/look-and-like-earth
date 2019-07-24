@@ -4,8 +4,7 @@ import { GenderService } from '../../../../service/gender.service';
 @Component({
   selector: 'app-gender',
   templateUrl: './gender.component.html',
-  styleUrls: ['./gender.component.css'],
-  providers: [GenderService]
+  styleUrls: ['./gender.component.css']
 })
 export class GenderComponent implements OnInit {
 
