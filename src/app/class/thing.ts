@@ -4,7 +4,7 @@ export class Thing {
   currency: string;
   color: string;
   material: string;
-  date: string;
+  date: any;
   style: string;
   companyIcon: string;
   image: string;
