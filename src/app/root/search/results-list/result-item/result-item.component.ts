@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ClothesItem } from '../../../../class/clothesItem';
 
 @Component({
   selector: 'app-result-item',
   templateUrl: './result-item.component.html',
   styleUrls: ['./result-item.component.css']
 })
-export class ResultItemComponent implements OnInit {
+export class ClothesItemComponent implements OnInit {
+
+  @Input() clothesItem: ClothesItem;
+  description: boolean;
 
   constructor() { }
 
