@@ -13,7 +13,7 @@ import { CostsSumComponent } from './root/sandbox/costs-sum/costs-sum.component'
 import { CalendarComponent } from './root/search/search-field/calendar/calendar.component';
 import { GenderComponent } from './root/search/search-field/gender/gender.component';
 import { CurrencyComponent } from './root/search/search-field/currency/currency.component';
-import { ResultItemComponent } from './root/search/results-list/result-item/result-item.component';
+import { ClothesItemComponent } from './root/search/results-list/result-item/result-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { GenderService } from './service/gender.service';
@@ -21,6 +21,7 @@ import { MatButtonModule, MatCardModule } from '@angular/material';
 import { CurrencyService } from './service/currency.service';
 import { MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 import { SatNativeDateModule, SatDatepickerModule } from 'saturn-datepicker';
+import { ClothesItemService } from './service/clothesItem.service';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import { SatNativeDateModule, SatDatepickerModule } from 'saturn-datepicker';
     CalendarComponent,
     GenderComponent,
     CurrencyComponent,
-    ResultItemComponent
+    ClothesItemComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +62,8 @@ import { SatNativeDateModule, SatDatepickerModule } from 'saturn-datepicker';
   ],
   providers: [
     GenderService,
-    CurrencyService
+    CurrencyService,
+    ClothesItemService
 ],
   bootstrap: [AppComponent]
 })

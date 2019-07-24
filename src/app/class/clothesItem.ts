@@ -1,11 +1,13 @@
-export class Thing {
+import { Price } from "./price";
+
+export class ClothesItem {
   name: string;
-  price: number;
-  currency: string;
+  price: Price;
   color: string;
   material: string;
-  date: any;
+  date: Date;
   style: string;
   companyIcon: string;
   image: string;
+
 }

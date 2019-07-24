@@ -16,10 +16,10 @@
   <img mat-card-image src="https://static.pullandbear.net/2/photos/2019/I/0/1/p/5689/303/427/5689303427_1_1_3.jpg?t=1563380325482">
   <mat-card-content>
     <div class="type">
-      {{thing.name}}
+      {{clothesItem.name}}
     </div>
     <div class="price">
-      {{thing.price}} {{thing.currency}}
+      {{clothesItem.price.value}} {{clothesItem.price.currency}}
     </div>
   </mat-card-content>
   <mat-card-footer *ngIf="description">
@@ -28,25 +28,25 @@
       <div class="description-type">
         Цвет:
         <span class="description-value">
-        {{thing.color}}
+        {{clothesItem.color}}
       </span>
       </div>
       <div class="description-type">
         Материал:
         <span class="description-value">
-        {{thing.material}}
+        {{clothesItem.material}}
       </span>
       </div>
       <div class="description-type">
         Фасон:
         <span class="description-value">
-        {{thing.style}}
+        {{clothesItem.style}}
       </span>
       </div>
       <div class="description-type">
         Дата выпуска:
         <span class="description-value">
-        {{thing.date}}
+        {{clothesItem.date | date }}
       </span>
       </div>
     </div>

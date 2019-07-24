@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
-import {Thing} from '../class/thing';
+import { ClothesItem } from '../class/clothesItem';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ThingService {
+export class ClothesItemService {
 
-  thing: Thing = {
+  clothesItem: ClothesItem = {
     name: 'Джинсы',
-    price: 60.5,
-    currency: 'BYN',
+    price: {
+      value: 60.5,
+      currency: 'BYN'
+    },
     color: 'Синий',
     material: 'Стрейч',
-    date: 'март 2019',
+    date: new Date('12-12-2012'),
     style: 'Зауженный',
     companyIcon: '',
     image: ''
@@ -21,7 +23,7 @@ export class ThingService {
 
   constructor() { }
 
-  getThing() {
-    return this.thing;
+  getClothesItem() {
+    return this.clothesItem;
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ThingService } from '../service/thing.service';
+import {ClothesItemService} from "../service/clothesItem.service";
 
 @Component({
   selector: 'app-main',
@@ -8,7 +8,7 @@ import { ThingService } from '../service/thing.service';
 })
 export class RootComponent implements OnInit {
 
-  constructor(private thingService: ThingService) { }
+  constructor(private clothesItemService: ClothesItemService) { }
 
   ngOnInit() {
   }
