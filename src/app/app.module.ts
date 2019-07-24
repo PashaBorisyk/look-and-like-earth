@@ -17,8 +17,8 @@ import { ResultItemComponent } from './root/search/results-list/result-item/resu
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { GenderService } from './service/gender.service';
-import {
-  MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateModule} from '@angular/material';
+import { MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateModule} from '@angular/material';
+import { SatNativeDateModule, SatDatepickerModule } from 'saturn-datepicker';
 
 
 @NgModule({
@@ -44,12 +44,16 @@ import {
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
+    SatDatepickerModule,
+    SatNativeDateModule
   ],
   exports: [
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
+    SatNativeDateModule,
+    SatDatepickerModule
   ],
   providers: [GenderService],
   bootstrap: [AppComponent]
