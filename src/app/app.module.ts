@@ -13,14 +13,19 @@ import { CostsSumComponent } from './root/sandbox/costs-sum/costs-sum.component'
 import { CalendarComponent } from './root/search/search-field/calendar/calendar.component';
 import { GenderComponent } from './root/search/search-field/gender/gender.component';
 import { CurrencyComponent } from './root/search/search-field/currency/currency.component';
-import { ResultItemComponent } from './root/search/results-list/result-item/result-item.component';
+import { ClothesItemComponent } from './root/search/results-list/result-item/result-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
-import { CurrencyService } from './service/currency.service';
 import { GenderService } from './service/gender.service';
-import { MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateModule } from '@angular/material';
+
+import { MatButtonModule, MatCardModule } from '@angular/material';
+import { CurrencyService } from './service/currency.service';
+import { MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateModule} from '@angular/material';
+
 import { SatNativeDateModule, SatDatepickerModule } from 'saturn-datepicker';
+import { ClothesItemService } from './service/clothesItem.service';
 
 
 @NgModule({
@@ -37,11 +42,13 @@ import { SatNativeDateModule, SatDatepickerModule } from 'saturn-datepicker';
     CalendarComponent,
     GenderComponent,
     CurrencyComponent,
-    ResultItemComponent
+    ClothesItemComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatCardModule,
+    MatButtonModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
@@ -49,7 +56,9 @@ import { SatNativeDateModule, SatDatepickerModule } from 'saturn-datepicker';
     MatNativeDateModule,
     MatInputModule,
     SatDatepickerModule,
-    SatNativeDateModule
+    SatNativeDateModule,
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   exports: [
     MatDatepickerModule,
@@ -61,7 +70,8 @@ import { SatNativeDateModule, SatDatepickerModule } from 'saturn-datepicker';
   ],
   providers: [
     GenderService,
-    CurrencyService
+    CurrencyService,
+    ClothesItemService
 ],
   bootstrap: [AppComponent]
 })

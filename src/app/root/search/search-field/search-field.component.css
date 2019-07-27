@@ -1,5 +1,16 @@
-.search-field{
-  min-width: 400px;
+.search-field {
+  padding-right: 64px;
+  padding-left: 64px;
+}
+
+.search-input-field{
+  min-width: 324px;
+  margin-top: 60px;
+}
+
+.calendar-field {
+  margin-top: -65px;
+  margin-left: 344px;
 }
 
 .search-input-placeholder {
@@ -7,22 +18,16 @@
   font-size: 15px;
 }
 
-.currency-icon {
-  margin-top: -80px;
-  margin-left: 323px;
-}
-
 .gender-icon {
-  margin-top: -20px;
-  margin-left: 350px;
+  position: absolute;
+  right: 64px;
+  top: 30px;
 }
 
-.calendar-icon {
-  margin-top: -35px;
-  margin-left: 370px;
-}
-
-.position-field {
-  margin-left: 500px;
-  margin-top: 30px;
+.currency-icon {
+  cursor: default;
+  position: absolute;
+  right: 100px;
+  top: 35px;
+  font-size: 14px;
 }

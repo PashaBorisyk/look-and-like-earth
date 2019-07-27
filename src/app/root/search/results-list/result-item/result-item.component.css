@@ -1,0 +1,32 @@
+.example-card {
+  min-width: 220px;
+  max-width: 220px;
+}
+
+.type{
+  color: #C0C0C0;
+  font-size: 12px;
+}
+
+.price {
+  margin-top: -15px;
+  position: absolute;
+  right: 20px;
+  font-size: 13px;
+}
+
+.cart-footer {
+  padding: 20px;
+}
+
+.description-type {
+  font-size: 11px;
+  margin-top: 15px;
+}
+
+.description-value {
+  font-size: 11px;
+  right: 20px;
+  position: absolute;
+  font-weight: bold;
+}
