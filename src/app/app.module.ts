@@ -15,12 +15,12 @@ import { GenderComponent } from './root/search/search-field/gender/gender.compon
 import { CurrencyComponent } from './root/search/search-field/currency/currency.component';
 import { ClothesItemComponent } from './root/search/results-list/result-item/result-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { GenderService } from './service/gender.service';
 
-import { MatButtonModule, MatCardModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatGridListModule } from '@angular/material';
 import { CurrencyService } from './service/currency.service';
 import { MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 
@@ -59,6 +59,7 @@ import { ClothesItemService } from './service/clothesItem.service';
     SatNativeDateModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatGridListModule,
   ],
   exports: [
     MatDatepickerModule,
@@ -66,7 +67,7 @@ import { ClothesItemService } from './service/clothesItem.service';
     MatNativeDateModule,
     MatInputModule,
     SatNativeDateModule,
-    SatDatepickerModule
+    SatDatepickerModule,
   ],
   providers: [
     GenderService,
