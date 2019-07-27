@@ -1,0 +1,33 @@
+.search-field {
+  padding-right: 64px;
+  padding-left: 64px;
+}
+
+.search-input-field{
+  min-width: 324px;
+  margin-top: 60px;
+}
+
+.calendar-field {
+  margin-top: -65px;
+  margin-left: 344px;
+}
+
+.search-input-placeholder {
+  color: #7b8579;
+  font-size: 15px;
+}
+
+.gender-icon {
+  position: absolute;
+  right: 64px;
+  top: 30px;
+}
+
+.currency-icon {
+  cursor: default;
+  position: absolute;
+  right: 100px;
+  top: 35px;
+  font-size: 14px;
+}

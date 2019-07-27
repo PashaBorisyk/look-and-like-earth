@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ClothesItem } from '../class/clothesItem';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -21,9 +22,16 @@ export class ClothesItemService {
     image: ''
   };
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getClothesItem() {
     return this.clothesItem;
+  }
+
+  search(value: string) {
+    return this.http
+      .get('http://40.69.223.31:9000/search/?query=jeans&top=1');
+    //.get("http://www.mocky.io/v2/5d3b464b3000005600a2a068");
+
   }
 }

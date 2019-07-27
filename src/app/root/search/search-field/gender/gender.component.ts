@@ -14,6 +14,7 @@ export class GenderComponent implements OnInit {
     this.gender = genderService.getMale();
   }
 
+
   ngOnInit() {
   }
 

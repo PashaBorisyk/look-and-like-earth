@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ClothesItemService } from "../../../service/clothesItem.service";
+import { ClothesItem } from "../../../class/clothesItem";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {SearchMatcherError} from "./error-matcher/search-matcher.error";
 
 @Component({
   selector: 'app-search-field',
@@ -7,9 +11,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchFieldComponent implements OnInit {
 
-  constructor() { }
+  MIN_LENGTH = 3;
+  MAX_LENGTH = 50;
 
-  ngOnInit() {
+  @ViewChild('searchValue') searchValue: ElementRef;
+  clothesItems: ClothesItem[];
+
+  searchFormControl = new FormControl('', [
+    Validators.minLength(this.MIN_LENGTH),
+    Validators.maxLength(this.MAX_LENGTH)
+  ]);
+
+  matcher = new SearchMatcherError();
+
+  constructor(private clothesItemService: ClothesItemService) {  }
+
+  ngOnInit() {}
+
+  doSearch() {
+
+    const value = this.searchValue.nativeElement.value;
+    const length = value.length;
+
+    if (!this.isValidateLength(length)) {
+      console.log('Invalid value');
+      return;
+    }
+
+    this.clothesItemService.search(value)
+      .subscribe(res => {
+        console.log(res);
+      });
+  }
+
+  private isValidateLength(length: number) {
+    return this.MIN_LENGTH <= length && this.MAX_LENGTH >= length;
   }
 
 }
