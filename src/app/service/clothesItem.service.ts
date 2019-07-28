@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ClothesItem } from '../class/clothesItem';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import {map} from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -10,53 +10,17 @@ import {map} from 'rxjs/operators';
 })
 export class ClothesItemService {
 
-  clothesItem: ClothesItem = {
-    name: 'Джинсы',
-    price: {
-      value: 60.5,
-      currency: 'BYN'
-    },
-    color: 'Синий',
-    material: 'Стрейч',
-    date: new Date('12-12-2012'),
-    style: 'Зауженный',
-    companyIcon: '',
-    image: 'https://static.pullandbear.net/2/photos/2019/I/0/1/p/5689/303/427/5689303427_1_1_3.jpg?t=1563380325482'
-  };
-
   apiRoot = 'http://40.69.223.31:9000';
   DEFAULT_LIMIT = 10;
 
+  argument: ClothesItem[];
+  source = new BehaviorSubject(this.argument);
+  current = this.source.asObservable();
+
   constructor(private http: HttpClient) { }
 
-  getClothesItem() {
-    return this.clothesItem;
-  }
-
-  getClothesItems() {
-    const items: ClothesItem[] = [];
-
-    for (let i = 0; i < 10; i++) {
-      if (i === 1) {
-        const temp = {
-          name: 'Джинсы',
-          price: {
-            value: 60.5,
-            currency: 'BYN'
-          },
-          color: 'Синий',
-          material: 'Стрейч',
-          date: new Date('12-12-2012'),
-          style: 'Зауженный',
-          companyIcon: '',
-          image: 'https://avatars.mds.yandex.net/get-marketpic/364498/market_6Jk-hvrjQHvHZHxFqbW2Jg/900x1200'
-        };
-        items.push(temp);
-        continue;
-      }
-      items.push(this.clothesItem);
-    }
-    return items;
+  recommendations(): Observable<ClothesItem[]> {
+    return this.search('jeans');
   }
 
   search(value: string): Observable<ClothesItem[]> {
@@ -87,10 +51,7 @@ export class ClothesItemService {
       }));
   }
 
-  searchWithLimit(value: string, limit: number) {
-    const url = this.apiRoot + '/search/?query=' + value + '&top=' + limit;
-
-    return this.http
-      .get(url);
+  changeClotheItems(object) {
+    this.source.next(object);
   }
 }

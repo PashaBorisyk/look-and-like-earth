@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {ClothesItemService} from "../../service/clothesItem.service";
 
 @Component({
@@ -8,9 +8,7 @@ import {ClothesItemService} from "../../service/clothesItem.service";
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private clothesItemService: ClothesItemService) { }
+  constructor() { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
