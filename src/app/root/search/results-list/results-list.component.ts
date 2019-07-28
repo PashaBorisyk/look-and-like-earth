@@ -24,9 +24,13 @@ export class ResultsListComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   scrollHandler() {
-    if ((document.body.clientHeight + window.scrollY) >= document.body.scrollHeight) {
-      console.log('tiggred');
+    if ((document.body.clientHeight + window.scrollY + 10) >= document.body.scrollHeight) {
+      console.log('To bottom');
+      const searchValue = localStorage.getItem('searchValue');
+
+      this.clothesItemService.search(searchValue).subscribe(data => {
+        this.clothesItems = this.clothesItems.concat(data);
+      });
     }
   }
-
 }

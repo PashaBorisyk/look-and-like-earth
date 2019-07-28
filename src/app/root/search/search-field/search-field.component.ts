@@ -31,7 +31,6 @@ export class SearchFieldComponent implements OnInit {
   }
 
   doSearch() {
-
     const value = this.searchValue.nativeElement.value;
     const length = value.length;
 
@@ -45,10 +44,11 @@ export class SearchFieldComponent implements OnInit {
         this.clothesItems = data;
         this.clothesItemService.changeClotheItems(this.clothesItems);
       });
+
+    localStorage.setItem('searchValue', value);
   }
 
   private isValidateLength(length: number) {
     return this.MIN_LENGTH <= length && this.MAX_LENGTH >= length;
   }
-
 }

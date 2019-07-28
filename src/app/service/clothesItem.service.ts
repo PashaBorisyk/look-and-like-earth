@@ -24,6 +24,11 @@ export class ClothesItemService {
   }
 
   search(value: string): Observable<ClothesItem[]> {
+
+    if (value == null) {
+      return this.recommendations();
+    }
+
     const url = this.apiRoot + '/search/?query=' + value + '&top=' + this.DEFAULT_LIMIT;
 
     return this.http.get(url)
