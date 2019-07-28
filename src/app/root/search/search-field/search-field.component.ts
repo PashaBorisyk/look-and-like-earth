@@ -3,6 +3,7 @@ import { ClothesItemService } from "../../../service/clothesItem.service";
 import { ClothesItem } from "../../../class/clothesItem";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SearchMatcherError} from "./error-matcher/search-matcher.error";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-search-field',
@@ -15,7 +16,7 @@ export class SearchFieldComponent implements OnInit {
   MAX_LENGTH = 50;
 
   @ViewChild('searchValue') searchValue: ElementRef;
-  clothesItems: ClothesItem[];
+  clothesItems: ClothesItem[] = [];
 
   searchFormControl = new FormControl('', [
     Validators.minLength(this.MIN_LENGTH),
@@ -39,9 +40,11 @@ export class SearchFieldComponent implements OnInit {
     }
 
     this.clothesItemService.search(value)
-      .subscribe(res => {
-        console.log(res);
+      .subscribe( data => {
+        this.clothesItems = data;
       });
+
+    console.log('length: ' + this.clothesItems.length);
   }
 
   private isValidateLength(length: number) {
