@@ -57,7 +57,6 @@ export class ClothesItemService {
   search(value: string) {
     return this.http
       .get('http://40.69.223.31:9000/search/?query=jeans&top=1');
-    //.get("http://www.mocky.io/v2/5d3b464b3000005600a2a068");
 
   }
 }

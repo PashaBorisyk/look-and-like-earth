@@ -1,6 +1,6 @@
-<div class="items" (scroll)="scrollHandler()">
+<div class="items" >
   <div *ngFor="let clothesItem of clothesItems" >
-    <div class="item">
+    <div class="item" (scroll)="scrollHandler()">
       <app-result-item [clothesItem]="clothesItem"></app-result-item>
     </div>
   </div>
