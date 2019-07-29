@@ -1,6 +1,8 @@
 .search-field {
   padding-right: 64px;
   padding-left: 64px;
+  position: fixed;
+  top: 0;
 }
 
 .search-input-field{
