@@ -3,6 +3,8 @@
   padding-left: 64px;
   position: fixed;
   top: 0;
+  z-index: 100; /* pushes elements to the front or to the back of camera view /*/
+  background: pink; /* left here just to show the the idea of approach :) Replace with material background or smth like that/*/
 }
 
 .search-input-field{
