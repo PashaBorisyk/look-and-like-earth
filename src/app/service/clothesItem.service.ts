@@ -48,7 +48,7 @@ export class ClothesItemService {
             date: value.metaInformation.insertDate,
             style: 'Зауженный',
             companyIcon: '',
-            image: 'https://avatars.mds.yandex.net/get-marketpic/364498/market_6Jk-hvrjQHvHZHxFqbW2Jg/900x1200'
+            image: 'https://static.pullandbear.net/2/photos/2019/I/0/1/p/5689/303/427/5689303427_1_1_3.jpg?t=1563380325482'
           };
           clothesItems.push(clothesItem);
         });
