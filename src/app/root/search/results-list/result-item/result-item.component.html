@@ -1,4 +1,4 @@
-<mat-card class="example-card" (mouseover)="description = true" (mouseout)="description = false" >
+<mat-card class="card" (mouseover)="description = true" (mouseout)="description = false" >
   <mat-card-header>
     <mat-card-title>
       <svg width="50" height="22" viewBox="0 0 50 22" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -22,9 +22,8 @@
       {{clothesItem.price.value}} {{clothesItem.price.currency}}
     </div>
   </mat-card-content>
-  <mat-card-footer *ngIf="description">
-    <hr color="#E5E5E5" size="0.5" />
-    <div class="cart-footer">
+  <mat-card-footer class="cart-footer">
+    <div>
       <div class="description-type">
         Цвет:
         <span class="description-value">

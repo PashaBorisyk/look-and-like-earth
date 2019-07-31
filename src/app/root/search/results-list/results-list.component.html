@@ -1,7 +1,9 @@
 <div class="items" (scroll)="scrollHandler()">
-  <div *ngFor="let clothesItem of clothesItems">
-    <div class="item">
-      <app-result-item [clothesItem]="clothesItem"></app-result-item>
-    </div>
-  </div>
+  <mat-grid-list cols="2" rowHeight="40rem">
+    <mat-grid-tile *ngFor="let clothesItem of clothesItems">
+      <div class="item">
+        <app-result-item [clothesItem]="clothesItem"></app-result-item>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

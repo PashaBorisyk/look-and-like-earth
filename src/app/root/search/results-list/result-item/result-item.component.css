@@ -1,6 +1,22 @@
-.example-card {
-  min-width: 220px;
-  max-width: 220px;
+.card {
+  width: 220px;
+  overflow:hidden;
+  position:relative;
+  z-index:0;
+}
+.card:hover {
+  overflow:visible;
+}
+
+.cart-footer {
+  position: absolute;
+  width: 100%;
+  background: white;
+}
+
+.card:hover .cart-footer {
+  z-index: 100;
+  background: white;
 }
 
 .type{
@@ -15,9 +31,7 @@
   font-size: 13px;
 }
 
-.cart-footer {
-  padding: 20px;
-}
+
 
 .description-type {
   font-size: 11px;
