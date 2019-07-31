@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import { ClothesItemService } from "../../../service/clothesItem.service";
 import { ClothesItem } from "../../../class/clothesItem";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -26,10 +26,11 @@ export class SearchFieldComponent implements OnInit {
 
   constructor(private clothesItemService: ClothesItemService) {  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.clothesItemService.current.subscribe(clothesItems => this.clothesItems = clothesItems);
+  }
 
   doSearch() {
-
     const value = this.searchValue.nativeElement.value;
     const length = value.length;
 
@@ -39,13 +40,15 @@ export class SearchFieldComponent implements OnInit {
     }
 
     this.clothesItemService.search(value)
-      .subscribe(res => {
-        console.log(res);
+      .subscribe( data => {
+        this.clothesItems = data;
+        this.clothesItemService.changeClotheItems(this.clothesItems);
       });
+
+    localStorage.setItem('searchValue', value);
   }
 
   private isValidateLength(length: number) {
     return this.MIN_LENGTH <= length && this.MAX_LENGTH >= length;
   }
-
 }

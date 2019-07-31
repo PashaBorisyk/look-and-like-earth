@@ -1,3 +1,7 @@
-<p>
-  results-list works!
-</p>
+<div class="items" (scroll)="scrollHandler()">
+  <div *ngFor="let clothesItem of clothesItems">
+    <div class="item">
+      <app-result-item [clothesItem]="clothesItem"></app-result-item>
+    </div>
+  </div>
+</div>
