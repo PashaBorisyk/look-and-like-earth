@@ -1,4 +1,5 @@
-.example-card {
+.card {
+  position: relative;
   min-width: 220px;
   max-width: 220px;
 }
@@ -17,6 +18,10 @@
 
 .cart-footer {
   padding: 20px;
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  background: white;
 }
 
 .description-type {

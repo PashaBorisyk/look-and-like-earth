@@ -1,1 +1,10 @@
-<app-search></app-search>
+<as-split unit="percent" direction="horizontal"  #split="asSplit">
+  <as-split-area size="30" #area1="asSplitArea">
+    <app-sandbox></app-sandbox>
+  </as-split-area>
+  <as-split-area size="70" #area2="asSplitArea">
+    <app-search></app-search>
+  </as-split-area>
+</as-split>
+
+
