@@ -1,11 +1,14 @@
 .card {
   width: 220px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   overflow:hidden;
-  position:relative;
   z-index:0;
+  position:relative;
 }
 .card:hover {
   overflow:visible;
+  z-index: 90;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .cart-footer {
@@ -16,7 +19,6 @@
 
 .card:hover .cart-footer {
   z-index: 100;
-  background: white;
 }
 
 .type{
@@ -31,7 +33,9 @@
   font-size: 13px;
 }
 
-
+.cart-footer {
+  padding: 20px;
+}
 
 .description-type {
   font-size: 11px;
