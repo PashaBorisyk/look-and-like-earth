@@ -5,13 +5,16 @@
   position: fixed;
   top: 0;
   background: white;
-  width: 100%;
+  min-width: 50%;
 }
 
 .search-input-field{
-  min-width: 324px;
-  margin-top: 60px;
+  min-width: 30%;
+  max-width: 50%;
+  margin-top: 5%;
 }
+
+
 
 .calendar-field {
   margin-top: -65px;

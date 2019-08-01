@@ -20,6 +20,7 @@ export class ResultsListComponent implements OnInit {
     this.clothesItemService.recommendations().subscribe(data => {
       this.clothesItems = data;
     });
+    console.log(this.clothesItems);
   }
 
   @HostListener('window:scroll', [])
