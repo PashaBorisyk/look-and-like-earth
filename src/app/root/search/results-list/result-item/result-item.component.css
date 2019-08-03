@@ -1,6 +1,5 @@
 .card {
-  position: relative;
-  min-width: 220px;
+  min-width: 200px;
   max-width: 220px;
 }
 
@@ -10,28 +9,20 @@
 }
 
 .price {
-  margin-top: -15px;
-  position: absolute;
-  right: 20px;
   font-size: 13px;
 }
 
 .cart-footer {
-  padding: 20px;
-  position: absolute;
-  width: 100%;
-  z-index: 100;
-  background: white;
+  padding: 3% 5%;
 }
 
 .description-type {
   font-size: 11px;
-  margin-top: 15px;
 }
 
 .description-value {
   font-size: 11px;
-  right: 20px;
+  right: 5%;
   position: absolute;
   font-weight: bold;
 }
