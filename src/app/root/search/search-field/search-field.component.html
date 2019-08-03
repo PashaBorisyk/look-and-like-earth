@@ -1,5 +1,5 @@
-<div class="row search-field mx-5 my-5">
-  <div class="col-4">
+<div class="row search-field ml-5 my-5">
+  <div class="col-7 mt-5">
     <mat-form-field [floatLabel]="'never'" class="search-input-field">
       <input #searchValue matInput [formControl]="searchFormControl"
              [errorStateMatcher]="matcher">
@@ -15,12 +15,16 @@
     </mat-form-field>
   </div>
   <div class="col-5">
-    <app-calendar></app-calendar>
-  </div>
-  <div class="col-1">
-    <app-currency></app-currency>
-  </div>
-  <div class="col-2">
-    <app-gender></app-gender>
+    <div class="row">
+      <div class="col-5 mt-5">
+        <app-calendar></app-calendar>
+      </div>
+      <div class="col-1">
+        <app-currency ></app-currency>
+      </div>
+      <div class="col-1">
+        <app-gender></app-gender>
+      </div>
+    </div>
   </div>
 </div>
