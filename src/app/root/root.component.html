@@ -1,8 +1,8 @@
-<as-split unit="percent" direction="horizontal"  #split="asSplit">
-  <as-split-area size="30" #area1="asSplitArea">
+<as-split unit="percent" direction="horizontal" restrictMove="true" gutterSize="3">
+  <as-split-area size="30">
     <app-sandbox></app-sandbox>
   </as-split-area>
-  <as-split-area size="70" #area2="asSplitArea" (scroll)="scrollHandler($event)">
+  <as-split-area size="70" (scroll)="scrollHandler($event)" maxSize="90">
     <app-search></app-search>
   </as-split-area>
 </as-split>
