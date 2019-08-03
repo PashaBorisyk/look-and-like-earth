@@ -1,39 +1,13 @@
-<div class="look"
-     mwlResizable
-     [enableGhostResize]="true"
-     [resizeEdges]="{bottom: true, right: true, top: true, left: true}">
-  <img src="{{ image }}">
-</div>
-
-<button (click)="delete()"> delete</button>
-
-<div
-  class="rectangle"
-  [ngStyle]="style"
-  mwlResizable
-  [validateResize]="validate"
-  [enableGhostResize]="true"
-  [resizeSnapGrid]="{ left: 50, right: 50 }"
-  (resizeEnd)="onResizeEnd($event)"
->
-  <div
-    class="resize-handle-top"
-    mwlResizeHandle
-    [resizeEdges]="{ top: true }"
-  ></div>
-  <div
-    class="resize-handle-left"
-    mwlResizeHandle
-    [resizeEdges]="{ left: true }"
-  ></div>
-  <div
-    class="resize-handle-right"
-    mwlResizeHandle
-    [resizeEdges]="{ right: true }"
-  ></div>
-  <div
-    class="resize-handle-bottom"
-    mwlResizeHandle
-    [resizeEdges]="{ bottom: true }"
-  ></div>
+<div class="look">
+  <div class="row">
+    <div class="col-md-11">
+      <div class="square"></div>
+    </div>
+    <div class="col-md-1">
+      <div class="square"></div>
+    </div>
+  </div>
+  <img src="{{ image }}" alt="image" class="image" tabindex="1">
+  <div class="square"></div>
+  <div class="square"></div>
 </div>
