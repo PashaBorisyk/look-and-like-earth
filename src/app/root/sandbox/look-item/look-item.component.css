@@ -1,7 +1,7 @@
 .look {
   margin-top: 50px;
   margin-left: 200px;
-  position: relative;
+  position: absolute;
 }
 
 .image {
@@ -9,16 +9,40 @@
   height: 342px;
 }
 
-.image:focus {
+.look:focus {
   border: 1px solid #CAC8C5;
   outline: none;
+  box-sizing: border-box;
 }
 
-.square{
+.look:focus .square {
   width: 6px;
   height: 6px;
   background: black;
-  cursor: ne-resize;
+  position: absolute;
+
+}
+
+.square.top-left {
+  left: -5px;
+  top: -5px;
+  cursor: nwse-resize;
+}
+
+.square.top-right {
+  right: -5px;
+  top: -5px;
+  cursor: nesw-resize;
+}
+.square.bottom-left {
+  left: -5px;
+  bottom: -5px;
+  cursor: nesw-resize;
+}
+.square.bottom-right {
+  right: -5px;
+  bottom: -5px;
+  cursor: nwse-resize;
 }
 
 
