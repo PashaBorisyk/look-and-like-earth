@@ -1,44 +1,25 @@
-<!--<div class="look" tabindex="1"
-     mwlResizable
-     [enableGhostResize]="true"
-
-     (resizeEnd)="onResizeEnd($event)">
-  &lt;!&ndash;<div class='square top-left'
-       mwlResizeHandle
-       [resizeEdges]="{top: true, left: true}"></div>
-  <div class='square top-right'
-       mwlResizeHandle
-       [resizeEdges]="{right: true, top: true}"></div>
-  <div class='square bottom-left'
-       mwlResizeHandle
-       [resizeEdges]="{bottom: true, left: true}"></div>
-  <div class='square bottom-right'
-       mwlResizeHandle
-       [resizeEdges]="{bottom: true, right: true}"></div>&ndash;&gt;
-  <img src="{{ image }}" alt="image" class="image">
-</div>-->
-
-<div
-  class="look"
-  tabindex="1"
-  [ngStyle]="style"
-  mwlResizable
-  [validateResize]="validate"
-  [enableGhostResize]="true"
-  [resizeSnapGrid]="{ left: 50, right: 50 }"
-  (resizeEnd)="onResizeEnd($event)">
-  <div class='square top-left'
-       mwlResizeHandle
-       [resizeEdges]="{top: true, left: true}"></div>
-  <div class='square top-right'
-       mwlResizeHandle
-       [resizeEdges]="{right: true, top: true}"></div>
-  <div class='square bottom-left'
-       mwlResizeHandle
-       [resizeEdges]="{bottom: true, left: true}"></div>
-  <div class='square bottom-right'
-       mwlResizeHandle
-       [resizeEdges]="{bottom: true, right: true}"></div>
-  <img src="{{ image }}" alt="image" class="image">
+<div class="out-look"
+     tabindex="1">
+  <div
+    class="look"
+    [ngStyle]="style"
+    mwlResizable
+    [validateResize]="validate"
+    [enableGhostResize]="true"
+    [resizeSnapGrid]="{ left: 50, right: 50 }"
+    (resizeEnd)="onResizeEnd($event)">
+    <div class='square top-left'
+         mwlResizeHandle
+         [resizeEdges]="{top: true, left: true}"></div>
+    <div class='square top-right'
+         mwlResizeHandle
+         [resizeEdges]="{right: true, top: true}"></div>
+    <div class='square bottom-left'
+         mwlResizeHandle
+         [resizeEdges]="{bottom: true, left: true}"></div>
+    <div class='square bottom-right'
+         mwlResizeHandle
+         [resizeEdges]="{bottom: true, right: true}"></div>
+    <img src="{{ image }}" alt="image" class="image">
+  </div>
 </div>
-

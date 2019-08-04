@@ -1,64 +1,18 @@
-/*
-.look {
-  margin-top: 50px;
-  margin-left: 200px;
-  position: relative;
-  background: fuchsia;
-}
-
-.image {
-  width: 342px;
-  height: 342px;
-}
-
-.look:focus {
-  border: 1px solid #CAC8C5;
-  outline: none;
-  box-sizing: border-box;
-}
-
-!*.look:focus .square {
-  width: 6px;
-  height: 6px;
-  background: black;
-}*!
-
-!*.square.top-left {
-  left: -5px;
-  top: -5px;
-  cursor: nwse-resize;
-}
-
-.square.top-right {
-  right: -5px;
-  top: -5px;
-  cursor: nesw-resize;
-}
-.square.bottom-left {
-  left: -5px;
-  bottom: -5px;
-  cursor: nesw-resize;
-}
-.square.bottom-right {
-  right: -5px;
-  bottom: -5px;
-  cursor: nwse-resize;
-}*!
-
-
-
-*/
-
-.look {
-  left: 200px;
+.out-look {
   position: relative;
   top: 200px;
+  left: 200px;
+  width: 300px;
+  height: 150px;
   display: flex;
+}
+
+.look {
   width: 300px;
   height: 150px;
 }
 
-.look:focus {
+.out-look:focus .look {
   border: 1px solid #CAC8C5;
   outline: none;
   box-sizing: border-box;
@@ -69,7 +23,7 @@
   height: 100%;
 }
 
-.look:focus .square {
+.out-look:focus .square {
   position: absolute;
   width: 6px;
   height: 6px;
@@ -79,22 +33,22 @@
 .square.top-left {
   left: -5px;
   top: -5px;
-  cursor: nwse-resize;
+  cursor: nw-resize;
 }
 
 .square.top-right {
   right: -5px;
   top: -5px;
-  cursor: nesw-resize;
+  cursor: ne-resize;
 }
 .square.bottom-left {
   left: -5px;
   bottom: -5px;
-  cursor: nesw-resize;
+  cursor: sw-resize;
 }
 .square.bottom-right {
   right: -5px;
   bottom: -5px;
-  cursor: nwse-resize;
+  cursor: se-resize;
 }
 
