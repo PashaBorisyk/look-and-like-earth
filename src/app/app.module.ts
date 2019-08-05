@@ -26,7 +26,7 @@ import { MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateM
 
 import { SatNativeDateModule, SatDatepickerModule } from 'saturn-datepicker';
 import { ClothesItemService } from './service/clothesItem.service';
-
+import { AngularSplitModule } from 'angular-split';
 
 @NgModule({
   declarations: [
@@ -60,6 +60,7 @@ import { ClothesItemService } from './service/clothesItem.service';
     HttpClientModule,
     ReactiveFormsModule,
     MatGridListModule,
+    AngularSplitModule
   ],
   exports: [
     MatDatepickerModule,
