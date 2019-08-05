@@ -26,7 +26,8 @@ import { MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateM
 
 import { SatNativeDateModule, SatDatepickerModule } from 'saturn-datepicker';
 import { ClothesItemService } from './service/clothesItem.service';
-import {ResizableModule} from "angular-resizable-element";
+import { ResizableModule } from "angular-resizable-element";
+import { ResizeService } from "./service/resize.service";
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import {ResizableModule} from "angular-resizable-element";
   providers: [
     GenderService,
     CurrencyService,
-    ClothesItemService
+    ClothesItemService,
+    ResizeService
 ],
   bootstrap: [AppComponent]
 })
