@@ -1,11 +1,12 @@
 <div class="out-look"
+     [ngStyle]="styleOfOutLook"
      tabindex="1">
   <div
     class="look"
-    [ngStyle]="style"
+    [ngStyle]="styleOfLook"
     mwlResizable
     [allowNegativeResizes]="true"
-    [resizeSnapGrid]="{ left: 10, right: 10, top: 10, bottom: 10}"
+    [resizeSnapGrid]="{ left: 50, right: 50, top: 50, bottom: 50}"
     [validateResize]="validate"
     [enableGhostResize]="true"
     (resizeEnd)="onResizeEnd($event)">

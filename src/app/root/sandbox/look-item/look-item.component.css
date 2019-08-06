@@ -13,6 +13,10 @@
   height: 150px;
 }
 
+.out-look:focus {
+  outline: none;
+}
+
 .out-look:focus .look {
   border: 1px solid #CAC8C5;
   outline: none;

@@ -1,53 +1,65 @@
 import { Injectable } from '@angular/core';
 import {ResizeEvent} from "angular-resizable-element";
-import {isUndefined} from "util";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResizeService {
 
+  static MIN_DIMENSIONS_PX = 50;
+
   constructor() { }
 
-  isProportionally(resizeEvent: ResizeEvent): boolean {
+  static isProportionally(resizeEvent: ResizeEvent): boolean {
 
-    console.log('inside');
-    let firstValue: number;
-    let secondValue: number;
+    let firstValue: number | boolean;
+    let secondValue: number | boolean;
 
-    if (!resizeEvent.edges.bottom) {
-      firstValue = Number(resizeEvent.edges.bottom);
+    if (resizeEvent.edges.bottom !== undefined) {
+      firstValue = resizeEvent.edges.bottom;
     }
 
-    if (!resizeEvent.edges.top) {
-      if (!firstValue) {
-        secondValue = Number(resizeEvent.edges.top);
+    if (resizeEvent.edges.top !== undefined) {
+      if (firstValue !== undefined) {
+        secondValue = resizeEvent.edges.top;
       } else  {
-        firstValue = Number(resizeEvent.edges.top);
+        firstValue = resizeEvent.edges.top;
       }
     }
 
-    if (!resizeEvent.edges.right) {
-      if (!firstValue) {
-        secondValue = Number(resizeEvent.edges.right);
+    if (resizeEvent.edges.right !== undefined) {
+      if (firstValue !== undefined) {
+        secondValue = resizeEvent.edges.right;
       } else  {
-        firstValue = Number(resizeEvent.edges.right);
+        firstValue = resizeEvent.edges.right;
       }
     }
 
-    if (!resizeEvent.edges.left) {
-      if (!firstValue) {
-        secondValue = Number(resizeEvent.edges.left);
+    if (resizeEvent.edges.left !== undefined) {
+      if (firstValue !== undefined) {
+        secondValue = resizeEvent.edges.left;
       } else  {
-        firstValue = Number(resizeEvent.edges.left);
+        firstValue = resizeEvent.edges.left;
       }
     }
 
-    firstValue = Math.abs(firstValue);
-    secondValue = Math.abs(secondValue);
+    if (firstValue < 0) {
+      firstValue = +firstValue * (-1);
+    }
+
+    if (secondValue < 0) {
+      secondValue = +secondValue * (-1);
+    }
 
     console.log('First: ' + firstValue + ', second: ' + secondValue);
+    console.log(secondValue === firstValue);
 
     return secondValue === firstValue;
+  }
+
+  static isValidate(event: ResizeEvent): boolean {
+    return !(event.rectangle.width &&
+      event.rectangle.height &&
+      (event.rectangle.width < this.MIN_DIMENSIONS_PX || event.rectangle.height < this.MIN_DIMENSIONS_PX));
   }
 }
