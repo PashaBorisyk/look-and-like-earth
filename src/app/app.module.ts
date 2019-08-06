@@ -29,6 +29,7 @@ import { ClothesItemService } from './service/clothesItem.service';
 import { ResizableModule } from "angular-resizable-element";
 import { ResizeService } from "./service/resize.service";
 
+import { AngularSplitModule } from 'angular-split';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ResizeService } from "./service/resize.service";
     ReactiveFormsModule,
     MatGridListModule,
     ResizableModule,
+    AngularSplitModule
   ],
   exports: [
     MatDatepickerModule,

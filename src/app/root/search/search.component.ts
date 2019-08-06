@@ -1,5 +1,4 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {ClothesItemService} from "../../service/clothesItem.service";
 
 @Component({
   selector: 'app-search',
