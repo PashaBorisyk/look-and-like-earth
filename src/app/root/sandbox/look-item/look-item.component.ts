@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
 import {ResizeEvent} from 'angular-resizable-element';
 import {ResizeService} from "../../../service/resize.service";
 
@@ -13,7 +13,7 @@ export class LookItemComponent implements OnInit {
   public styleOfOutLook: object = {};
   public styleOfLook: object = {};
   public styleOfImage: object = {};
-  image = "https://static.pullandbear.net/2/photos/2019/I/0/1/p/5689/303/427/5689303427_1_1_3.jpg?t=1563380325482";
+  @Input() image: string;
 
   constructor() { }
 

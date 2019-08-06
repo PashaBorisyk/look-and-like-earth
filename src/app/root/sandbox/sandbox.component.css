@@ -3,18 +3,8 @@
   padding: 10px;
 }
 
-.example-handle {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  color: #ccc;
-  cursor: move;
-  width: 24px;
-  height: 24px;
-}
-
 .boundary {
-  background: navajowhite;
+  background: white;
   position: relative;
   top: 100px;
   left: 250px;
