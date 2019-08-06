@@ -1,6 +1,6 @@
 <div class="row mx-5">
   <ngx-masonry [options]=masonryOptions >
-    <div ngxMasonryItem class="masonry-item" *ngFor="let clothesItem of clothesItems">
+    <div ngxMasonryItem *ngFor="let clothesItem of clothesItems">
       <div class="mx-3 my-2">
         <app-result-item  [clothesItem]="clothesItem"></app-result-item>
       </div>
