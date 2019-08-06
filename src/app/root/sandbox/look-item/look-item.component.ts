@@ -12,7 +12,8 @@ export class LookItemComponent implements OnInit {
 
   public styleOfOutLook: object = {};
   public styleOfLook: object = {};
-  image = "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1533045736-screen-shot-2018-07-25-at-5-15-04-pm-1533045665.jpg";
+  public styleOfImage: object = {};
+  image = "https://static.pullandbear.net/2/photos/2019/I/0/1/p/5689/303/427/5689303427_1_1_3.jpg?t=1563380325482";
 
   constructor() { }
 
@@ -38,6 +39,11 @@ export class LookItemComponent implements OnInit {
       top: `${event.rectangle.top}px`,
       width: `${event.rectangle.width}px`,
       height: `${event.rectangle.height}px`
+    };
+
+    this.styleOfImage = {
+      height: `${event.rectangle.height}`,
+      width: `${event.rectangle.width}`
     };
   }
 }

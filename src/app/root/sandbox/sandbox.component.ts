@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-sandbox',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SandboxComponent implements OnInit {
 
+  @ViewChild('box') box: ElementRef;
+
   constructor() { }
 
   ngOnInit() {
   }
+
 
 }

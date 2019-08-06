@@ -30,6 +30,7 @@ import { ResizableModule } from "angular-resizable-element";
 import { ResizeService } from "./service/resize.service";
 
 import { AngularSplitModule } from 'angular-split';
+import { DragDropModule  } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { AngularSplitModule } from 'angular-split';
     ReactiveFormsModule,
     MatGridListModule,
     ResizableModule,
-    AngularSplitModule
+    AngularSplitModule,
+    DragDropModule
   ],
   exports: [
     MatDatepickerModule,
