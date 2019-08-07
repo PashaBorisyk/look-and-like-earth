@@ -1,8 +1,8 @@
 .main-icon {
+  width: 30%;
   position: fixed;
   margin-top: 32px;
-  margin-right: 48px;
-  margin-left: 42px;
+  margin-left: 32px;
 }
 
 
@@ -15,7 +15,7 @@
   background: white;
   position: relative;
   top: 100px;
-  left: 250px;
+  left: 300px;
   width: 800px;
   height: 600px;
   max-width: 100%;
