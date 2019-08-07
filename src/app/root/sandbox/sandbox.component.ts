@@ -12,10 +12,18 @@ export class SandboxComponent implements OnInit {
     'https://cdn.shopify.com/s/files/1/2143/3217/products/500_7a67b0be-fb5c-419e-8cdb-5e7e4a3fba29_grande.png?v=1564066897',
     'http://agarta.prostoprint.com/static/products/full-7eba3083fd07f49c9f009950d607ba79.png'];
 
+  public styleOfBoundary: object = {};
+
   constructor() { }
 
   ngOnInit() {
   }
 
-
+  setBackground($event) {
+    console.log($event);
+    const imageSrc = $event;
+    this.styleOfBoundary = {
+      background: `url('${imageSrc}')`,
+    };
+  }
 }

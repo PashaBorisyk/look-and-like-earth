@@ -20,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { GenderService } from './service/gender.service';
 
-import { MatButtonModule, MatCardModule, MatGridListModule } from '@angular/material';
+import {MatButtonModule, MatCardModule, MatGridListModule, MatTooltipModule} from '@angular/material';
 import { CurrencyService } from './service/currency.service';
 import { MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 
@@ -66,7 +66,8 @@ import { DragDropModule  } from '@angular/cdk/drag-drop';
     MatGridListModule,
     ResizableModule,
     AngularSplitModule,
-    DragDropModule
+    DragDropModule,
+    MatTooltipModule
   ],
   exports: [
     MatDatepickerModule,
