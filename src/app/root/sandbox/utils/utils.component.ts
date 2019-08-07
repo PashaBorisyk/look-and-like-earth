@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UtilsComponent implements OnInit {
 
+  menu = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  isActive() {
+    return this.menu;
+  }
+
+  doActivate() {
+    this.menu = this.menu === true ? false : true;
+  }
 }

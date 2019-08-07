@@ -5,6 +5,11 @@
   margin-left: 32px;
 }
 
+.menu {
+  position: fixed;
+  margin-left: 32px;
+  bottom: 50px;
+}
 
 .box {
   display: inline-flex;
