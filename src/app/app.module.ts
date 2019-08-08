@@ -26,8 +26,6 @@ import { MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateM
 
 import { SatNativeDateModule, SatDatepickerModule } from 'saturn-datepicker';
 import { ClothesItemService } from './service/clothesItem.service';
-import { ResizableModule } from "angular-resizable-element";
-import { ResizeService } from "./service/resize.service";
 
 import { AngularSplitModule } from 'angular-split';
 import { DragDropModule  } from '@angular/cdk/drag-drop';
@@ -64,7 +62,6 @@ import { DragDropModule  } from '@angular/cdk/drag-drop';
     HttpClientModule,
     ReactiveFormsModule,
     MatGridListModule,
-    ResizableModule,
     AngularSplitModule,
     DragDropModule,
     MatTooltipModule
@@ -80,8 +77,7 @@ import { DragDropModule  } from '@angular/cdk/drag-drop';
   providers: [
     GenderService,
     CurrencyService,
-    ClothesItemService,
-    ResizeService
+    ClothesItemService
 ],
   bootstrap: [AppComponent]
 })
