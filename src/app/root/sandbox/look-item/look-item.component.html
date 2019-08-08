@@ -1,19 +1,6 @@
-<div
-  tabindex="1"
-  id="box"
-  class="look"
-  [ngStyle]="styleOfLook"
-  mwlResizable
-  [allowNegativeResizes]="true"
-  [resizeSnapGrid]="{ left: 50, right: 50, top: 50, bottom: 50}"
-  [validateResize]="validate"
-  [enableGhostResize]="true"
-  (resizeEnd)="onResizeEnd($event)">
+<div class="look">
   <img src="{{ image }}"
        [ngStyle]=""
        alt="image"
        class="image">
-  <div class='square bottom-right'
-       mwlResizeHandle
-       [resizeEdges]="{bottom: true, right: true}"></div>
 </div>
