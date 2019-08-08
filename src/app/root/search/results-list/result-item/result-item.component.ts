@@ -16,4 +16,13 @@ export class ClothesItemComponent implements OnInit {
   ngOnInit() {
   }
 
+  drag(event) {
+    console.log('send data');
+    event.dataTransfer.setData('text', 'link');
+  }
+
+  allowDrop(ev) {
+    ev.preventDefault();
+  }
+
 }

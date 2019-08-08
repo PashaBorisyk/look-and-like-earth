@@ -49,7 +49,7 @@ export class ClothesItemService {
             date: value.metaInformation.insertDate,
             style: 'Зауженный',
             companyIcon: '',
-            image: 'https://static.pullandbear.net/2/photos/2019/I/0/1/p/5689/303/427/5689303427_1_1_3.jpg?t=1563380325482'
+            image: value.data.price.price === 1599 ? 'https://primedia.primark.com/i/primark/123101972-01-Grey-T-Shirt.jpg?locale=en-*,*&$product-thumbnail$' :'https://static.pullandbear.net/2/photos/2019/I/0/1/p/5689/303/427/5689303427_1_1_3.jpg?t=1563380325482'
           };
           clothesItems.push(clothesItem);
         });

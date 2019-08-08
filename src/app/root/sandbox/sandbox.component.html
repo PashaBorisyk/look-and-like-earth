@@ -5,9 +5,12 @@
   </svg>
 </div>
 
-<div [ngStyle]="styleOfBoundary" class="boundary">
-  <div class="box" cdkDragBoundary=".boundary" cdkDrag>
-    <app-look-item [image]=images[0]></app-look-item>
+<div
+  (drop)="drop($event)"
+  (dragover)="allowDrop($event)"
+  [ngStyle]="styleOfBoundary" class="boundary">
+  <div *ngFor="let image of images" class="box" cdkDragBoundary=".boundary" cdkDrag>
+    <app-look-item [image]=image></app-look-item>
   </div>
 </div>
 <div class="menu">

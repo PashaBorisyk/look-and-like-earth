@@ -29,6 +29,7 @@ import { ClothesItemService } from './service/clothesItem.service';
 
 import { AngularSplitModule } from 'angular-split';
 import { DragDropModule  } from '@angular/cdk/drag-drop';
+import { NgxMasonryModule } from 'ngx-masonry';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { DragDropModule  } from '@angular/cdk/drag-drop';
     MatGridListModule,
     AngularSplitModule,
     DragDropModule,
-    MatTooltipModule
+    MatTooltipModule,
+    NgxMasonryModule,
   ],
   exports: [
     MatDatepickerModule,
