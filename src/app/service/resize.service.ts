@@ -7,8 +7,6 @@ import {ResizeEvent} from "angular-resizable-element";
 export class ResizeService {
 
   static MIN_DIMENSIONS_PX = 50;
-  static MAX_HEIGHT = 280;
-  static MAX_WIDTH = 220;
 
   constructor() { }
 
@@ -52,9 +50,6 @@ export class ResizeService {
     if (secondValue < 0) {
       secondValue = +secondValue * (-1);
     }
-
-    console.log('First: ' + firstValue + ', second: ' + secondValue);
-    console.log(secondValue === firstValue);
 
     return secondValue === firstValue;
   }

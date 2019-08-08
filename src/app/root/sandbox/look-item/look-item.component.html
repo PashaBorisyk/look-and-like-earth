@@ -1,37 +1,19 @@
-<!--
-<div class="out-look"
-     [ngStyle]="styleOfOutLook"
-     tabindex="1">
-  <div
-    class="look"
-    [ngStyle]="styleOfLook"
-    mwlResizable
-    [allowNegativeResizes]="true"
-    [resizeSnapGrid]="{ left: 50, right: 50, top: 50, bottom: 50}"
-    [validateResize]="validate"
-    [enableGhostResize]="true"
-    (resizeEnd)="onResizeEnd($event)">
-    <div class='square top-left'
-         mwlResizeHandle
-         [resizeEdges]="{top: true, left: true}"></div>
-    <div class='square top-right'
-         mwlResizeHandle
-         [resizeEdges]="{right: true, top: true}"></div>
-    <div class='square bottom-left'
-         mwlResizeHandle
-         [resizeEdges]="{bottom: true, left: true}"></div>
-    <div class='square bottom-right'
-         mwlResizeHandle
-         [resizeEdges]="{bottom: true, right: true}"></div>
-    <img src="{{ image }}"
-         [ngStyle]=""
-         alt="image"
-         class="image">
-  </div>
+<div
+  tabindex="1"
+  id="box"
+  class="look"
+  [ngStyle]="styleOfLook"
+  mwlResizable
+  [allowNegativeResizes]="true"
+  [resizeSnapGrid]="{ left: 50, right: 50, top: 50, bottom: 50}"
+  [validateResize]="validate"
+  [enableGhostResize]="true"
+  (resizeEnd)="onResizeEnd($event)">
+  <img src="{{ image }}"
+       [ngStyle]=""
+       alt="image"
+       class="image">
+  <div class='square bottom-right'
+       mwlResizeHandle
+       [resizeEdges]="{bottom: true, right: true}"></div>
 </div>
--->
-
-<img src="{{ image }}"
-     [ngStyle]=""
-     alt="image"
-     class="image">
