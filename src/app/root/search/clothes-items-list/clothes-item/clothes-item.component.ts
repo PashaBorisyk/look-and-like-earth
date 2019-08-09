@@ -36,4 +36,9 @@ export class ClothesItemComponent implements OnInit {
     document.body.append(this.img);
   }
 
+  removeGhostImage(event) {
+    const img = new Image();
+    img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
+    event.dataTransfer.setDragImage(img, 0, 0);
+  }
 }
