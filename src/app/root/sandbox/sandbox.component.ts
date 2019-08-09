@@ -1,5 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ClothesItem} from '../../class/clothesItem';
+import {LookItemService} from '../../service/look-item.service';
+import {MatSnackBar} from '@angular/material';
 
 
 
@@ -13,7 +15,8 @@ export class SandboxComponent implements OnInit {
   clothesItems: ClothesItem[];
   public styleOfBoundary: object = {};
 
-  constructor() { }
+  constructor(private lookItemService: LookItemService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.clothesItems = [];
@@ -26,14 +29,22 @@ export class SandboxComponent implements OnInit {
     };
   }
 
-  allowDrop(ev) {
-    ev.preventDefault();
+  allowDrop(event) {
+    event.preventDefault();
   }
 
   getDataFromDraggable(event) {
     event.preventDefault();
     const json = event.dataTransfer.getData('json');
     const clothesItem = JSON.parse(json);
+
+    if (this.lookItemService.isConsist(clothesItem.image, this.clothesItems)) {
+      this.snackBar.open('This clothes consist', '×', {
+        duration: 2000,
+      });
+      return;
+    }
+
     this.clothesItems.push(clothesItem);
   }
 }

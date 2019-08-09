@@ -31,6 +31,8 @@ import { AngularSplitModule } from 'angular-split';
 import { DragDropModule  } from '@angular/cdk/drag-drop';
 import { NgxMasonryModule } from 'ngx-masonry';
 
+import { MatSnackBarModule  } from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +69,7 @@ import { NgxMasonryModule } from 'ngx-masonry';
     DragDropModule,
     MatTooltipModule,
     NgxMasonryModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatDatepickerModule,
@@ -79,7 +82,7 @@ import { NgxMasonryModule } from 'ngx-masonry';
   providers: [
     GenderService,
     CurrencyService,
-    ClothesItemService
+    ClothesItemService,
 ],
   bootstrap: [AppComponent]
 })
