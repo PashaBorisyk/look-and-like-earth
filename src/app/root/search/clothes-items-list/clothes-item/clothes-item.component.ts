@@ -2,9 +2,9 @@ import {Component, HostListener, Input, OnInit} from '@angular/core';
 import { ClothesItem } from '../../../../class/clothesItem';
 
 @Component({
-  selector: 'app-result-item',
-  templateUrl: './result-item.component.html',
-  styleUrls: ['./result-item.component.css']
+  selector: 'app-clothes-item',
+  templateUrl: './clothes-item.component.html',
+  styleUrls: ['./clothes-item.component.css']
 })
 export class ClothesItemComponent implements OnInit {
 

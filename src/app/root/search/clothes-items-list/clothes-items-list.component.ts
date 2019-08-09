@@ -4,9 +4,9 @@ import {ClothesItemService} from "../../../service/clothesItem.service";
 import {NgxMasonryOptions} from 'ngx-masonry';
 
 @Component({
-  selector: 'app-results-list',
-  templateUrl: './results-list.component.html',
-  styleUrls: ['./results-list.component.css']
+  selector: 'app-clothes-items-list',
+  templateUrl: './clothes-items-list.component.html',
+  styleUrls: ['./clothes-items-list.component.css']
 })
 export class ResultsListComponent implements OnInit {
 
