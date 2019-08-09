@@ -1,4 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ClothesItem} from '../../class/clothesItem';
 
 
 
@@ -9,15 +10,13 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 })
 export class SandboxComponent implements OnInit {
 
-  images = [
-    'https://static.pullandbear.net/2/photos/2019/I/0/1/p/5689/303/427/5689303427_1_1_3.jpg?t=1563380325482'];
-
-  url = null;
+  clothesItems: ClothesItem[];
   public styleOfBoundary: object = {};
 
   constructor() { }
 
   ngOnInit() {
+    this.clothesItems = [];
   }
 
   setBackground($event) {
@@ -31,9 +30,10 @@ export class SandboxComponent implements OnInit {
     ev.preventDefault();
   }
 
-  drop(event) {
+  getDataFromDraggable(event) {
     event.preventDefault();
-    this.url = event.dataTransfer.getData('text');
-    this.images.push(this.url);
+    const json = event.dataTransfer.getData('json');
+    const clothesItem = JSON.parse(json);
+    this.clothesItems.push(clothesItem);
   }
 }

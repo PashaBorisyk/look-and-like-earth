@@ -6,11 +6,15 @@
 </div>
 
 <div
-  (drop)="drop($event)"
+  (drop)="getDataFromDraggable($event)"
   (dragover)="allowDrop($event)"
-  [ngStyle]="styleOfBoundary" class="boundary">
-  <div *ngFor="let image of images" class="box" cdkDragBoundary=".boundary" cdkDrag>
-    <app-look-item [image]=image></app-look-item>
+  [ngStyle]="styleOfBoundary"
+  class="boundary">
+  <div *ngFor="let clothesItem of clothesItems"
+       class="box"
+       cdkDragBoundary=".boundary"
+       cdkDrag>
+    <app-look-item [clothesItem]=clothesItem></app-look-item>
   </div>
 </div>
 <div class="menu">

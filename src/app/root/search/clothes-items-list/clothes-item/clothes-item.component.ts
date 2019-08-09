@@ -11,10 +11,13 @@ export class ClothesItemComponent implements OnInit {
   @Input() clothesItem: ClothesItem;
   description: boolean;
   img = null;
+  ghostImage = null;
 
   constructor() { }
 
   ngOnInit() {
+    this.ghostImage = new Image();
+    this.ghostImage.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
   }
 
   allowDrop(event) {
@@ -37,8 +40,8 @@ export class ClothesItemComponent implements OnInit {
   }
 
   removeGhostImage(event) {
-    const img = new Image();
-    img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
-    event.dataTransfer.setDragImage(img, 0, 0);
+    event.dataTransfer.setDragImage(this.ghostImage, 0, 0);
+    const json = JSON.stringify(this.clothesItem);
+    event.dataTransfer.setData('json', json);
   }
 }
