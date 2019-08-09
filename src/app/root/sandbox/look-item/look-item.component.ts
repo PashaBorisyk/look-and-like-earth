@@ -9,6 +9,7 @@ import {ClothesItem} from '../../../class/clothesItem';
 export class LookItemComponent implements OnInit {
 
   @Input() clothesItem: ClothesItem;
+  description = false;
 
   constructor() { }
 

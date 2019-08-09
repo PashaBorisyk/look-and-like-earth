@@ -39,7 +39,7 @@ export class SandboxComponent implements OnInit {
     const clothesItem = JSON.parse(json);
 
     if (this.lookItemService.isConsist(clothesItem.image, this.clothesItems)) {
-      this.snackBar.open('This clothes consist', '×', {
+      this.snackBar.open('These clothes are already there', '×', {
         duration: 2000,
       });
       return;
