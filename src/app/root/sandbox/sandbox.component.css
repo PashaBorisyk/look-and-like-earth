@@ -1,0 +1,28 @@
+.main-icon {
+  width: 30%;
+  position: fixed;
+  margin-top: 32px;
+  margin-left: 32px;
+}
+
+.menu {
+  position: fixed;
+  margin-left: 32px;
+  bottom: 50px;
+}
+
+.box {
+  display: inline-flex;
+  padding: 10px;
+}
+
+.boundary {
+  background: white;
+  position: relative;
+  top: 100px;
+  left: 300px;
+  width: 800px;
+  height: 600px;
+  max-width: 100%;
+  border: dotted #ccc 2px;
+}

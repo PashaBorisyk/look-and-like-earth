@@ -1,10 +1,13 @@
-<as-split unit="percent" direction="horizontal" restrictMove="true" gutterSize="3">
-  <as-split-area size="30">
+<as-split
+  (dragend)="removeImage()"
+  unit="percent"
+  direction="horizontal"
+  restrictMove="true"
+  gutterSize="3">
+  <as-split-area size="65">
     <app-sandbox></app-sandbox>
   </as-split-area>
-  <as-split-area size="70" (scroll)="scrollHandler($event)" maxSize="90">
+  <as-split-area size="35" (scroll)="scrollHandler($event)" maxSize="85">
     <app-search></app-search>
   </as-split-area>
 </as-split>
-
-

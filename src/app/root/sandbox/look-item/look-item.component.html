@@ -1,3 +1,91 @@
-<p>
-  look-item works!
-</p>
+<div
+  (mouseover)="description = true"
+  (mouseout)="description = false"
+  class="look">
+  <img src="{{ clothesItem.image }}"
+       alt="image"
+       class="image">
+</div>
+
+<div *ngIf="description" class="description">
+  <div class="row my-3">
+    <div class="col-md-4 type">
+      Бренд:
+    </div>
+    <div class="col-md-8 value">
+      <strong>{{ clothesItem.shopName | uppercase }}</strong>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-4 type">
+      Название:
+    </div>
+    <div class="col-md-8 value">
+      {{ clothesItem.name }}
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-4 type">
+      Цвет:
+    </div>
+    <div class="col-md-8 value">
+      {{ clothesItem.color }}
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-4 type">
+      Размер:
+    </div>
+    <div class="col-md-8 value">
+      <strong>S</strong>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-4 type">
+      Описание:
+    </div>
+    <div class="col-md-8 value">
+      {{ clothesItem.description }}
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-4 type">
+      Артикул:
+    </div>
+    <div class="col-md-8 value">
+      {{ clothesItem.article }}
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-4 type">
+      Категория:
+    </div>
+    <div class="col-md-8 value">
+      {{ clothesItem.category }}
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-4 type">
+      Пол:
+    </div>
+    <div class="col-md-8 value">
+      {{ clothesItem.sex }}
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-4 type">
+      Материалы:
+    </div>
+    <div class="col-md-8 value">
+      {{ clothesItem.material.value }} {{ clothesItem.material.percent }}
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-4 type">
+      Цена:
+    </div>
+    <div class="col-md-8 value">
+      {{ clothesItem.price.value }} {{ clothesItem.price.currency }}
+    </div>
+  </div>
+</div>

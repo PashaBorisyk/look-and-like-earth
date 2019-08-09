@@ -1,14 +1,19 @@
-import { Price } from "./price";
+import { Price } from './price';
+import { Material } from './material';
 
 export class ClothesItem {
   name: string;
   price: Price;
   color: string;
-  material: string;
+  material: Material;
   date: Date;
   style: string;
-  companyIcon: string;
   image: string;
+  article: string;
+  shopName: string;
+  description: string;
+  category: string;
+  sex: string;
 
   constructor(name: string, price: Price, color: string, material: string, date: Date, style: string) {
     this.name = name;

@@ -7,3 +7,14 @@
   width: 100%;
 }
 
+.currency-icon {
+  position: absolute;
+  right: 67%;
+  bottom: 110%;
+}
+
+.gender-icon {
+  position: absolute;
+  right: 55%;
+  bottom: 100%;
+}

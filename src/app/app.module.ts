@@ -6,27 +6,32 @@ import { RootComponent } from './root/root.component';
 import { SearchComponent } from './root/search/search.component';
 import { SandboxComponent } from './root/sandbox/sandbox.component';
 import { SearchFieldComponent } from './root/search/search-field/search-field.component';
-import { ResultsListComponent } from './root/search/results-list/results-list.component';
+import { ResultsListComponent } from './root/search/clothes-items-list/clothes-items-list.component';
 import { LookItemComponent } from './root/sandbox/look-item/look-item.component';
 import { UtilsComponent } from './root/sandbox/utils/utils.component';
 import { CostsSumComponent } from './root/sandbox/costs-sum/costs-sum.component';
 import { CalendarComponent } from './root/search/search-field/calendar/calendar.component';
 import { GenderComponent } from './root/search/search-field/gender/gender.component';
 import { CurrencyComponent } from './root/search/search-field/currency/currency.component';
-import { ClothesItemComponent } from './root/search/results-list/result-item/result-item.component';
+import { ClothesItemComponent } from './root/search/clothes-items-list/clothes-item/clothes-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { GenderService } from './service/gender.service';
 
-import { MatButtonModule, MatCardModule, MatGridListModule } from '@angular/material';
+import {MatButtonModule, MatCardModule, MatGridListModule, MatTooltipModule} from '@angular/material';
 import { CurrencyService } from './service/currency.service';
 import { MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 
 import { SatNativeDateModule, SatDatepickerModule } from 'saturn-datepicker';
 import { ClothesItemService } from './service/clothesItem.service';
+
 import { AngularSplitModule } from 'angular-split';
+import { DragDropModule  } from '@angular/cdk/drag-drop';
+import { NgxMasonryModule } from 'ngx-masonry';
+
+import { MatSnackBarModule  } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -60,7 +65,11 @@ import { AngularSplitModule } from 'angular-split';
     HttpClientModule,
     ReactiveFormsModule,
     MatGridListModule,
-    AngularSplitModule
+    AngularSplitModule,
+    DragDropModule,
+    MatTooltipModule,
+    NgxMasonryModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatDatepickerModule,
@@ -73,7 +82,7 @@ import { AngularSplitModule } from 'angular-split';
   providers: [
     GenderService,
     CurrencyService,
-    ClothesItemService
+    ClothesItemService,
 ],
   bootstrap: [AppComponent]
 })

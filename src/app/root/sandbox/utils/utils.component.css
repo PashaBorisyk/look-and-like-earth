@@ -1,0 +1,20 @@
+.main-menu:hover {
+  cursor: pointer;
+}
+
+.main-menu:active {
+  box-shadow: 0 5px white;
+  transform: translateY(4px);
+}
+
+
+.attribute-menu {
+  cursor: pointer;
+  margin-left: 20%;
+}
+
+.attribute-icon {
+  position: absolute;
+  margin-left: 20%;
+  margin-top: 15%;
+}

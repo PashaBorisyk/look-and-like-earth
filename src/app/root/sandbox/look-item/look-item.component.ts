@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ClothesItem} from '../../../class/clothesItem';
 
 @Component({
   selector: 'app-look-item',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LookItemComponent implements OnInit {
 
+  @Input() clothesItem: ClothesItem;
+  description = false;
+
   constructor() { }
 
   ngOnInit() {
   }
-
 }

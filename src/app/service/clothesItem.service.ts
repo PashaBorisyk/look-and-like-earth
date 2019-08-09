@@ -45,11 +45,21 @@ export class ClothesItemService {
               currency: value.data.price.currency
             },
             color: value.data.color,
-            material: value.data.composition[0].material,
+            material: {
+              value: value.data.composition[0].material,
+              percent: value.data.composition[0].percent
+            },
             date: value.metaInformation.insertDate,
             style: 'Зауженный',
             companyIcon: '',
-            image: 'https://static.pullandbear.net/2/photos/2019/I/0/1/p/5689/303/427/5689303427_1_1_3.jpg?t=1563380325482'
+            image: value.data.price.price === 1599
+              ? 'https://cdn.shopify.com/s/files/1/2143/3217/products/500_7a67b0be-fb5c-419e-8cdb-5e7e4a3fba29_grande.png?v=1564066897'
+              :'https://cdn.shopify.com/s/files/1/1889/4591/products/custom_printed_white_unisex_next_level_60_40_t_shirt.png?v=1511212877',
+            article: value.data.article,
+            shopName: value.metaInformation.shopName,
+            description: value.data.description,
+            category: value.data.category,
+            sex: value.data.sex,
           };
           clothesItems.push(clothesItem);
         });
