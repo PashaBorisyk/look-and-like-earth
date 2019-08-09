@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ClothesItem} from '../../class/clothesItem';
 import {LookItemService} from '../../service/look-item.service';
 import {MatSnackBar} from '@angular/material';
+import {PriceService} from '../../service/price.service';
 
 
 
@@ -16,6 +17,7 @@ export class SandboxComponent implements OnInit {
   public styleOfBoundary: object = {};
 
   constructor(private lookItemService: LookItemService,
+              private priceService: PriceService,
               private snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -46,5 +48,6 @@ export class SandboxComponent implements OnInit {
     }
 
     this.clothesItems.push(clothesItem);
+    this.priceService.add(clothesItem.price);
   }
 }
