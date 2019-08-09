@@ -36,4 +36,10 @@ export class RootComponent implements OnInit {
     }
   }
 
+  removeImage() {
+    let img = document.getElementById('temp-img');
+    if (img !== null) {
+      img.remove();
+    }
+  }
 }

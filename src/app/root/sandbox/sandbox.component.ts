@@ -36,5 +36,4 @@ export class SandboxComponent implements OnInit {
     this.url = event.dataTransfer.getData('text');
     this.images.push(this.url);
   }
-
 }

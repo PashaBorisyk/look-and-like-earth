@@ -1,16 +1,21 @@
 <mat-card
-  (dragover)="allowDrop($event)"
-  class="card" (mouseover)="description = true"
+  class="card"
+  (mouseover)="description = true"
   (mouseout)="description = false" >
   <mat-card-header>
     <mat-card-title>
       <img
-        (dragstart)="drag($event)"
-        draggable="true"
-        src="assets/img/hm.png" alt="icon" >
+        src="assets/img/hm.png"
+        alt="icon" >
     </mat-card-title>
   </mat-card-header>
-  <img mat-card-image src="{{clothesItem.image}}">
+  <img
+    (dragover)="allowDrop($event)"
+    (drag)="changeImagePosition($event)"
+    (mousedown)="createImage()"
+    draggable="true"
+    mat-card-image
+    src="{{clothesItem.image}}">
   <mat-card-content>
     <div class="row">
       <div class="col-md-7">
