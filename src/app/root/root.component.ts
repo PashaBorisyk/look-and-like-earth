@@ -11,9 +11,11 @@ import {MasonryService} from '../service/masonry.service';
 export class RootComponent implements OnInit {
 
   clothesItems: ClothesItem[];
-  sizeSandboxArea = 30;
-  sizeSearchArea = 70;
   updateMasonry = false;
+  areas = [
+    {size: 30, order: 1},
+    {size: 70, order: 2},
+  ];
 
   constructor(private clothesItemService: ClothesItemService,
               private masonryService: MasonryService) { }

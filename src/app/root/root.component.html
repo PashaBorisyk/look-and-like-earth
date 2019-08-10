@@ -4,13 +4,18 @@
   unit="percent"
   direction="horizontal"
   restrictMove="true"
-  gutterStep="300"
   useTransition="true"
   gutterSize="3">
-  <as-split-area size="{{ sizeSandboxArea }}">
+  <as-split-area
+    [order]="areas[0].order"
+    [size]="areas[0].size">
     <app-sandbox></app-sandbox>
   </as-split-area>
-  <as-split-area size="{{ sizeSearchArea }}" (scroll)="scrollHandler($event)" maxSize="85">
+  <as-split-area
+    [order]="areas[1].order"
+    [size]="areas[1].size"
+    (scroll)="scrollHandler($event)"
+    maxSize="85">
     <app-search></app-search>
   </as-split-area>
 </as-split>

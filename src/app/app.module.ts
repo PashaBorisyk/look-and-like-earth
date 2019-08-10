@@ -20,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { GenderService } from './service/gender.service';
 
-import {MatButtonModule, MatCardModule, MatGridListModule, MatTooltipModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatGridListModule, MatListModule, MatSelectModule, MatTooltipModule} from '@angular/material';
 import { CurrencyService } from './service/currency.service';
 import { MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 
@@ -70,6 +70,8 @@ import { MatSnackBarModule  } from '@angular/material';
     MatTooltipModule,
     NgxMasonryModule,
     MatSnackBarModule,
+    MatSelectModule,
+    MatListModule,
   ],
   exports: [
     MatDatepickerModule,

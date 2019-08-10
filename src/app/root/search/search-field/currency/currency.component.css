@@ -1,5 +1,27 @@
 .currency{
   color: #686a63;
   font-size: 14px;
-  cursor: default;
+  cursor: pointer;
+}
+
+.list {
+  z-index: 50;
+  position: absolute;
+  display: none;
+  padding: 12px 16px;
+  list-style-type:none;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: .25rem;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.item {
+  position: relative;
+  left: 0;
+  cursor: pointer;
+}
+
+.item:hover {
+  background: #f3f4f5;
 }
