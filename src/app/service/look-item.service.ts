@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import {ClothesItem} from '../class/clothesItem';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LookItemService {
+
+  private dropSource = new BehaviorSubject(false);
+  currentDrop = this.dropSource.asObservable();
 
   constructor() { }
 
@@ -16,5 +20,9 @@ export class LookItemService {
       }
     });
     return result;
+  }
+
+  dropAll() {
+    this.dropSource.next(true);
   }
 }
