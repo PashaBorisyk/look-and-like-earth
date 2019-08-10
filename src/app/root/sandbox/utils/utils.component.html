@@ -22,7 +22,11 @@
       </defs>
     </svg>
   </div>
-  <div class="attribute-menu">
+  <div
+    matTooltip="Delete all clothes"
+    [matTooltipPosition]="position.value"
+    (click)="removeAll()"
+    class="attribute-menu">
     <div class="attribute-icon">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M15.0335 5.63309V15H8.25177M15.0335 5.43165L10.8705 1.43645V5.56594H15.0335V5.43165Z" stroke="#312A20" stroke-width="0.5" stroke-linecap="square"/>

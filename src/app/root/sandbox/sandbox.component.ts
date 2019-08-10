@@ -20,6 +20,11 @@ export class SandboxComponent implements OnInit {
 
   ngOnInit() {
     this.clothesItems = [];
+    this.lookItemService.currentDrop.subscribe(value => {
+      if (value) {
+       this.clothesItems = [];
+      }
+    });
   }
 
   setBackground($event) {
