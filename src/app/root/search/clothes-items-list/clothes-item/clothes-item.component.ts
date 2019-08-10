@@ -9,7 +9,7 @@ import { ClothesItem } from '../../../../class/clothesItem';
 export class ClothesItemComponent implements OnInit {
 
   @Input() clothesItem: ClothesItem;
-  description: boolean;
+  description = false;
   img = null;
   ghostImage = null;
 

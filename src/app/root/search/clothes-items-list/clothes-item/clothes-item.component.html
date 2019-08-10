@@ -1,7 +1,4 @@
-<mat-card
-  class="card"
-  (mouseover)="description = true"
-  (mouseout)="description = false" >
+<mat-card class="card">
   <mat-card-header>
     <mat-card-title>
       <img
@@ -30,9 +27,8 @@
       </div>
     </div>
   </mat-card-content>
-  <mat-card-footer *ngIf="description">
-    <hr color="#E5E5E5" size="0.5" />
-    <div class="cart-footer mt-1">
+  <mat-card-footer>
+    <div class="card-footer">
       <div class="description-type my-2">
         Цвет:
         <span class="description-value">
