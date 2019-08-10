@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { ClothesItem } from "../../../class/clothesItem";
 import {ClothesItemService} from "../../../service/clothesItem.service";
 import {NgxMasonryOptions} from 'ngx-masonry';
+import {MasonryService} from '../../../service/masonry.service';
 
 @Component({
   selector: 'app-clothes-items-list',
@@ -11,21 +12,32 @@ import {NgxMasonryOptions} from 'ngx-masonry';
 export class ResultsListComponent implements OnInit {
 
   public masonryOptions: NgxMasonryOptions = {
-    transitionDuration: '0.1s',
+    transitionDuration: '0.8s',
     resize: true,
     initLayout: true,
-    fitWidth: true
+    fitWidth: true,
+    horizontalOrder: true
   };
 
-  clothesItems: ClothesItem[];
-  constructor(private clothesItemService: ClothesItemService) {}
+  updateMasonry;
+
+
+  clothesItems: ClothesItem[] = [];
+  constructor(private clothesItemService: ClothesItemService,
+              private masonryService: MasonryService) { }
 
   ngOnInit() {
-    this.clothesItemService.current.subscribe(clothesItems => this.clothesItems = clothesItems);
+    this.clothesItemService.current.subscribe(clothesItems =>  {
+      if (clothesItems !== undefined ) {
+        clothesItems.forEach( item => {
+          this.clothesItems.push(item);
+        });
+      }
+    });
 
     this.clothesItemService.recommendations().subscribe(data => {
       this.clothesItems = data;
     });
+    this.masonryService.currentUpdate.subscribe(updateMasonry => this.updateMasonry = updateMasonry);
   }
-
 }

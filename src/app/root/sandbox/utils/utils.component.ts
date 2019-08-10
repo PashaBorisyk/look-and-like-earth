@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {TooltipPosition} from '@angular/material';
 import {Observable} from 'rxjs';
+import {LookItemService} from '../../../service/look-item.service';
 
 @Component({
   selector: 'app-utils',
@@ -18,7 +19,7 @@ export class UtilsComponent implements OnInit {
 
   @Output() imageEvent = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private lookItemService: LookItemService) { }
 
   ngOnInit() {
   }
@@ -37,7 +38,6 @@ export class UtilsComponent implements OnInit {
 
   upload(event) {
     this.processFile(event).then( () => {
-      console.log('f: ' + this.imageSrc);
       this.imageEvent.emit(this.imageSrc);
     });
   }
@@ -53,5 +53,9 @@ export class UtilsComponent implements OnInit {
         resolve(event);
         }, 2000);
       });
+  }
+
+  removeAll() {
+    this.lookItemService.dropAll();
   }
 }

@@ -1,6 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {ClothesItemService} from "../service/clothesItem.service";
 import {ClothesItem} from '../class/clothesItem';
+import {MasonryService} from '../service/masonry.service';
 
 @Component({
   selector: 'app-main',
@@ -10,8 +11,14 @@ import {ClothesItem} from '../class/clothesItem';
 export class RootComponent implements OnInit {
 
   clothesItems: ClothesItem[];
+  updateMasonry = false;
+  areas = [
+    {size: 30, order: 1},
+    {size: 70, order: 2},
+  ];
 
-  constructor(private clothesItemService: ClothesItemService) { }
+  constructor(private clothesItemService: ClothesItemService,
+              private masonryService: MasonryService) { }
 
   ngOnInit() {
     this.clothesItemService.current.subscribe(clothesItems => this.clothesItems = clothesItems);
@@ -26,12 +33,9 @@ export class RootComponent implements OnInit {
   @HostListener('scroll', ['$event'])
   scrollHandler($event) {
     if (($event.target.offsetHeight + $event.target.scrollTop ) >= $event.target.scrollHeight) {
-      console.log('Load new clothes');
-
       const searchValue = localStorage.getItem('searchValue');
       this.clothesItemService.search(searchValue).subscribe(data => {
-        this.clothesItems = this.clothesItems.concat(data);
-        this.clothesItemService.changeClotheItems(this.clothesItems);
+        this.clothesItemService.changeClotheItems(data);
       });
     }
   }
@@ -41,5 +45,10 @@ export class RootComponent implements OnInit {
     if (img !== null) {
       img.remove();
     }
+  }
+
+  reloadMasonry() {
+    this.updateMasonry = this.updateMasonry === false;
+    this.masonryService.reload(this.updateMasonry);
   }
 }

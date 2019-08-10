@@ -8,25 +8,32 @@ import { CurrencyService } from '../../../../service/currency.service';
 })
 export class CurrencyComponent implements OnInit {
 
-  private currency;
-  private nowPosition;
-  private lastPosition;
+  choiceCurrency;
+  currencies = [];
+  styleOfList: object = {};
 
-  constructor(private currencyService: CurrencyService) {
-    this.currency = this.currencyService.getCurrency();
-    this.nowPosition = 0;
-    this.lastPosition = this.currencyService.getLastPosition();
-  }
+  constructor(private currencyService: CurrencyService) { }
 
   ngOnInit() {
+    this.currencies = this.currencyService.getCurrencies();
+    this.choiceCurrency = this.currencies[0];
   }
 
-  changeCurrency() {
-    if (this.nowPosition === this.lastPosition) {
-      this.nowPosition = 0;
-    } else {
-      this.nowPosition++;
-    }
-    this.currency = this.currencyService.getCurrencyByPosition(this.nowPosition);
+  showList() {
+    this.styleOfList = {
+      display: 'block',
+    };
+  }
+
+  choice(event) {
+    let currency = event.target.innerText;
+    this.currencies.forEach(item => {
+      if (item === currency) {
+        this.choiceCurrency = currency;
+      }
+    });
+    this.styleOfList = {
+      display: 'none',
+    };
   }
 }
