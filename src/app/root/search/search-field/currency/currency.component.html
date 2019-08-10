@@ -1,3 +1,15 @@
-<div class="currency" (click)="changeCurrency()">
-  {{ currency }}
+<div
+  (click)="showList()"
+  class="currency">
+  {{choiceCurrency}}
 </div>
+<ul
+  [ngStyle]="styleOfList"
+  class="list">
+  <li
+    (click)="choice($event)"
+    *ngFor="let currency of currencies"
+    class="item currency">
+    {{currency}}
+  </li>
+</ul>
