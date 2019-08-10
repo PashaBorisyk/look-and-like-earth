@@ -7,7 +7,7 @@ import {Price} from '../class/price';
 })
 export class PriceService {
 
-  private priceSource = new BehaviorSubject(new Price(0, 'BYN'));
+  private priceSource = new BehaviorSubject(new Price(0, 'RUB'));
   currentPrice = this.priceSource.asObservable();
 
   constructor() { }

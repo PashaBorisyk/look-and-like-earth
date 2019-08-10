@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CurrencyService {
 
-  private currencies = ['BYN', 'EUR', 'USD', 'RUB'];
+  private currencies = ['RUB', 'EUR', 'USD', 'BYN'];
 
   constructor() { }
 

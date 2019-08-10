@@ -3,6 +3,7 @@ import {ClothesItem} from '../../class/clothesItem';
 import {LookItemService} from '../../service/look-item.service';
 import {MatSnackBar} from '@angular/material';
 import {PriceService} from '../../service/price.service';
+import {Price} from '../../class/price';
 
 
 
@@ -24,6 +25,11 @@ export class SandboxComponent implements OnInit {
     this.clothesItems = [];
     this.lookItemService.currentDrop.subscribe(value => {
       if (value) {
+        let sum = 0;
+        this.clothesItems.forEach(item => {
+          sum += item.price.value;
+        });
+        this.priceService.add(new Price(-sum, 'RUB'));
        this.clothesItems = [];
       }
     });
