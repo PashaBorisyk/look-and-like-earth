@@ -11,8 +11,8 @@ import {MasonryService} from '../service/masonry.service';
 export class RootComponent implements OnInit {
 
   clothesItems: ClothesItem[];
-  sizeSandboxArea = 70;
-  sizeSearchArea = 30;
+  sizeSandboxArea = 30;
+  sizeSearchArea = 70;
   updateMasonry = false;
 
   constructor(private clothesItemService: ClothesItemService,
@@ -31,12 +31,9 @@ export class RootComponent implements OnInit {
   @HostListener('scroll', ['$event'])
   scrollHandler($event) {
     if (($event.target.offsetHeight + $event.target.scrollTop ) >= $event.target.scrollHeight) {
-      console.log('Load new clothes');
-
       const searchValue = localStorage.getItem('searchValue');
       this.clothesItemService.search(searchValue).subscribe(data => {
-        this.clothesItems = this.clothesItems.concat(data);
-        this.clothesItemService.changeClotheItems(this.clothesItems);
+        this.clothesItemService.changeClotheItems(data);
       });
     }
   }
