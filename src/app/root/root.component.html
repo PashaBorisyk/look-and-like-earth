@@ -1,13 +1,16 @@
 <as-split
   (dragend)="removeImage()"
+  (dragEnd)="reloadMasonry()"
   unit="percent"
   direction="horizontal"
   restrictMove="true"
+  gutterStep="300"
+  useTransition="true"
   gutterSize="3">
-  <as-split-area size="65">
+  <as-split-area size="{{ sizeSandboxArea }}">
     <app-sandbox></app-sandbox>
   </as-split-area>
-  <as-split-area size="35" (scroll)="scrollHandler($event)" maxSize="85">
+  <as-split-area size="{{ sizeSearchArea }}" (scroll)="scrollHandler($event)" maxSize="85">
     <app-search></app-search>
   </as-split-area>
 </as-split>
