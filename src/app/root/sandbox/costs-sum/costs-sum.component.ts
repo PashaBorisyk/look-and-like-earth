@@ -11,7 +11,7 @@ export class CostsSumComponent implements OnInit {
 
   price: Price = {
     value: 0,
-    currency: 'BYN',
+    currency: 'RUB',
   };
 
   constructor(private priceService: PriceService) {}

@@ -11,7 +11,7 @@
 
 .description {
   position: absolute;
-  left: 200px;
+  left: 300px;
   top: 100px;
   z-index: 100;
   width: 297px;
@@ -32,4 +32,16 @@
 .value {
   font-size: 12px;
   font-style: normal;
+}
+
+.material-icons {
+  color: #C0C0C0;
+  font-size: 18px;
+}
+
+.delete-icon {
+  position: absolute;
+  display: none;
+  top: -10px;
+  left: -10px;
 }

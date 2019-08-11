@@ -33,6 +33,16 @@ export class SandboxComponent implements OnInit {
        this.clothesItems = [];
       }
     });
+
+    this.lookItemService.currentRemove.subscribe(value => {
+      const temp:ClothesItem[] = [];
+      this.clothesItems.forEach(item => {
+        if (item.image !== value) {
+          temp.push(item);
+        }
+      });
+      this.clothesItems = temp;
+    });
   }
 
   setBackground($event) {

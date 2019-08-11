@@ -1,10 +1,20 @@
 <div
+  [ngStyle]="styleOfLook"
   (mouseover)="description = true"
-  (mouseout)="description = false"
+  (mouseout)="description = false;removeFocus()"
+  (mousedown)="setFocus()"
   class="look">
   <img src="{{ clothesItem.image }}"
        alt="image"
        class="image">
+</div>
+<div
+  (click)="removeClothes()"
+  [ngStyle]="styleOfDelete"
+  class="delete-icon">
+  <i class="material-icons">
+    delete_outline
+  </i>
 </div>
 
 <div *ngIf="description" class="description">

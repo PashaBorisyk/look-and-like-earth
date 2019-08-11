@@ -10,6 +10,9 @@ export class LookItemService {
   private dropSource = new BehaviorSubject(false);
   currentDrop = this.dropSource.asObservable();
 
+  private removeClothes = new BehaviorSubject(null);
+  currentRemove = this.removeClothes.asObservable();
+
   constructor() { }
 
   isConsist(value, clothesItems: ClothesItem[]): boolean {
@@ -24,5 +27,9 @@ export class LookItemService {
 
   dropAll() {
     this.dropSource.next(true);
+  }
+
+  removeItem(url: string) {
+    this.removeClothes.next(url);
   }
 }

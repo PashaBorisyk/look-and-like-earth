@@ -13,8 +13,8 @@ export class RootComponent implements OnInit {
   clothesItems: ClothesItem[];
   updateMasonry = false;
   areas = [
-    {size: 30, order: 1},
-    {size: 70, order: 2},
+    {size: 70, order: 1},
+    {size: 30, order: 2},
   ];
 
   constructor(private clothesItemService: ClothesItemService,
