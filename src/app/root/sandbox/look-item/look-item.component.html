@@ -17,6 +17,28 @@
   </i>
 </div>
 
+<div
+  [ngStyle]="styleOfResize"
+  class="resize"
+  (click)="resize()">
+  <div *ngIf="increase; else notIncrease">
+    <div class="increase" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="#C0C0C0" d="M16 18H6V8h3v4.77L15.98 6 18 8.03 11.15 15H16v3z"/>
+        <path fill="none" d="M0 0h24v24H0z"/>
+      </svg>
+    </div>
+  </div>
+  <ng-template #notIncrease>
+    <div class="reduce">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="#C0C0C0" d="M16 18H6V8h3v4.77L15.98 6 18 8.03 11.15 15H16v3z"/>
+        <path fill="none" d="M0 0h24v24H0z"/>
+      </svg>
+    </div>
+  </ng-template>
+</div>
+
 <div *ngIf="description" class="description">
   <div class="row my-3">
     <div class="col-md-4 type">

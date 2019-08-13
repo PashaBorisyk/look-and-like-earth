@@ -4,6 +4,7 @@ import {LookItemService} from '../../service/look-item.service';
 import {MatSnackBar} from '@angular/material';
 import {PriceService} from '../../service/price.service';
 import {Price} from '../../class/price';
+import {ResizeEvent} from "angular-resizable-element";
 
 
 

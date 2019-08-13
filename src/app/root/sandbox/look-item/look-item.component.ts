@@ -3,6 +3,7 @@ import {ClothesItem} from '../../../class/clothesItem';
 import {MatSnackBar} from '@angular/material';
 import {LookItemService} from '../../../service/look-item.service';
 import {PriceService} from '../../../service/price.service';
+import {ResizeEvent} from "angular-resizable-element";
 
 @Component({
   selector: 'app-look-item',
@@ -13,8 +14,12 @@ export class LookItemComponent implements OnInit {
 
   @Input() clothesItem: ClothesItem;
   description = false;
+  increase = false;
+  width = '220px';
+  height = '280px';
   styleOfLook: object = {};
   styleOfDelete: object = {};
+  styleOfResize: object = {};
 
   constructor(private snackBar: MatSnackBar,
               private priceService: PriceService,
@@ -24,29 +29,36 @@ export class LookItemComponent implements OnInit {
   }
 
   setFocus() {
-    console.log('focus');
     this.styleOfLook = {
-      border: '1px solid #C0C0C0'
+      border: '1px solid #C0C0C0',
+      width: `${this.width}`,
+      height: `${this.height}`,
     };
     this.styleOfDelete = {
       display: 'block'
+    };
+    this.styleOfResize = {
+      display: 'block',
     };
   }
 
   removeFocus() {
     setTimeout(() => {
-      console.log('Remove focus');
       this.styleOfLook = {
-        border: 'none'
+        border: 'none',
+        width: `${this.width}`,
+        height: `${this.height}`,
       };
       this.styleOfDelete = {
+        display: 'none',
+      };
+      this.styleOfResize = {
         display: 'none',
       };
     }, 1000);
   }
 
   removeClothes() {
-    console.log('remove');
     this.lookItemService.removeItem(this.clothesItem.image);
     this.priceService.add({
       value: -this.clothesItem.price.value,
@@ -55,5 +67,23 @@ export class LookItemComponent implements OnInit {
     this.snackBar.open('Clothes removed', '×', {
       duration: 2000,
     });
+  }
+
+  resize() {
+    this.increase = this.increase === false;
+    if (!this.increase) {
+      this.width = '220px';
+      this.height = '280px';
+    } else {
+      this.width = '180px';
+      this.height = '210px';
+    }
+    this.styleOfLook = {
+      width: `${this.width}`,
+      height: `${this.height}`,
+    };
+    setTimeout(function () {
+      this.setFocus();
+    }, 1000);
   }
 }

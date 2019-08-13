@@ -32,6 +32,7 @@ import { DragDropModule  } from '@angular/cdk/drag-drop';
 import { NgxMasonryModule } from 'ngx-masonry';
 
 import { MatSnackBarModule  } from '@angular/material';
+import {ResizableModule} from "angular-resizable-element";
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { MatSnackBarModule  } from '@angular/material';
     MatSnackBarModule,
     MatSelectModule,
     MatListModule,
+    ResizableModule,
   ],
   exports: [
     MatDatepickerModule,
