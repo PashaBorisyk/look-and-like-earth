@@ -58,4 +58,8 @@ export class UtilsComponent implements OnInit {
   removeAll() {
     this.lookItemService.dropAll();
   }
+
+  downloadLook() {
+    this.lookItemService.downloadLook();
+  }
 }

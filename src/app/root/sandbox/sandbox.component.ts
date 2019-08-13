@@ -44,6 +44,22 @@ export class SandboxComponent implements OnInit {
       });
       this.clothesItems = temp;
     });
+
+    this.lookItemService.currentDownload.subscribe(value => {
+      if (value) {
+        this.clothesItems.forEach(item => {
+          var binaryData = [];
+          binaryData.push(item.image);
+
+          const a = document.createElement('a');
+          a.href = window.URL.createObjectURL(new Blob(binaryData, {type: "image/jpeg"}));
+          a.download = item.name;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        });
+      }
+    });
   }
 
   setBackground($event) {
