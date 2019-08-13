@@ -42,7 +42,7 @@
 <div *ngIf="description" class="description">
   <div class="row my-3">
     <div class="col-md-4 type">
-      Бренд:
+      Brand:
     </div>
     <div class="col-md-8 value">
       <strong>{{ clothesItem.shopName | uppercase }}</strong>
@@ -50,7 +50,7 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Название:
+      Name:
     </div>
     <div class="col-md-8 value">
       {{ clothesItem.name }}
@@ -58,7 +58,7 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Цвет:
+      Color:
     </div>
     <div class="col-md-8 value">
       {{ clothesItem.color }}
@@ -66,7 +66,7 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Размер:
+      Size:
     </div>
     <div class="col-md-8 value">
       <strong>S</strong>
@@ -74,15 +74,15 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Описание:
+      Description:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.description }}
+      {{ clothesItem.description.slice(0, 70) }}
     </div>
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Артикул:
+      Article:
     </div>
     <div class="col-md-8 value">
       {{ clothesItem.article }}
@@ -90,7 +90,7 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Категория:
+      Category:
     </div>
     <div class="col-md-8 value">
       {{ clothesItem.category }}
@@ -98,7 +98,7 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Пол:
+      Sex:
     </div>
     <div class="col-md-8 value">
       {{ clothesItem.sex }}
@@ -106,7 +106,7 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Материалы:
+      Material:
     </div>
     <div class="col-md-8 value">
       {{ clothesItem.material.value }} {{ clothesItem.material.percent }}
@@ -114,7 +114,7 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Цена:
+      Price:
     </div>
     <div class="col-md-8 value">
       {{ clothesItem.price.value }} {{ clothesItem.price.currency }}

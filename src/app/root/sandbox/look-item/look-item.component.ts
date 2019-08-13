@@ -3,7 +3,6 @@ import {ClothesItem} from '../../../class/clothesItem';
 import {MatSnackBar} from '@angular/material';
 import {LookItemService} from '../../../service/look-item.service';
 import {PriceService} from '../../../service/price.service';
-import {ResizeEvent} from "angular-resizable-element";
 
 @Component({
   selector: 'app-look-item',
