@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Price} from '../../../class/price';
+import {PriceService} from '../../../service/price.service';
+import {CurrencyService} from '../../../service/currency.service';
 
 @Component({
   selector: 'app-costs-sum',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CostsSumComponent implements OnInit {
 
-  constructor() { }
+  price: Price = {
+    value: 0,
+    currency: 'RUB',
+  };
+
+  constructor(private priceService: PriceService,
+              private currencyService: CurrencyService) {}
 
   ngOnInit() {
+    this.priceService.currentPrice.subscribe(price => this.price.value += price.value);
+    this.currencyService.currentChange.subscribe(value => {
+      if (value != null && value.base !== this.price.currency) {
+        this.currencyService.calculate(this.price, value);
+      }
+    });
   }
 
 }

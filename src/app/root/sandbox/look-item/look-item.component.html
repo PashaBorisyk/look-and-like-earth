@@ -1,16 +1,48 @@
 <div
+  [ngStyle]="styleOfLook"
   (mouseover)="description = true"
-  (mouseout)="description = false"
+  (mouseout)="description = false;removeFocus()"
+  (mousedown)="setFocus()"
   class="look">
   <img src="{{ clothesItem.image }}"
        alt="image"
        class="image">
 </div>
+<div
+  (click)="removeClothes()"
+  [ngStyle]="styleOfDelete"
+  class="delete-icon">
+  <i class="material-icons">
+    delete_outline
+  </i>
+</div>
+
+<div
+  [ngStyle]="styleOfResize"
+  class="resize"
+  (click)="resize()">
+  <div *ngIf="increase; else notIncrease">
+    <div class="increase" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="#C0C0C0" d="M16 18H6V8h3v4.77L15.98 6 18 8.03 11.15 15H16v3z"/>
+        <path fill="none" d="M0 0h24v24H0z"/>
+      </svg>
+    </div>
+  </div>
+  <ng-template #notIncrease>
+    <div class="reduce">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="#C0C0C0" d="M16 18H6V8h3v4.77L15.98 6 18 8.03 11.15 15H16v3z"/>
+        <path fill="none" d="M0 0h24v24H0z"/>
+      </svg>
+    </div>
+  </ng-template>
+</div>
 
 <div *ngIf="description" class="description">
   <div class="row my-3">
     <div class="col-md-4 type">
-      Бренд:
+      Brand:
     </div>
     <div class="col-md-8 value">
       <strong>{{ clothesItem.shopName | uppercase }}</strong>
@@ -18,7 +50,7 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Название:
+      Name:
     </div>
     <div class="col-md-8 value">
       {{ clothesItem.name }}
@@ -26,7 +58,7 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Цвет:
+      Color:
     </div>
     <div class="col-md-8 value">
       {{ clothesItem.color }}
@@ -34,7 +66,7 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Размер:
+      Size:
     </div>
     <div class="col-md-8 value">
       <strong>S</strong>
@@ -42,15 +74,15 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Описание:
+      Description:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.description }}
+      {{ clothesItem.description.slice(0, 70) }}
     </div>
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Артикул:
+      Article:
     </div>
     <div class="col-md-8 value">
       {{ clothesItem.article }}
@@ -58,7 +90,7 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Категория:
+      Category:
     </div>
     <div class="col-md-8 value">
       {{ clothesItem.category }}
@@ -66,7 +98,7 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Пол:
+      Sex:
     </div>
     <div class="col-md-8 value">
       {{ clothesItem.sex }}
@@ -74,7 +106,7 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Материалы:
+      Material:
     </div>
     <div class="col-md-8 value">
       {{ clothesItem.material.value }} {{ clothesItem.material.percent }}
@@ -82,7 +114,7 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4 type">
-      Цена:
+      Price:
     </div>
     <div class="col-md-8 value">
       {{ clothesItem.price.value }} {{ clothesItem.price.currency }}

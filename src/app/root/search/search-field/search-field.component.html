@@ -3,14 +3,14 @@
     <mat-form-field [floatLabel]="'never'" class="search-input-field">
       <input #searchValue matInput [formControl]="searchFormControl"
              [errorStateMatcher]="matcher">
-      <mat-placeholder class='search-input-placeholder'>Введите название вещи</mat-placeholder>
+      <mat-placeholder class='search-input-placeholder'>Enter value</mat-placeholder>
       <div (click)="doSearch()"  matSuffix>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12.0681 7.81675C12.178 7.34031 12.2147 6.86387 12.2147 6.38743C12.178 5.03141 11.6283 3.67539 10.5654 2.64921C8.3665 0.450262 4.84817 0.450262 2.64921 2.64921C0.450262 4.84817 0.450262 8.36649 2.64921 10.5654C4.84817 12.7644 8.3665 12.7644 10.5654 10.5654M9.24607 9.24607L15 15L9.24607 9.24607Z" stroke="#312A20" stroke-opacity="0.3" stroke-linecap="square"/>
         </svg>
       </div>
       <mat-error *ngIf="!searchFormControl.hasError('minLength') && !searchFormControl.hasError('maxLength')">
-        Минимум: 3 символа, максимум: 50 символов
+        min: 3 symbols, max: 50 symbols
       </mat-error>
     </mat-form-field>
   </div>
@@ -20,4 +20,5 @@
     <div class="icon">
     <app-calendar></app-calendar>
   </div>
+</div>
 </div>

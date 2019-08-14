@@ -1,5 +1,6 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
 import { ClothesItem } from '../../../../class/clothesItem';
+import {CurrencyService} from '../../../../service/currency.service';
 
 @Component({
   selector: 'app-clothes-item',
@@ -13,11 +14,17 @@ export class ClothesItemComponent implements OnInit {
   img = null;
   ghostImage = null;
 
-  constructor() { }
+  constructor(private currencyService: CurrencyService) { }
 
   ngOnInit() {
     this.ghostImage = new Image();
     this.ghostImage.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
+
+    this.currencyService.currentChange.subscribe(value => {
+      if (value != null && value.base !== this.clothesItem.price.currency) {
+        this.currencyService.calculate(this.clothesItem.price, value);
+      }
+    });
   }
 
   allowDrop(event) {

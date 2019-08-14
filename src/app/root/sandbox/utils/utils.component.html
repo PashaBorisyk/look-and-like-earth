@@ -1,5 +1,9 @@
 <div *ngIf="isActive()">
-  <div class="attribute-menu">
+  <div
+    (click)="downloadLook()"
+    matTooltip="Download image"
+    [matTooltipPosition]="position.value"
+    class="attribute-menu">
     <div class="attribute-icon">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 5.44595V3.83784H2.63964M1 7.74775V11.0586M1 13.3919V15H2.63964M4.94144 15H8.5045M10.6171 15H12.2568V13.3919M11.6261 1H3.74324V12.1622H15V4.34234L11.6261 1Z" stroke="#312A20" stroke-width="0.5" stroke-linecap="square"/>

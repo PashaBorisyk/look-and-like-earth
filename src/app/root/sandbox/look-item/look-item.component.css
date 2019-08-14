@@ -2,6 +2,10 @@
   position: relative;
   width: 220px;
   height: 280px;
+  -webkit-transition:width 300ms ease-in-out, height 300ms ease-in-out;
+  -moz-transition:width 300ms ease-in-out, height 300ms ease-in-out;
+  -o-transition:width 300ms ease-in-out, height 300ms ease-in-out;
+  transition:width 300ms ease-in-out, height 300ms ease-in-out;
 }
 
 .image {
@@ -11,7 +15,7 @@
 
 .description {
   position: absolute;
-  left: 200px;
+  left: 300px;
   top: 100px;
   z-index: 100;
   width: 297px;
@@ -32,4 +36,33 @@
 .value {
   font-size: 12px;
   font-style: normal;
+}
+
+.material-icons {
+  color: #C0C0C0;
+  font-size: 18px;
+}
+
+.delete-icon {
+  cursor: pointer;
+  position: absolute;
+  display: none;
+  top: -10px;
+  left: -10px;
+}
+
+.resize {
+  display: none;
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  cursor: pointer;
+}
+
+.increase {
+  transform: rotate(270deg);
+}
+
+.reduce {
+  transform: rotate(90deg);
 }

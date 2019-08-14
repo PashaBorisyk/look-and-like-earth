@@ -21,8 +21,16 @@
   position: relative;
   top: 100px;
   left: 300px;
-  width: 800px;
+  width: 60%;
   height: 600px;
   max-width: 100%;
   border: dotted #ccc 2px;
 }
+
+.price {
+  position: relative;
+  top: 300px;
+  left: 1000px;
+}
+
+

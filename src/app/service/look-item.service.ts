@@ -10,6 +10,12 @@ export class LookItemService {
   private dropSource = new BehaviorSubject(false);
   currentDrop = this.dropSource.asObservable();
 
+  private removeClothes = new BehaviorSubject(null);
+  currentRemove = this.removeClothes.asObservable();
+
+  private downloadImage = new BehaviorSubject(false);
+  currentDownload = this.downloadImage.asObservable();
+
   constructor() { }
 
   isConsist(value, clothesItems: ClothesItem[]): boolean {
@@ -24,5 +30,13 @@ export class LookItemService {
 
   dropAll() {
     this.dropSource.next(true);
+  }
+
+  removeItem(url: string) {
+    this.removeClothes.next(url);
+  }
+
+  downloadLook() {
+    this.downloadImage.next(true);
   }
 }
