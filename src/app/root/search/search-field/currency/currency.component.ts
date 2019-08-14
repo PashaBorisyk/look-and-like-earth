@@ -35,5 +35,6 @@ export class CurrencyComponent implements OnInit {
     this.styleOfList = {
       display: 'none',
     };
+    this.currencyService.change(this.choiceCurrency);
   }
 }

@@ -3,6 +3,7 @@ import {ClothesItem} from '../../../class/clothesItem';
 import {MatSnackBar} from '@angular/material';
 import {LookItemService} from '../../../service/look-item.service';
 import {PriceService} from '../../../service/price.service';
+import {CurrencyService} from '../../../service/currency.service';
 
 @Component({
   selector: 'app-look-item',
@@ -22,9 +23,15 @@ export class LookItemComponent implements OnInit {
 
   constructor(private snackBar: MatSnackBar,
               private priceService: PriceService,
+              private currencyService: CurrencyService,
               private lookItemService: LookItemService) { }
 
   ngOnInit() {
+    this.currencyService.currentChange.subscribe(value => {
+      if (value != null && value.base !== this.clothesItem.price.currency) {
+        this.currencyService.calculate(this.clothesItem.price, value);
+      }
+    });
   }
 
   setFocus() {
@@ -54,7 +61,7 @@ export class LookItemComponent implements OnInit {
       this.styleOfResize = {
         display: 'none',
       };
-    }, 1000);
+    }, 2500);
   }
 
   removeClothes() {
@@ -78,11 +85,9 @@ export class LookItemComponent implements OnInit {
       this.height = '210px';
     }
     this.styleOfLook = {
+      border: '1px solid #C0C0C0',
       width: `${this.width}`,
       height: `${this.height}`,
     };
-    setTimeout(function () {
-      this.setFocus();
-    }, 1000);
   }
 }
