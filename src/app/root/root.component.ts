@@ -62,4 +62,12 @@ export class RootComponent implements OnInit {
   reloadMasonry() {
     MasonryService.reload();
   }
+
+  checkSearchField(event) {
+    if (event.sizes[0] > 70) {
+      this.splitService.iconPosition(true);
+    } else {
+      this.splitService.iconPosition(false);
+    }
+  }
 }

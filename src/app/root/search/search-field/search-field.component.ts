@@ -3,6 +3,7 @@ import { ClothesItemService } from "../../../service/clothesItem.service";
 import { ClothesItem } from "../../../class/clothesItem";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SearchMatcherError} from "./error-matcher/search-matcher.error";
+import {SplitService} from "../../../service/split.service";
 
 @Component({
   selector: 'app-search-field',
@@ -13,6 +14,7 @@ export class SearchFieldComponent implements OnInit {
 
   MIN_LENGTH = 3;
   MAX_LENGTH = 50;
+  splitState;
 
   @ViewChild('searchValue') searchValue: ElementRef;
   clothesItems: ClothesItem[];
@@ -24,9 +26,14 @@ export class SearchFieldComponent implements OnInit {
 
   matcher = new SearchMatcherError();
 
-  constructor(private clothesItemService: ClothesItemService) {  }
+  constructor(private clothesItemService: ClothesItemService,
+              private splitService: SplitService) {  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.splitService.currentChangeIconPosition.subscribe(value => {
+      this.splitState = value;
+    });
+  }
 
   doSearch() {
     const value = this.searchValue.nativeElement.value;

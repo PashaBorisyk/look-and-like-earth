@@ -1,6 +1,6 @@
 <as-split
   (dragend)="removeImage()"
-  (dragEnd)="reloadMasonry()"
+  (dragEnd)="reloadMasonry();checkSearchField($event)"
   unit="percent"
   direction="horizontal"
   restrictMove="true"
