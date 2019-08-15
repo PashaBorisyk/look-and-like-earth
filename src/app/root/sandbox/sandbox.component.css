@@ -25,9 +25,9 @@
 }
 
 .price {
-  position: relative;
-  top: 300px;
-  left: 1000px;
+  position: absolute;
+  bottom: 80px;
+  margin-left: 60%;
 }
 
 
