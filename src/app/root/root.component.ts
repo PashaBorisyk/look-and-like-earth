@@ -43,6 +43,7 @@ export class RootComponent implements OnInit {
   }
 
   reloadSearch(event) {
+    console.log('load');
     if ((event.target.offsetHeight + event.target.scrollTop ) >= event.target.scrollHeight) {
       const searchValue = localStorage.getItem('searchValue');
       console.log(searchValue);
