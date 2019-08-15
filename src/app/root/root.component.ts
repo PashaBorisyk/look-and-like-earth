@@ -23,7 +23,7 @@ export class RootComponent implements OnInit {
               private masonryService: MasonryService) { }
 
   ngOnInit() {
-    this.clothesItemService.current.subscribe(clothesItems => this.clothesItems = clothesItems);
+    this.clothesItemService.currentSearch.subscribe(clothesItems => this.clothesItems = clothesItems);
 
     // !!!!!!!!!!!!! WHEN SERVER WILL RUN , NEED CHECK WHICH DATA REQUIRED
 
@@ -42,12 +42,12 @@ export class RootComponent implements OnInit {
     });
   }
 
-  @HostListener('scroll', ['$event'])
-  scrollHandler($event) {
-    if (($event.target.offsetHeight + $event.target.scrollTop ) >= $event.target.scrollHeight) {
+  reloadSearch(event) {
+    if ((event.target.offsetHeight + event.target.scrollTop ) >= event.target.scrollHeight) {
       const searchValue = localStorage.getItem('searchValue');
+      console.log(searchValue);
       this.clothesItemService.search(searchValue).subscribe(data => {
-        this.clothesItemService.changeClotheItems(data);
+        this.clothesItemService.searchAfterScroll(data);
       });
     }
   }
@@ -60,7 +60,6 @@ export class RootComponent implements OnInit {
   }
 
   reloadMasonry() {
-
     MasonryService.reload();
   }
 }

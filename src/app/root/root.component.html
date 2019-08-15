@@ -14,7 +14,7 @@
   <as-split-area
     [order]="areas[1].order"
     [size]="areas[1].size"
-    (scroll)="scrollHandler($event)"
+    (scroll)="reloadSearch($event)"
     maxSize="85">
     <app-search></app-search>
   </as-split-area>

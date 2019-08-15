@@ -26,26 +26,29 @@ export class SearchFieldComponent implements OnInit {
 
   constructor(private clothesItemService: ClothesItemService) {  }
 
-  ngOnInit() {
-    this.clothesItemService.current.subscribe(clothesItems => this.clothesItems = clothesItems);
-  }
+  ngOnInit() {}
 
   doSearch() {
     const value = this.searchValue.nativeElement.value;
     const length = value.length;
 
     if (!this.isValidateLength(length)) {
-      console.log('Invalid value');
       return;
     }
 
     this.clothesItemService.search(value)
       .subscribe( data => {
         this.clothesItems = data;
-        this.clothesItemService.changeClotheItems(this.clothesItems);
+        this.clothesItemService.searchAfterInput(this.clothesItems);
       });
 
     localStorage.setItem('searchValue', value);
+  }
+
+  onKeydown(event) {
+    if (event.key === 'Enter' ) {
+      this.doSearch();
+    }
   }
 
   private isValidateLength(length: number) {

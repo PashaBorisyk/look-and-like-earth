@@ -10,16 +10,20 @@ import { map } from 'rxjs/operators';
 })
 export class ClothesItemService {
 
-  apiRoot = 'http://40.69.223.31:9000';
+  apiRoot = 'http://40.113.65.103:9000';
   DEFAULT_LIMIT = 10;
 
   argument: ClothesItem[];
-  source = new BehaviorSubject(this.argument);
-  current = this.source.asObservable();
+  private searchClothes = new BehaviorSubject(null);
+  currentSearch = this.searchClothes.asObservable();
+
+  private searchClothesAfterScroll = new BehaviorSubject(null);
+  currentSearchAfterReload = this.searchClothesAfterScroll.asObservable();
 
   constructor(private http: HttpClient) { }
 
   recommendations(): Observable<ClothesItem[]> {
+    localStorage.setItem('searchValue', 'jeans');
     return this.search('jeans');
   }
 
@@ -29,8 +33,8 @@ export class ClothesItemService {
       return this.recommendations();
     }
 
-    //const url = this.apiRoot + '/search/?query=' + value + '&top=' + this.DEFAULT_LIMIT;
-    const url = 'http://www.mocky.io/v2/5d3b464b3000005600a2a068';
+    const url = this.apiRoot + '/search/?query=' + value + '&top=' + this.DEFAULT_LIMIT;
+    //const url = 'http://www.mocky.io/v2/5d3b464b3000005600a2a068';
 
     return this.http.get(url)
       .pipe(map((res: any[]) => {
@@ -67,7 +71,11 @@ export class ClothesItemService {
       }));
   }
 
-  changeClotheItems(object) {
-    this.source.next(object);
+  searchAfterInput(object) {
+    this.searchClothes.next(object);
+  }
+
+  searchAfterScroll(object) {
+    this.searchClothesAfterScroll.next(object);
   }
 }

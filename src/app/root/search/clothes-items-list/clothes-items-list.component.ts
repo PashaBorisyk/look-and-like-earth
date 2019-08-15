@@ -23,13 +23,18 @@ export class ResultsListComponent implements OnInit {
 
 
   clothesItems: ClothesItem[] = [];
-  constructor(private clothesItemService: ClothesItemService,
-              private masonryService: MasonryService) { }
+  constructor(private clothesItemService: ClothesItemService) { }
 
   ngOnInit() {
-    this.clothesItemService.current.subscribe(clothesItems =>  {
-      if (clothesItems !== undefined ) {
-        clothesItems.forEach( item => {
+    this.clothesItemService.currentSearch.subscribe(clothesItems =>  {
+      if (clothesItems !== null ) {
+        this.clothesItems = clothesItems;
+      }
+    });
+
+    this.clothesItemService.currentSearchAfterReload.subscribe(value => {
+      if (value !== null ) {
+        value.forEach( item => {
           this.clothesItems.push(item);
         });
       }

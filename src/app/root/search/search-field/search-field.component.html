@@ -1,7 +1,9 @@
 <div class="row search-field ml-5 my-5">
   <div class="col-7 mt-3">
     <mat-form-field [floatLabel]="'never'" class="search-input-field">
-      <input #searchValue matInput [formControl]="searchFormControl"
+      <input #searchValue matInput
+             (keydown)="onKeydown($event)"
+             [formControl]="searchFormControl"
              [errorStateMatcher]="matcher">
       <mat-placeholder class='search-input-placeholder'>Enter value</mat-placeholder>
       <div (click)="doSearch()"  matSuffix>
