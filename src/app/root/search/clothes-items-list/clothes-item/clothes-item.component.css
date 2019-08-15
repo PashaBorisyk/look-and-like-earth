@@ -5,11 +5,21 @@
 
 .type{
   color: #C0C0C0;
+  font-family: Roboto, serif;
+  font-style: normal;
+  font-weight: normal;
   font-size: 12px;
+  line-height: 14px;
 }
 
 .price {
-  font-size: 13px;
+  font-family: Roboto, serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 19px;
+  position: absolute;
+  right: 15px;
 }
 
 .card-footer {
