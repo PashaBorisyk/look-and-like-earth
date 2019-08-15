@@ -3,6 +3,7 @@ import { ClothesItemService } from "../../../service/clothesItem.service";
 import { ClothesItem } from "../../../class/clothesItem";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SearchMatcherError} from "./error-matcher/search-matcher.error";
+import {SplitService} from "../../../service/split.service";
 
 @Component({
   selector: 'app-search-field',
@@ -13,6 +14,7 @@ export class SearchFieldComponent implements OnInit {
 
   MIN_LENGTH = 3;
   MAX_LENGTH = 50;
+  splitState;
 
   @ViewChild('searchValue') searchValue: ElementRef;
   clothesItems: ClothesItem[];
@@ -24,10 +26,13 @@ export class SearchFieldComponent implements OnInit {
 
   matcher = new SearchMatcherError();
 
-  constructor(private clothesItemService: ClothesItemService) {  }
+  constructor(private clothesItemService: ClothesItemService,
+              private splitService: SplitService) {  }
 
   ngOnInit() {
-    this.clothesItemService.current.subscribe(clothesItems => this.clothesItems = clothesItems);
+    this.splitService.currentChangeIconPosition.subscribe(value => {
+      this.splitState = value;
+    });
   }
 
   doSearch() {
@@ -35,17 +40,22 @@ export class SearchFieldComponent implements OnInit {
     const length = value.length;
 
     if (!this.isValidateLength(length)) {
-      console.log('Invalid value');
       return;
     }
 
     this.clothesItemService.search(value)
       .subscribe( data => {
         this.clothesItems = data;
-        this.clothesItemService.changeClotheItems(this.clothesItems);
+        this.clothesItemService.searchAfterInput(this.clothesItems);
       });
 
     localStorage.setItem('searchValue', value);
+  }
+
+  onKeydown(event) {
+    if (event.key === 'Enter' ) {
+      this.doSearch();
+    }
   }
 
   private isValidateLength(length: number) {

@@ -3,6 +3,7 @@ import {FormControl} from '@angular/forms';
 import {TooltipPosition} from '@angular/material';
 import {Observable} from 'rxjs';
 import {LookItemService} from '../../../service/look-item.service';
+import {SplitService} from '../../../service/split.service';
 
 @Component({
   selector: 'app-utils',
@@ -19,7 +20,8 @@ export class UtilsComponent implements OnInit {
 
   @Output() imageEvent = new EventEmitter<string>();
 
-  constructor(private lookItemService: LookItemService) { }
+  constructor(private lookItemService: LookItemService,
+              private splitService: SplitService) { }
 
   ngOnInit() {
   }
@@ -61,5 +63,13 @@ export class UtilsComponent implements OnInit {
 
   downloadLook() {
     this.lookItemService.downloadLook();
+  }
+
+  hideSearch() {
+    this.splitService.editSplitSize(100, 0);
+  }
+
+  showSearch() {
+    this.splitService.editSplitSize(60, 40);
   }
 }
