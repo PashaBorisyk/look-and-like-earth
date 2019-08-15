@@ -88,4 +88,8 @@ export class SandboxComponent implements OnInit {
     this.clothesItems.push(clothesItem);
     this.priceService.add(clothesItem.price);
   }
+
+  refresh() {
+    window.location.reload();
+  }
 }
