@@ -51,8 +51,8 @@ export class ClothesItemService {
             },
             color: value.data.color,
             material: {
-              value: value.data.composition[0].material,
-              percent: value.data.composition[0].percent
+              value: 'хлопок',
+              percent: '100%'
             },
             date: value.metaInformation.insertDate,
             style: 'Зауженный',
