@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class ClothesItemService {
 
-  apiRoot = 'http://localhost:9000';
+  apiRoot = 'http://40.113.65.103:9000';
   DEFAULT_LIMIT = 10;
 
   argument: ClothesItem[];
