@@ -4,7 +4,8 @@
   </div>
   <div class="dropdown-menu">
     <div *ngFor="let currency of currencies"
-         class="dropdown-item">
+         (click)="choice($event)"
+         class="dropdown-item currency">
       {{currency}}
     </div>
   </div>
