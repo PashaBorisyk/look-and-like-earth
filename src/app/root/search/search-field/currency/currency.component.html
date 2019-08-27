@@ -1,15 +1,11 @@
-<div
-  (click)="showList()"
-  class="currency">
-  {{choiceCurrency}}
+<div class="btn-group">
+  <div class="currency" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{choiceCurrency}}
+  </div>
+  <div class="dropdown-menu">
+    <div *ngFor="let currency of currencies"
+         class="dropdown-item">
+      {{currency}}
+    </div>
+  </div>
 </div>
-<ul
-  [ngStyle]="styleOfList"
-  class="list">
-  <li
-    (click)="choice($event)"
-    *ngFor="let currency of currencies"
-    class="item currency">
-    {{currency}}
-  </li>
-</ul>
