@@ -1,8 +1,8 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ClothesItemService} from "../service/clothesItem.service";
 import {ClothesItem} from '../class/clothesItem';
-import {MasonryService} from '../service/masonry.service';
 import {SplitService} from '../service/split.service';
+import {DataService} from '../service/data.service';
 
 @Component({
   selector: 'app-main',
@@ -12,20 +12,17 @@ import {SplitService} from '../service/split.service';
 export class RootComponent implements OnInit {
 
   clothesItems: ClothesItem[];
-  updateMasonry = false;
   areas = [
     {size: 60, order: 1},
     {size: 40, order: 2},
   ];
 
   constructor(private clothesItemService: ClothesItemService,
-              private splitService: SplitService,
-              private masonryService: MasonryService) { }
+              private splitService: SplitService) { }
 
   ngOnInit() {
     this.clothesItemService.currentSearch.subscribe(clothesItems => this.clothesItems = clothesItems);
 
-    // !!!!!!!!!!!!! WHEN SERVER WILL RUN , NEED CHECK WHICH DATA REQUIRED
 
     this.clothesItemService.recommendations().subscribe(data => {
       this.clothesItems = data;
@@ -36,7 +33,7 @@ export class RootComponent implements OnInit {
         this.areas[0].size = value[0];
         this.areas[1].size = value[1];
         setTimeout(function() {
-          MasonryService.reload();
+          DataService.reloadMasonry();
         }, 800);
       }
     });
@@ -61,7 +58,7 @@ export class RootComponent implements OnInit {
   }
 
   reloadMasonry() {
-    MasonryService.reload();
+    DataService.reloadMasonry();
   }
 
   checkSearchField(event) {

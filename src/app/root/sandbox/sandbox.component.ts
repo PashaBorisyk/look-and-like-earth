@@ -2,9 +2,9 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ClothesItem} from '../../class/clothesItem';
 import {LookItemService} from '../../service/look-item.service';
 import {MatSnackBar} from '@angular/material';
-import {PriceService} from '../../service/price.service';
 import {Price} from '../../class/price';
 import {ResizeEvent} from "angular-resizable-element";
+import {DataService} from '../../service/data.service';
 
 
 
@@ -19,7 +19,7 @@ export class SandboxComponent implements OnInit {
   public styleOfBoundary: object = {};
 
   constructor(private lookItemService: LookItemService,
-              private priceService: PriceService,
+              private dataService: DataService,
               private snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -30,13 +30,13 @@ export class SandboxComponent implements OnInit {
         this.clothesItems.forEach(item => {
           sum += item.price.value;
         });
-        this.priceService.add(new Price(-sum, 'RUB'));
-       this.clothesItems = [];
+        this.dataService.editCostSum(new Price(-sum, 'RUB'));
+        this.clothesItems = [];
       }
     });
 
     this.lookItemService.currentRemove.subscribe(value => {
-      const temp:ClothesItem[] = [];
+      const temp: ClothesItem[] = [];
       this.clothesItems.forEach(item => {
         if (item.image !== value) {
           temp.push(item);
@@ -86,7 +86,7 @@ export class SandboxComponent implements OnInit {
     }
 
     this.clothesItems.push(clothesItem);
-    this.priceService.add(clothesItem.price);
+    this.dataService.editCostSum(clothesItem.price);
   }
 
   refresh() {

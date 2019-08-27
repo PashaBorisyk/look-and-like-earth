@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class ClothesItemService {
 
-  apiRoot = 'http://40.113.65.103:9000';
+  apiRoot = 'http://localhost:9000';
   DEFAULT_LIMIT = 10;
 
   argument: ClothesItem[];
@@ -57,9 +57,6 @@ export class ClothesItemService {
             date: value.metaInformation.insertDate,
             style: 'Зауженный',
             companyIcon: '',
-            /*image: value.data.price.price === 1599
-              ? 'https://cdn.shopify.com/s/files/1/2143/3217/products/500_7a67b0be-fb5c-419e-8cdb-5e7e4a3fba29_grande.png?v=1564066897'
-              :'https://cdn.shopify.com/s/files/1/1889/4591/products/custom_printed_white_unisex_next_level_60_40_t_shirt.png?v=1511212877',*/
             image: value.data.images.noBackgroundImageUrl ,
             article: value.data.article,
             shopName: value.metaInformation.shopName,

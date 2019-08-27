@@ -13,7 +13,6 @@ export class CurrencyService {
   private currencyChange = new BehaviorSubject(null);
   currentChange = this.currencyChange.asObservable();
   apiRoot = 'https://api.exchangeratesapi.io/latest?';
- 
 
   constructor(private http: HttpClient) { }
 

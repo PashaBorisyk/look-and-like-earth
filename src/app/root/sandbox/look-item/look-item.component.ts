@@ -2,8 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ClothesItem} from '../../../class/clothesItem';
 import {MatSnackBar} from '@angular/material';
 import {LookItemService} from '../../../service/look-item.service';
-import {PriceService} from '../../../service/price.service';
 import {CurrencyService} from '../../../service/currency.service';
+import {DataService} from '../../../service/data.service';
 
 @Component({
   selector: 'app-look-item',
@@ -22,7 +22,7 @@ export class LookItemComponent implements OnInit {
   styleOfResize: object = {};
 
   constructor(private snackBar: MatSnackBar,
-              private priceService: PriceService,
+              private dataService: DataService,
               private currencyService: CurrencyService,
               private lookItemService: LookItemService) { }
 
@@ -66,7 +66,7 @@ export class LookItemComponent implements OnInit {
 
   removeClothes() {
     this.lookItemService.removeItem(this.clothesItem.image);
-    this.priceService.add({
+    this.dataService.editCostSum({
       value: -this.clothesItem.price.value,
       currency: this.clothesItem.price.currency
     });

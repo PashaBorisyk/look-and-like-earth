@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { ClothesItem } from "../../../class/clothesItem";
 import {ClothesItemService} from "../../../service/clothesItem.service";
 import {NgxMasonryOptions} from 'ngx-masonry';
-import {MasonryService} from '../../../service/masonry.service';
+import {DataService} from '../../../service/data.service';
 
 @Component({
   selector: 'app-clothes-items-list',
@@ -19,7 +19,7 @@ export class ResultsListComponent implements OnInit {
     horizontalOrder: true
   };
 
-  updateMasonry;
+  reloadMasonryItems;
 
 
   clothesItems: ClothesItem[] = [];
@@ -43,6 +43,6 @@ export class ResultsListComponent implements OnInit {
     this.clothesItemService.recommendations().subscribe(data => {
       this.clothesItems = data;
     });
-    MasonryService.currentUpdate.subscribe(updateMasonry => this.updateMasonry = updateMasonry);
+    DataService.masonryReloadItemsEvent.subscribe(reloadMasonryItems => this.reloadMasonryItems = reloadMasonryItems);
   }
 }
