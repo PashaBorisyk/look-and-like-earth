@@ -19,12 +19,6 @@ export class CurrencyComponent implements OnInit {
     this.choiceCurrency = this.currencies[0];
   }
 
-  showList() {
-    this.styleOfList = {
-      display: 'block',
-    };
-  }
-
   choice(event) {
     let currency = event.target.innerText;
     this.currencies.forEach(item => {
