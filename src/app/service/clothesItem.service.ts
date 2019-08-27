@@ -43,10 +43,11 @@ export class ClothesItemService {
         var clothesItems = [];
 
         res.forEach(function (value) {
+          const priceValue = Math.ceil(value.data.price.price * 100) / 100;
           const clothesItem = {
             name: value.data.name,
             price: {
-              value: value.data.price.price,
+              value: priceValue,
               currency: value.data.price.currency
             },
             color: value.data.color,
