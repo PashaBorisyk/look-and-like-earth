@@ -1,6 +1,8 @@
 <mat-form-field >
-  <input matInput [satDatepicker]="picker" [formControl]="date">
-  <sat-datepicker-toggle matSuffix [for]="picker" >
+  <input matInput
+  [satDatepicker]="picker"
+  [value]="dateRange">
+  <sat-datepicker-toggle matSuffix [for]="picker">
     <svg matDatepickerToggleIcon width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12.0707 1.50862H14.6007V3.13793V9.98707L10.8209 13.6983H0.30481V1.50862H2.8043M10.6381 1.50862H4.23693M14.3568 9.98707H10.7905M10.6381 13.6983V9.98707M14.5702 4.64655H2.8043M12.0707 0.301727H10.6381V2.71552H12.0707V0.301727ZM4.23693 0.301727H2.8043V2.71552H4.23693V0.301727Z" stroke="#312A20" stroke-opacity="0.3" stroke-linecap="square"/>
     </svg>

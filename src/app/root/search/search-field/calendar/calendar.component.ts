@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-calendar',
@@ -8,12 +7,16 @@ import {FormControl} from '@angular/forms';
 })
 export class CalendarComponent implements OnInit {
 
-  fromDate = new Date();
-  toDate = new Date();
-  date = new FormControl(new Date());
+  toDate: Date;
+  fromDate: Date;
+  dateRange: Object;
 
   constructor() { }
 
   ngOnInit() {
+    this.toDate = new Date();
+    this.fromDate = new Date();
+    this.fromDate.setDate(this.fromDate.getDate() - 7);
+    this.dateRange = {'begin': this.fromDate, 'end': this.toDate};
   }
 }
