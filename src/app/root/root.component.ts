@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ClothesItemService} from "../service/clothesItem.service";
 import {ClothesItem} from '../class/clothesItem';
 import {MasonryService} from '../service/masonry.service';
@@ -18,9 +18,7 @@ export class RootComponent implements OnInit {
     {size: 40, order: 2},
   ];
 
-  constructor(private clothesItemService: ClothesItemService,
-              private splitService: SplitService,
-              private masonryService: MasonryService) { }
+  constructor(private clothesItemService: ClothesItemService, private splitService: SplitService) { }
 
   ngOnInit() {
     this.clothesItemService.currentSearch.subscribe(clothesItems => this.clothesItems = clothesItems);
@@ -29,16 +27,6 @@ export class RootComponent implements OnInit {
 
     this.clothesItemService.recommendations().subscribe(data => {
       this.clothesItems = data;
-    });
-
-    this.splitService.currentChange.subscribe(value => {
-      if (value !== null) {
-        this.areas[0].size = value[0];
-        this.areas[1].size = value[1];
-        setTimeout(function() {
-          MasonryService.reload();
-        }, 800);
-      }
     });
   }
 
