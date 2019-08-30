@@ -1,8 +1,9 @@
 <div
+  [ngStyle]="lookItemStyle"
   (mouseleave)="description = false"
   (mouseover)="description = true"
   class="look">
-  <img src="{{ clothesItem.image }}"
+  <img src="{{ lookItem.image }}"
        alt="image"
        class="image">
 </div>
@@ -13,7 +14,7 @@
       Brand:
     </div>
     <div class="col-md-8 value">
-      <strong>{{ clothesItem.shopName | uppercase }}</strong>
+      <strong>{{ lookItem.shopName | uppercase }}</strong>
     </div>
   </div>
   <div class="row my-3">
@@ -21,7 +22,7 @@
       Name:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.name }}
+      {{ lookItem.name }}
     </div>
   </div>
   <div class="row my-3">
@@ -29,7 +30,7 @@
       Color:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.color }}
+      {{ lookItem.color }}
     </div>
   </div>
   <div class="row my-3">
@@ -45,7 +46,7 @@
       Description:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.description.slice(0, 70) }}
+      {{ lookItem.description.slice(0, 70) }}
     </div>
   </div>
   <div class="row my-3">
@@ -53,7 +54,7 @@
       Article:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.article }}
+      {{ lookItem.article }}
     </div>
   </div>
   <div class="row my-3">
@@ -61,7 +62,7 @@
       Category:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.category }}
+      {{ lookItem.category }}
     </div>
   </div>
   <div class="row my-3">
@@ -69,7 +70,7 @@
       Sex:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.sex }}
+      {{ lookItem.sex }}
     </div>
   </div>
   <div class="row my-3">
@@ -77,7 +78,7 @@
       Material:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.material.value }} {{ clothesItem.material.percent }}
+      {{ lookItem.material.value }} {{ lookItem.material.percent }}
     </div>
   </div>
   <div class="row my-3">
@@ -85,7 +86,7 @@
       Price:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.price.value }} {{ clothesItem.price.currency }}
+      {{ lookItem.price.value }} {{ lookItem.price.currency }}
     </div>
   </div>
 </div>

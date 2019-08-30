@@ -13,13 +13,14 @@
   <div class="col-md-2"></div>
   <div class="col-md-10">
     <div>
-      <div *ngFor="let clothesItem of clothesItems"
+      <div *ngFor="let lookItem of lookItems"
            class="box"
            cdkDragBoundary=".boundary"
+           (cdkDragStarted)="log($event)"
            cdkDrag>
-        <app-look-item
-          [clothesItem]=clothesItem>
-        </app-look-item>
+        <div [attr.id]="lookItem.image">
+          <app-look-item [lookItem]=lookItem></app-look-item>
+        </div>
       </div>
     </div>
 
