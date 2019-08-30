@@ -18,3 +18,8 @@
   right: 55%;
   bottom: 100%;
 }
+
+.search-icon {
+  cursor: pointer;
+  border-radius: 50%;
+}
