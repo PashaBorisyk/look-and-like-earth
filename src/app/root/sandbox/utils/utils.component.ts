@@ -30,7 +30,8 @@ export class UtilsComponent implements OnInit {
     return this.menu;
   }
 
-  doActivate() {
+  doActivate(event) {
+    let menu = document.getElementById("menu");
     this.menu = this.menu === true ? false : true;
   }
 
