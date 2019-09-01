@@ -95,6 +95,7 @@ export class SandboxComponent implements OnInit {
 
   download() {
     console.log('download');
+    console.log(document.getElementsByClassName('box')[1].getBoundingClientRect().top);
     let canvas = document.getElementById('Canvas');
     let context = canvas.getContext('2d');
     let img = new Image();
