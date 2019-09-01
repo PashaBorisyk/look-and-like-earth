@@ -92,4 +92,21 @@ export class SandboxComponent implements OnInit {
   refresh() {
     window.location.reload();
   }
+
+  download() {
+    console.log('download');
+    let canvas = document.getElementById('Canvas');
+    let context = canvas.getContext('2d');
+    let img = new Image();
+    let img1 = new Image();
+
+    img.src = this.clothesItems[0].image;
+    img1.src = this.clothesItems[1].image;
+    img.onload = function() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      context.drawImage(img, 0, 0);
+      context.drawImage(img1, 100, 200);
+    };
+  }
 }
