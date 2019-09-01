@@ -30,7 +30,8 @@ export class LookItemComponent implements OnInit {
         };
       } else {
         this.styleOfLook = {
-          border: '1px solid black',
+          border: '1px dashed black',
+          borderRadius: '15px',
         };
       }
     });
