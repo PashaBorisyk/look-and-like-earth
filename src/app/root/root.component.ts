@@ -21,6 +21,7 @@ export class RootComponent implements OnInit {
     {size: 40, order: 2},
   ];
 
+
   constructor(private clothesItemService: ClothesItemService,
               private splitService: SplitService,
               private eventService: EventService,
@@ -35,7 +36,7 @@ export class RootComponent implements OnInit {
       this.clothesItems = data;
     });
 
-    this.splitService.currentChange.subscribe(value => {
+    /*this.splitService.currentChange.subscribe(value => {
       if (value !== null) {
         this.areas[0].size = value[0];
         this.areas[1].size = value[1];
@@ -43,7 +44,7 @@ export class RootComponent implements OnInit {
           MasonryService.reload();
         }, 800);
       }
-    });
+    });*/
 
     this.splitComponent.dragProgress$.subscribe(value => {
       if (value.sizes[0] < 60) {
