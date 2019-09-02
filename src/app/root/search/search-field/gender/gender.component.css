@@ -2,3 +2,22 @@
   width: 25px;
   height: 25px;
 }
+
+.gender {
+  cursor: pointer;
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+.dropdown-item:active {
+  background: #dde0e0;
+  color: black;
+}
+
+.dropdown-menu {
+  min-width: 60px !important;
+  max-width: 70px !important;
+  height: 90px !important;
+}
