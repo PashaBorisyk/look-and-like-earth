@@ -1,9 +1,10 @@
-import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import { ClothesItemService } from "../../../service/clothesItem.service";
-import { ClothesItem } from "../../../class/clothesItem";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {SearchMatcherError} from "./error-matcher/search-matcher.error";
-import {SplitService} from "../../../service/split.service";
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ClothesItemService} from '../../../service/clothesItem.service';
+import {ClothesItem} from '../../../class/clothesItem';
+import {FormControl, Validators} from '@angular/forms';
+import {SearchMatcherError} from './error-matcher/search-matcher.error';
+import {SplitService} from '../../../service/split.service';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
   selector: 'app-search-field',
@@ -14,7 +15,7 @@ export class SearchFieldComponent implements OnInit {
 
   MIN_LENGTH = 3;
   MAX_LENGTH = 50;
-  splitState;
+  splitState = false;
 
   @ViewChild('searchValue') searchValue: ElementRef;
   clothesItems: ClothesItem[];
@@ -27,13 +28,25 @@ export class SearchFieldComponent implements OnInit {
   matcher = new SearchMatcherError();
 
   constructor(private clothesItemService: ClothesItemService,
-              private splitService: SplitService) {  }
-
-  ngOnInit() {
-    this.splitService.currentChangeIconPosition.subscribe(value => {
-      this.splitState = value;
-    });
+              private ref: ChangeDetectorRef,
+              private splitService: SplitService) {
+    ref.detach();
+    setInterval(() => {
+      const calendar = document.getElementById('calendar');
+      if (calendar) {
+        const calendarRect = calendar.getBoundingClientRect();
+        const calendarWidth = calendarRect.width + calendarRect.left + 10;
+        if (calendarWidth > window.innerWidth) {
+          this.splitState = true;
+        }
+      } else {
+          this.splitState = false;
+      }
+      this.ref.detectChanges();
+    }, 100);
   }
+
+  ngOnInit() {}
 
   doSearch() {
     const value = this.searchValue.nativeElement.value;

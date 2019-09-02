@@ -1,9 +1,10 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {ClothesItemService} from "../service/clothesItem.service";
 import {ClothesItem} from '../class/clothesItem';
 import {MasonryService} from '../service/masonry.service';
 import {SplitService} from '../service/split.service';
 import {EventService} from "../service/event.service";
+import {SplitComponent} from 'angular-split';
 
 @Component({
   selector: 'app-main',
@@ -12,6 +13,7 @@ import {EventService} from "../service/event.service";
 })
 export class RootComponent implements OnInit {
 
+  @ViewChild(SplitComponent) splitComponent: SplitComponent;
   clothesItems: ClothesItem[];
   updateMasonry = false;
   areas = [
@@ -45,7 +47,6 @@ export class RootComponent implements OnInit {
   }
 
   reloadSearch(event) {
-    console.log('load');
     if ((event.target.offsetHeight + event.target.scrollTop ) >= event.target.scrollHeight) {
       const searchValue = localStorage.getItem('searchValue');
       console.log(searchValue);
@@ -64,14 +65,6 @@ export class RootComponent implements OnInit {
 
   reloadMasonry() {
     MasonryService.reload();
-  }
-
-  checkSearchField(event) {
-    if (event.sizes[0] > 70) {
-      this.splitService.iconPosition(true);
-    } else {
-      this.splitService.iconPosition(false);
-    }
   }
 
   @HostListener('click', ['$event'])
