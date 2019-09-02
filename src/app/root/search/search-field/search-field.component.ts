@@ -15,7 +15,7 @@ export class SearchFieldComponent implements OnInit {
 
   MIN_LENGTH = 3;
   MAX_LENGTH = 50;
-  splitState = false;
+  splitState;
 
   @ViewChild('searchValue') searchValue: ElementRef;
   clothesItems: ClothesItem[];
@@ -39,14 +39,16 @@ export class SearchFieldComponent implements OnInit {
         if (calendarWidth > window.innerWidth) {
           this.splitState = true;
         }
-      } else {
-          this.splitState = false;
       }
       this.ref.detectChanges();
     }, 100);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.splitService.currentChangeIconPosition.subscribe(value => {
+      this.splitState = value;
+    });
+  }
 
   doSearch() {
     const value = this.searchValue.nativeElement.value;

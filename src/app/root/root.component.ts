@@ -44,6 +44,12 @@ export class RootComponent implements OnInit {
         }, 800);
       }
     });
+
+    this.splitComponent.dragProgress$.subscribe(value => {
+      if (value.sizes[0] < 60) {
+        this.splitService.iconPosition(false);
+      }
+    });
   }
 
   reloadSearch(event) {
