@@ -49,4 +49,18 @@ export class ClothesItemComponent implements OnInit {
     this.img.style.height = '249px';
     document.body.append(this.img);
   }
+
+  shopIcon() {
+    switch (this.clothesItem.shopName) {
+      case 'zara' : {
+        return 'assets/img/zara.png';
+      }
+      case 'h&m' : {
+        return 'assets/img/hm.png';
+      }
+      default : {
+        return 'assets/img/fred.png';
+      }
+    }
+  }
 }
