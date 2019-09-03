@@ -17,8 +17,9 @@
            class="box"
            cdkDragBoundary=".boundary"
            (cdkDragStarted)="log($event)"
+           [attr.id]="lookItem.image"
            cdkDrag>
-        <div [attr.id]="lookItem.image">
+        <div>
           <app-look-item [lookItem]=lookItem></app-look-item>
         </div>
       </div>
