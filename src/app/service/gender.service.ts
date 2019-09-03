@@ -9,6 +9,10 @@ export class GenderService {
 
   constructor() { }
 
+  getGenders() {
+    return this.genders;
+  }
+
   static isMale(gender: string) {
     return gender === 'male';
   }

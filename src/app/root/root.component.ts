@@ -3,6 +3,7 @@ import {ClothesItemService} from "../service/clothesItem.service";
 import {ClothesItem} from '../class/clothesItem';
 import {MasonryService} from '../service/masonry.service';
 import {SplitService} from '../service/split.service';
+import {EventService} from "../service/event.service";
 
 @Component({
   selector: 'app-main',
@@ -18,8 +19,10 @@ export class RootComponent implements OnInit {
     {size: 40, order: 2},
   ];
 
+
   constructor(private clothesItemService: ClothesItemService,
               private splitService: SplitService,
+              private eventService: EventService,
               private masonryService: MasonryService) { }
 
   ngOnInit() {
@@ -29,16 +32,6 @@ export class RootComponent implements OnInit {
 
     this.clothesItemService.recommendations().subscribe(data => {
       this.clothesItems = data;
-    });
-
-    this.splitService.currentChange.subscribe(value => {
-      if (value !== null) {
-        this.areas[0].size = value[0];
-        this.areas[1].size = value[1];
-        setTimeout(function() {
-          MasonryService.reload();
-        }, 800);
-      }
     });
   }
 
@@ -70,5 +63,10 @@ export class RootComponent implements OnInit {
     } else {
       this.splitService.iconPosition(false);
     }
+  }
+
+  @HostListener('click', ['$event'])
+  listenAllClick(event) {
+    this.eventService.onClick(event.path[0].currentSrc);
   }
 }
