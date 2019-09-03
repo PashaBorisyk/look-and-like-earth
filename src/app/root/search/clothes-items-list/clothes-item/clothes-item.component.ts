@@ -26,7 +26,7 @@ export class ClothesItemComponent implements OnInit {
     event.preventDefault();
   }
 
-  removeGhostImage(event) {
+  beginDraggable(event) {
     const json = JSON.stringify(this.clothesItem);
     event.dataTransfer.setData('json', json);
   }
