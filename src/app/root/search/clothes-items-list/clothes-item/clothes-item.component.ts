@@ -30,4 +30,18 @@ export class ClothesItemComponent implements OnInit {
     const json = JSON.stringify(this.clothesItem);
     event.dataTransfer.setData('json', json);
   }
+
+  shopIcon() {
+    switch (this.clothesItem.shopName) {
+      case 'zara' : {
+        return 'assets/img/zara.png';
+      }
+      case 'h&m' : {
+        return 'assets/img/hm.png';
+      }
+      default : {
+        return 'assets/img/fred.png';
+      }
+    }
+  }
 }
