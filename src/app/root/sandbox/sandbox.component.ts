@@ -17,6 +17,7 @@ export class SandboxComponent implements OnInit {
 
   lookItems: LookItem[];
   public styleOfBoundary: object = {};
+  emptyImage = 'https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png';
 
   constructor(private lookItemService: LookItemService,
               private priceService: PriceService,
@@ -74,8 +75,6 @@ export class SandboxComponent implements OnInit {
   }
 
   getDataFromDraggable(event) {
-    console.log(event);
-    console.log(event.y);
     event.preventDefault();
     const json = event.dataTransfer.getData('json');
     const clothesItem = JSON.parse(json);
@@ -87,8 +86,12 @@ export class SandboxComponent implements OnInit {
       return;
     }
 
-    const lookItem = new LookItem(clothesItem, event.offsetY, event.offsetX);
+    const topPosition = event.offsetY;
+    const leftPosition = event.offsetX;
+    const lookItem = new LookItem(clothesItem, topPosition, leftPosition);
+    const image = lookItem.image;
 
+    lookItem.image = this.emptyImage;
     this.lookItems.push(lookItem);
     this.priceService.add(lookItem.price);
 
@@ -96,25 +99,13 @@ export class SandboxComponent implements OnInit {
     setTimeout(function() {
       const lookItemElement = document.getElementById(lookItem.image);
       lookItemElement.style.position = 'absolute';
-      lookItemElement.style.top = `${event.offsetY}px`;
-      lookItemElement.style.left = `${event.offsetX}px`;
-      console.log('set style');
+      lookItemElement.style.top = `${topPosition}px`;
+      lookItemElement.style.left = `${leftPosition}px`;
+      lookItem.image = image;
     }, 1);
-
-    setTimeout(function() {
-      const lookItemElement = document.getElementById(lookItem.image);
-      lookItemElement.style.position = 'relative';
-    }, 100);
   }
 
   refresh() {
     window.location.reload();
-  }
-
-
-  log(event) {
-    console.log(event.source);
-
-    //event.source.element.style.transform(-42, 26, 0); //= 'translate3d(-42px, 26px, 0px)';
   }
 }

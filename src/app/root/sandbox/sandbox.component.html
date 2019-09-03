@@ -16,7 +16,6 @@
       <div *ngFor="let lookItem of lookItems"
            class="box"
            cdkDragBoundary=".boundary"
-           (cdkDragStarted)="log($event)"
            [attr.id]="lookItem.image"
            cdkDrag>
         <div>
