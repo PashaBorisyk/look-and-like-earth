@@ -3,6 +3,7 @@ import {ClothesItemService} from "../service/clothesItem.service";
 import {ClothesItem} from '../class/clothesItem';
 import {MasonryService} from '../service/masonry.service';
 import {SplitService} from '../service/split.service';
+import {EventService} from "../service/event.service";
 
 @Component({
   selector: 'app-main',
@@ -20,6 +21,7 @@ export class RootComponent implements OnInit {
 
   constructor(private clothesItemService: ClothesItemService,
               private splitService: SplitService,
+              private eventService: EventService,
               private masonryService: MasonryService) { }
 
   ngOnInit() {
@@ -70,5 +72,10 @@ export class RootComponent implements OnInit {
     } else {
       this.splitService.iconPosition(false);
     }
+  }
+
+  @HostListener('click', ['$event'])
+  listenAllClick(event) {
+    this.eventService.onClick(event.path[0].currentSrc);
   }
 }

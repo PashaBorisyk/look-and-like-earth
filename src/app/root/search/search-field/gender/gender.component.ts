@@ -8,25 +8,22 @@ import { GenderService } from '../../../../service/gender.service';
 })
 export class GenderComponent implements OnInit {
 
-  gender: string;
+  selectGender: string;
+  genders: string[];
 
-  constructor(private genderService: GenderService) {
-    this.gender = genderService.getMale();
-  }
+  constructor(private genderService: GenderService) { }
 
 
   ngOnInit() {
+    this.genders = this.genderService.getGenders();
+    this.selectGender = this.genders[0];
   }
 
-  changeGender() {
-    if (GenderService.isMale(this.gender)) {
-      this.gender = this.genderService.getFemale();
-    } else {
-      this.gender = this.genderService.getMale();
-    }
+  isMale(value) {
+    return value === 'male';
   }
 
-  isMale() {
-    return GenderService.isMale(this.gender);
+  choice(value) {
+    this.selectGender = value;
   }
 }
