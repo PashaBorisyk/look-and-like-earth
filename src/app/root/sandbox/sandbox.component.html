@@ -7,7 +7,7 @@
   </svg>
 </div>
 <button (click)="download()">download</button>
-<canvas id="Canvas"></canvas>
+<canvas width=200 height=200 id="Canvas"></canvas>
 <div (drop)="getDataFromDraggable($event)"
      (dragover)="allowDrop($event)"
      [ngStyle]="styleOfBoundary"

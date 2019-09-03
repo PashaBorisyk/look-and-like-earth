@@ -4,7 +4,6 @@ import {LookItemService} from '../../service/look-item.service';
 import {MatSnackBar} from '@angular/material';
 import {PriceService} from '../../service/price.service';
 import {Price} from '../../class/price';
-import {ResizeEvent} from "angular-resizable-element";
 
 
 
@@ -36,7 +35,7 @@ export class SandboxComponent implements OnInit {
     });
 
     this.lookItemService.currentRemove.subscribe(value => {
-      const temp:ClothesItem[] = [];
+      const temp: ClothesItem[] = [];
       this.clothesItems.forEach(item => {
         if (item.image !== value) {
           temp.push(item);
@@ -48,7 +47,7 @@ export class SandboxComponent implements OnInit {
     this.lookItemService.currentDownload.subscribe(value => {
       if (value) {
         this.clothesItems.forEach(item => {
-          var binaryData = [];
+          let binaryData = [];
           binaryData.push(item.image);
 
           const a = document.createElement('a');
@@ -94,20 +93,22 @@ export class SandboxComponent implements OnInit {
   }
 
   download() {
-    console.log('download');
-    console.log(document.getElementsByClassName('box')[1].getBoundingClientRect().top);
     let canvas = document.getElementById('Canvas');
     let context = canvas.getContext('2d');
     let img = new Image();
-    let img1 = new Image();
 
     img.src = this.clothesItems[0].image;
-    img1.src = this.clothesItems[1].image;
     img.onload = function() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       context.drawImage(img, 0, 0);
-      context.drawImage(img1, 100, 200);
     };
+
+    console.log(canvas.toDataURL('image/png'));
+
+   /* const link = document.createElement('a');
+    link.download = 'look.png';
+    link.href = canvas.toDataURL("image/jpg");
+    link.click();*/
   }
 }
