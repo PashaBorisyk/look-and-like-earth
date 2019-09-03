@@ -20,16 +20,12 @@ export class LookItemComponent implements OnInit {
               private eventService: EventService) { }
 
   ngOnInit() {
-    console.log('create look');
     this.currencyService.currentChange.subscribe(value => {
       if (value != null && value.base !== this.lookItem.price.currency) {
         this.currencyService.calculate(this.lookItem.price, value);
       }
     });
-    this.lookItemStyle = {/*
-      top: `${this.lookItem.positionX}px`,
-      left: `${this.lookItem.positionY}px`,*/
-    };
+
     this.eventService.focusEvent.subscribe(value => {
       if (value == null || value !== this.lookItem.image ) {
         this.styleOfLook = {

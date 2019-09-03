@@ -28,15 +28,12 @@ export class RootComponent implements OnInit {
   ngOnInit() {
     this.clothesItemService.currentSearch.subscribe(clothesItems => this.clothesItems = clothesItems);
 
-    // !!!!!!!!!!!!! WHEN SERVER WILL RUN , NEED CHECK WHICH DATA REQUIRED
-
     this.clothesItemService.recommendations().subscribe(data => {
       this.clothesItems = data;
     });
   }
 
   reloadSearch(event) {
-    console.log('load');
     if ((event.target.offsetHeight + event.target.scrollTop ) >= event.target.scrollHeight) {
       const searchValue = localStorage.getItem('searchValue');
       console.log(searchValue);
