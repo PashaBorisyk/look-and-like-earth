@@ -14,8 +14,14 @@ export class ClothesItem {
   description: string;
   category: string;
   sex: string;
+  sizes: string[];
 
-  constructor(name: string, price: Price, color: string, material: Material, date: Date, style: string, image: string, article: string, shopName: string, description: string, category: string, sex: string) {
+
+  constructor(name: string, price: Price, color: string,
+              material: Material, date: Date, style: string,
+              image: string, article: string, shopName: string,
+              description: string, category: string, sex: string, sizes: string[]) {
+
     this.name = name;
     this.price = price;
     this.color = color;
@@ -28,5 +34,6 @@ export class ClothesItem {
     this.description = description;
     this.category = category;
     this.sex = sex;
+    this.sizes = sizes;
   }
 }

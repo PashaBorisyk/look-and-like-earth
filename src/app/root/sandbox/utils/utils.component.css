@@ -2,6 +2,10 @@
   cursor: pointer;
 }
 
+.main-menu:active {
+  transform: translateY(4px);
+}
+
 .attribute-menu {
   cursor: pointer;
   margin-left: 20%;
@@ -11,4 +15,36 @@
   position: absolute;
   margin-left: 20%;
   margin-top: 15%;
+}
+
+.icon-list {
+  animation: slide-right 1s;
+}
+
+.hide-icon-list {
+  animation: slide-left 2s;
+}
+
+@-webkit-keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(-100px);
+    transform: translateX(-100px);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  100% {
+    -webkit-transform: translateX(-1000px);
+    transform: translateX(-1000px);
+  }
 }

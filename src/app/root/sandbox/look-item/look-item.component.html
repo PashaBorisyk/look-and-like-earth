@@ -39,7 +39,12 @@
       Size:
     </div>
     <div class="col-md-8 value">
-      <strong>S</strong>
+      <strong *ngIf="lookItem.sizes.length !== 0; else elseEmpty">
+        [{{lookItem.sizes.slice(0, 8).toString()}}..]
+      </strong>
+      <ng-template #elseEmpty>
+        <strong>[ ]</strong>
+      </ng-template>
     </div>
   </div>
   <div class="row my-3">

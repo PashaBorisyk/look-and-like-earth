@@ -1,4 +1,4 @@
-<div *ngIf="isActive()">
+<div class="icon-list" *ngIf="state === 'active'">
   <div
     (click)="downloadLook()"
     matTooltip="Download image"
@@ -83,10 +83,151 @@
     </svg>
   </div>
 </div>
-<div class="main-menu" (click)="doActivate()">
-  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<div *ngIf="state === 'inactive'" class="hide-icon-list" id="hide-icon-list">
+  <div
+    (click)="showSearch()"
+    matTooltip="Show search"
+    [matTooltipPosition]="position.value"
+    class="attribute-menu">
+    <div class="attribute-icon">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 10.4292V1H7.16895M1 10.4292V14.3607H4.77169L1 10.4292Z" stroke="#312A20" stroke-width="0.5" stroke-linecap="square"/>
+        <path d="M14.3607 4.93151V14.3607H8.19177M14.3607 4.93151V1H10.5571L14.3607 4.93151Z" stroke="#312A20" stroke-width="0.5" stroke-linecap="square"/>
+      </svg>
+    </div>
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g filter="url(#filter0_d)">
+        <circle cx="20" cy="19" r="16" fill="white"/>
+      </g>
+      <defs>
+        <filter id="filter0_dq" x="0" y="0" width="40" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+          <feOffset dy="1"/>
+          <feGaussianBlur stdDeviation="2"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend>
+        </filter>
+      </defs>
+    </svg>
+  </div>
+  <div
+    (click)="hideSearch()"
+    matTooltip="Hide search"
+    [matTooltipPosition]="position.value"
+    class="attribute-menu">
+    <div class="attribute-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15.0335 5.63309V15H8.25177M15.0335 5.43165L10.8705 1.43645V5.56594H15.0335V5.43165Z" stroke="#312A20" stroke-width="0.5" stroke-linecap="square"/>
+        <path d="M1 10.4005V1H7.78178M1 10.6019L5.16307 14.5971V10.4676H1V10.6019Z" stroke="#312A20" stroke-width="0.5" stroke-linecap="square"/>
+      </svg>
+    </div>
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g filter="url(#filter0_d)">
+        <circle cx="20" cy="19" r="16" fill="white"/>
+      </g>
+      <defs>
+        <filter id="filter0_dq" x="0" y="0" width="40" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+          <feOffset dy="1"/>
+          <feGaussianBlur stdDeviation="2"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend>
+        </filter>
+      </defs>
+    </svg>
+  </div>
+  <div
+    (click)="downloadLook()"
+    matTooltip="Download image"
+    [matTooltipPosition]="position.value"
+    class="attribute-menu">
+    <div class="attribute-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 5.44595V3.83784H2.63964M1 7.74775V11.0586M1 13.3919V15H2.63964M4.94144 15H8.5045M10.6171 15H12.2568V13.3919M11.6261 1H3.74324V12.1622H15V4.34234L11.6261 1Z" stroke="#312A20" stroke-width="0.5" stroke-linecap="square"/>
+      </svg>
+    </div>
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g filter="url(#filter0_d)">
+        <circle cx="20" cy="19" r="16" fill="white"/>
+      </g>
+      <defs>
+        <filter id="filter0_dq" x="0" y="0" width="40" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+          <feOffset dy="1"/>
+          <feGaussianBlur stdDeviation="2"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend>
+        </filter>
+      </defs>
+    </svg>
+  </div>
+  <div
+    matTooltip="Delete all clothes"
+    [matTooltipPosition]="position.value"
+    (click)="removeAll()"
+    class="attribute-menu">
+    <div class="attribute-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3.71171 1.94595V1H11.6261L15 4.34234V12.1622H13.8964M9.54504 4.46847L8.91441 3.83784H6.2973M3.83784 3.83784H1.78829M2.63964 3.83784H1V5.44595M1 7.74775V10.9955M1 13.3919V15H2.63964M8.31532 15H4.97297M10.6486 15H12.2883V13.3919M12.2883 10.7117V7.18018L11.2162 6.13964" stroke="#312A20" stroke-width="0.5" stroke-linecap="square"/>
+      </svg>
+
+    </div>
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g filter="url(#filter0_d)">
+        <circle cx="20" cy="19" r="16" fill="white"/>
+      </g>
+      <defs>
+        <filter id="filter0_dq" x="0" y="0" width="40" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+          <feOffset dy="1"/>
+          <feGaussianBlur stdDeviation="2"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend>
+        </filter>
+      </defs>
+    </svg>
+  </div>
+  <div
+    matTooltip="Change background"
+    [matTooltipPosition]="position.value"
+    class="attribute-menu"
+    (click)="displayUploadFile()">
+    <input id="uploadFile" type="file" (change)="upload($event)" accept="image/*" hidden>
+    <div class="attribute-icon">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.66211 0.319641H13.6804V13.6804H4.12329L0.319641 9.84476V0.319641H5.65754C5.65754 1.85389 5.65754 6.61645 5.65754 6.61645H3.26028L7.12786 10.1005L10.7397 6.61645H8.59818V3.80366" stroke="#312A20" stroke-width="0.5" stroke-linecap="square"/>
+      </svg>
+    </div>
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g filter="url(#filter0_d)">
+        <circle cx="20" cy="19" r="16" fill="white"/>
+      </g>
+      <defs>
+        <filter id="filter0_dq" x="0" y="0" width="40" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+          <feOffset dy="1"/>
+          <feGaussianBlur stdDeviation="2"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend>
+        </filter>
+      </defs>
+    </svg>
+  </div>
+</div>
+<div class="main-menu">
+  <svg class="select-menu" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g filter="url(#filter0_d)">
-      <circle cx="32" cy="30" r="28" fill="black"/>
+      <circle class="select-menu" cx="32" cy="30" r="28" fill="black"/>
     </g>
     <path d="M24 24H40" stroke="white" stroke-width="2"/>
     <path d="M25.6 30H38.4" stroke="white" stroke-width="2"/>
@@ -104,3 +245,4 @@
     </defs>
   </svg>
 </div>
+

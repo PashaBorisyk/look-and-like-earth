@@ -17,7 +17,8 @@ export class LookItem extends ClothesItem {
       clothesItem.shopName,
       clothesItem.description,
       clothesItem.category,
-      clothesItem.sex);
+      clothesItem.sex,
+      clothesItem.sizes);
     this.positionX = x;
     this.positionY = y;
   }
