@@ -4,6 +4,7 @@ import {ClothesItem} from '../class/clothesItem';
 import {MasonryService} from '../service/masonry.service';
 import {SplitService} from '../service/split.service';
 import {EventService} from "../service/event.service";
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
   selector: 'app-main',
@@ -18,7 +19,7 @@ export class RootComponent implements OnInit {
     {size: 60, order: 1},
     {size: 40, order: 2},
   ];
-  menuActive = 'inactive';
+  menuActive = 'inactived';
 
 
   constructor(private clothesItemService: ClothesItemService,
@@ -64,15 +65,18 @@ export class RootComponent implements OnInit {
 
   @HostListener('click', ['$event'])
   listenAllClick(event) {
-    this.eventService.onClick(event.path[0].currentSrc);
+    const target = event.target;
+    this.eventService.onClick(target.currentSrc);
 
-    if (event.path[0].classList[0] === 'select-menu') {
+    const element = target.classList[0];
+
+    if (element === 'select-menu') {
       if (this.menuActive === 'active') {
         this.menuActive = 'inactive';
       } else {
         this.menuActive = 'active';
       }
-    } else {
+    } else if (this.menuActive === 'inactive' || this.menuActive === 'active') {
       this.menuActive = 'inactive';
     }
     this.eventService.rootClick(this.menuActive);
