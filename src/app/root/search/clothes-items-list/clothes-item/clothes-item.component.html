@@ -8,8 +8,7 @@
   </mat-card-header>
   <img
     (dragover)="allowDrop($event)"
-    (drag)="changeImagePosition($event)"
-    (dragstart)="removeGhostImage($event)"
+    (dragstart)="beginDraggable($event)"
     draggable="true"
     mat-card-image
     src="{{clothesItem.image}}">
