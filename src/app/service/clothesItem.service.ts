@@ -58,15 +58,13 @@ export class ClothesItemService {
             date: value.metaInformation.insertDate,
             style: 'Зауженный',
             companyIcon: '',
-            /*image: value.data.price.price === 1599
-              ? 'https://cdn.shopify.com/s/files/1/2143/3217/products/500_7a67b0be-fb5c-419e-8cdb-5e7e4a3fba29_grande.png?v=1564066897'
-              :'https://cdn.shopify.com/s/files/1/1889/4591/products/custom_printed_white_unisex_next_level_60_40_t_shirt.png?v=1511212877',*/
             image: value.data.images.noBackgroundImageUrl ,
             article: value.data.article,
             shopName: value.metaInformation.shopName,
             description: value.data.description,
             category: value.data.category,
             sex: value.data.sex,
+            sizes: value.data.sizes,
           };
           clothesItems.push(clothesItem);
         });

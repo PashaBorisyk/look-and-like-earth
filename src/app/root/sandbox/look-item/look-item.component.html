@@ -38,7 +38,12 @@
       Size:
     </div>
     <div class="col-md-8 value">
-      <strong>S</strong>
+      <strong *ngIf="clothesItem.sizes.length !== 0; else elseEmpty">
+        [{{clothesItem.sizes.slice(0, 8).toString()}}..]
+      </strong>
+      <ng-template #elseEmpty>
+        <strong>[ ]</strong>
+      </ng-template>
     </div>
   </div>
   <div class="row my-3">
@@ -46,7 +51,7 @@
       Description:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.description.slice(0, 70) }}
+      {{ clothesItem.description }}
     </div>
   </div>
   <div class="row my-3">

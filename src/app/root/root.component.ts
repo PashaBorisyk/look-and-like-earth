@@ -77,5 +77,10 @@ export class RootComponent implements OnInit {
   @HostListener('click', ['$event'])
   listenAllClick(event) {
     this.eventService.onClick(event.path[0].currentSrc);
+    let menuActive = 'inactive';
+    if (event.path[0].classList[0] === 'select-menu') {
+      menuActive = 'active';
+    }
+    this.eventService.rootClick(menuActive);
   }
 }

@@ -1,11 +1,19 @@
-<div class="row mx-5" >
-  <ngx-masonry [options]=masonryOptions
-               [useImagesLoaded]="true"
-               [updateLayout]=updateMasonry>
-    <div ngxMasonryItem *ngFor="let clothesItem of clothesItems">
-      <div class="mx-3 my-2">
-        <app-clothes-item  [clothesItem]="clothesItem"></app-clothes-item>
-      </div>
-    </div>
-  </ngx-masonry>
+<div class="parent-loader" *ngIf="clothesItems.length === 0; else elseLoad">
+  <div class="loader" >
+    <mat-spinner></mat-spinner>
+  </div>
 </div>
+<ng-template #elseLoad>
+  <div class="row mx-5" >
+    <ngx-masonry [options]=masonryOptions
+                 [useImagesLoaded]="true"
+                 [updateLayout]=updateMasonry>
+      <div ngxMasonryItem *ngFor="let clothesItem of clothesItems">
+        <div class="mx-3 my-2">
+          <app-clothes-item  [clothesItem]="clothesItem"></app-clothes-item>
+        </div>
+      </div>
+    </ngx-masonry>
+  </div>
+</ng-template>
+
