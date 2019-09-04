@@ -15,8 +15,8 @@ export class RootComponent implements OnInit {
   clothesItems: ClothesItem[];
   updateMasonry = false;
   areas = [
-    {size: 60, order: 1},
-    {size: 40, order: 2},
+    {size: 50, order: 1},
+    {size: 50, order: 2},
   ];
 
   constructor(private clothesItemService: ClothesItemService,
