@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {TooltipPosition} from '@angular/material';
 import {LookItemService} from '../../../service/look-item.service';
+import {EventService} from '../../../service/event.service';
 
 @Component({
   selector: 'app-utils',
@@ -13,23 +14,26 @@ export class UtilsComponent implements OnInit {
   positionOptions: TooltipPosition[] = ['after', 'before', 'above', 'below', 'left', 'right'];
   position = new FormControl(this.positionOptions[0]);
 
-  menu = false;
+  state;
   imageSrc = null;
 
   @Output() imageEvent = new EventEmitter<string>();
 
-  constructor(private lookItemService: LookItemService) { }
+  constructor(private lookItemService: LookItemService,
+              private eventService: EventService) { }
 
   ngOnInit() {
-  }
-
-  isActive() {
-    return this.menu;
-  }
-
-  doActivate(event) {
-    let menu = document.getElementById("menu");
-    this.menu = this.menu === true ? false : true;
+    this.eventService.menuEvent.subscribe(value => {
+      if (value != null) {
+        this.state = value;
+        setTimeout(function() {
+          const element = document.getElementById('hide-icon-list');
+          if (element != null) {
+            element.style.display = 'none';
+          }
+        }, 100);
+      }
+    });
   }
 
   displayUploadFile() {

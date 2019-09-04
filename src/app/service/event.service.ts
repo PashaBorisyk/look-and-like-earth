@@ -6,6 +6,9 @@ import {BehaviorSubject} from "rxjs";
 })
 export class EventService {
 
+  private focusMenu = new BehaviorSubject(null);
+  menuEvent = this.focusMenu.asObservable();
+
   private focusResource = new BehaviorSubject(null);
   focusEvent = this.focusResource.asObservable();
 
@@ -13,5 +16,9 @@ export class EventService {
 
   onClick(value: string) {
     this.focusResource.next(value);
+  }
+
+  rootClick(value: string) {
+    this.focusMenu.next(value);
   }
 }

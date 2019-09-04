@@ -1,10 +1,13 @@
 .main-menu {
   cursor: pointer;
-  animation: 1.5s ripple alternate;
 }
 
 .main-menu:hover {
   transform: scale(1.05);
+}
+
+.main-menu:active {
+  transform: translateY(4px);
 }
 
 .attribute-menu {
@@ -18,20 +21,6 @@
   margin-top: 5px;
 }
 
-@-webkit-keyframes ripple {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
 
 @keyframes ripple {
   0% {
@@ -45,5 +34,37 @@
   100% {
     transform: scale(1.2);
     opacity: 1;
+  }
+}
+
+.icon-list {
+  animation: slide-right 1s;
+}
+
+.hide-icon-list {
+  animation: slide-left 2s;
+}
+
+@-webkit-keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(-100px);
+    transform: translateX(-100px);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  100% {
+    -webkit-transform: translateX(-1000px);
+    transform: translateX(-1000px);
   }
 }

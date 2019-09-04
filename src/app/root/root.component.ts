@@ -18,6 +18,7 @@ export class RootComponent implements OnInit {
     {size: 60, order: 1},
     {size: 40, order: 2},
   ];
+  menuActive = 'inactive';
 
 
   constructor(private clothesItemService: ClothesItemService,
@@ -27,16 +28,12 @@ export class RootComponent implements OnInit {
 
   ngOnInit() {
     this.clothesItemService.currentSearch.subscribe(clothesItems => this.clothesItems = clothesItems);
-
-    // !!!!!!!!!!!!! WHEN SERVER WILL RUN , NEED CHECK WHICH DATA REQUIRED
-
     this.clothesItemService.recommendations().subscribe(data => {
       this.clothesItems = data;
     });
   }
 
   reloadSearch(event) {
-    console.log('load');
     if ((event.target.offsetHeight + event.target.scrollTop ) >= event.target.scrollHeight) {
       const searchValue = localStorage.getItem('searchValue');
       console.log(searchValue);
@@ -68,5 +65,16 @@ export class RootComponent implements OnInit {
   @HostListener('click', ['$event'])
   listenAllClick(event) {
     this.eventService.onClick(event.path[0].currentSrc);
+
+    if (event.path[0].classList[0] === 'select-menu') {
+      if (this.menuActive === 'active') {
+        this.menuActive = 'inactive';
+      } else {
+        this.menuActive = 'active';
+      }
+    } else {
+      this.menuActive = 'inactive';
+    }
+    this.eventService.rootClick(this.menuActive);
   }
 }
