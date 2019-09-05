@@ -66,12 +66,12 @@ export class SandboxComponent implements OnInit {
 
     this.eventService.costSumPositionXEvent.subscribe(value => {
      if (value) {
-       const width = window.innerWidth - 300;
+       const width = window.innerWidth;
        const height = window.innerHeight;
-       const left = -window.innerWidth + value - window.innerWidth;
+       const left =  - value;
        console.log(left, value, window.innerWidth);
        this.styleOfBoundary = {
-         left: `${-value}px`,
+         left: `${left}px`,
          height: `${height}px`,
          width: `${width}px`,
        };
