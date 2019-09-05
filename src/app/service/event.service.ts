@@ -6,11 +6,11 @@ import {BehaviorSubject} from "rxjs";
 })
 export class EventService {
 
-  private focusResource = new BehaviorSubject(null);
-  focusEvent = this.focusResource.asObservable();
-
   private focusMenu = new BehaviorSubject(null);
   menuEvent = this.focusMenu.asObservable();
+
+  private focusResource = new BehaviorSubject(null);
+  focusEvent = this.focusResource.asObservable();
 
   constructor() { }
 

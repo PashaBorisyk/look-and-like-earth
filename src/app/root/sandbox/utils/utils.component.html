@@ -85,62 +85,6 @@
 </div>
 <div *ngIf="state === 'inactive'" class="hide-icon-list" id="hide-icon-list">
   <div
-    (click)="showSearch()"
-    matTooltip="Show search"
-    [matTooltipPosition]="position.value"
-    class="attribute-menu">
-    <div class="attribute-icon">
-      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 10.4292V1H7.16895M1 10.4292V14.3607H4.77169L1 10.4292Z" stroke="#312A20" stroke-width="0.5" stroke-linecap="square"/>
-        <path d="M14.3607 4.93151V14.3607H8.19177M14.3607 4.93151V1H10.5571L14.3607 4.93151Z" stroke="#312A20" stroke-width="0.5" stroke-linecap="square"/>
-      </svg>
-    </div>
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g filter="url(#filter0_d)">
-        <circle cx="20" cy="19" r="16" fill="white"/>
-      </g>
-      <defs>
-        <filter id="filter0_dq" x="0" y="0" width="40" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
-          <feOffset dy="1"/>
-          <feGaussianBlur stdDeviation="2"/>
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend>
-        </filter>
-      </defs>
-    </svg>
-  </div>
-  <div
-    (click)="hideSearch()"
-    matTooltip="Hide search"
-    [matTooltipPosition]="position.value"
-    class="attribute-menu">
-    <div class="attribute-icon">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M15.0335 5.63309V15H8.25177M15.0335 5.43165L10.8705 1.43645V5.56594H15.0335V5.43165Z" stroke="#312A20" stroke-width="0.5" stroke-linecap="square"/>
-        <path d="M1 10.4005V1H7.78178M1 10.6019L5.16307 14.5971V10.4676H1V10.6019Z" stroke="#312A20" stroke-width="0.5" stroke-linecap="square"/>
-      </svg>
-    </div>
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g filter="url(#filter0_d)">
-        <circle cx="20" cy="19" r="16" fill="white"/>
-      </g>
-      <defs>
-        <filter id="filter0_dq" x="0" y="0" width="40" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
-          <feOffset dy="1"/>
-          <feGaussianBlur stdDeviation="2"/>
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend>
-        </filter>
-      </defs>
-    </svg>
-  </div>
-  <div
     (click)="downloadLook()"
     matTooltip="Download image"
     [matTooltipPosition]="position.value"
