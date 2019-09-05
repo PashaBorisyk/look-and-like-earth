@@ -13,9 +13,9 @@ import {SplitComponent} from 'angular-split';
 })
 export class RootComponent implements OnInit {
 
-
   @ViewChild(SplitComponent) splitComponent: SplitComponent;
   clothesItems: ClothesItem[];
+
   updateMasonry = false;
   maxSize;
   windowWidth;
@@ -47,11 +47,16 @@ export class RootComponent implements OnInit {
       this.clothesItems = data;
     });
 
+    this.splitComponent.dragProgress$.subscribe(value => {
+      if (value.sizes[0] < 60) {
+        this.splitService.iconPosition(false);
+      }
+    });
     this.calculateSplitAreaSize();
 
     this.splitComponent.dragProgress$.subscribe(value => {
       // @ts-ignore
-      const costSumPosition =  value.sizes[1];
+      const costSumPosition: number =  value.sizes[1];
       this.eventService.changeCostSumPosition(costSumPosition);
     });
   }
@@ -75,6 +80,7 @@ export class RootComponent implements OnInit {
   reloadMasonry() {
     MasonryService.reload();
   }
+
 
   checkSearchField(event) {
     if (event.sizes[0] > 70) {

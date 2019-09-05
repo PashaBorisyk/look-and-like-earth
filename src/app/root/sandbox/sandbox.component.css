@@ -3,6 +3,7 @@
   position: fixed;
   margin-top: 32px;
   margin-left: 32px;
+  z-index: 100;
 }
 
 .logo {
@@ -23,6 +24,8 @@
   background: white;
   position: relative;
   left: 150px;
+  width: 1000px;
+  height: 1000px;
 }
 
 .price {

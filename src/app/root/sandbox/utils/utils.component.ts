@@ -19,6 +19,7 @@ export class UtilsComponent implements OnInit {
 
   @Output() imageEvent = new EventEmitter<string>();
 
+
   constructor(private lookItemService: LookItemService,
               private eventService: EventService) { }
 
