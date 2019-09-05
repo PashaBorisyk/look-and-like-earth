@@ -68,10 +68,10 @@ export class SandboxComponent implements OnInit {
      if (value) {
        const width = window.innerWidth - 300;
        const height = window.innerHeight;
-       const left = value - window.innerWidth + 150;
+       const left = -window.innerWidth + value - window.innerWidth;
        console.log(left, value, window.innerWidth);
        this.styleOfBoundary = {
-         left: `${left}px`,
+         left: `${-value}px`,
          height: `${height}px`,
          width: `${width}px`,
        };
