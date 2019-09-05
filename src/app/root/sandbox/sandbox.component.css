@@ -22,15 +22,12 @@
 .boundary {
   background: white;
   position: relative;
-  left: 300px;
-  width: 1000px;
-  height: 1000px;
+  left: 150px;
 }
 
 .price {
   position: absolute;
   bottom: 80px;
-  margin-left: 60%;
 }
 
 

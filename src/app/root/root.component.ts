@@ -1,9 +1,10 @@
-import {ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {ClothesItemService} from "../service/clothesItem.service";
 import {ClothesItem} from '../class/clothesItem';
 import {MasonryService} from '../service/masonry.service';
 import {SplitService} from '../service/split.service';
 import {EventService} from "../service/event.service";
+import {SplitComponent} from 'angular-split';
 
 @Component({
   selector: 'app-main',
@@ -12,6 +13,8 @@ import {EventService} from "../service/event.service";
 })
 export class RootComponent implements OnInit {
 
+
+  @ViewChild(SplitComponent) splitComponent: SplitComponent;
   clothesItems: ClothesItem[];
   updateMasonry = false;
   areas;
@@ -53,6 +56,12 @@ export class RootComponent implements OnInit {
     });
 
     this.calculateSplitAreaSize();
+
+    this.splitComponent.dragProgress$.subscribe(value => {
+      // @ts-ignore
+      const costSumPosition =  value.sizes[1];
+      this.eventService.changeCostSumPosition(costSumPosition);
+    });
   }
 
   reloadSearch(event) {

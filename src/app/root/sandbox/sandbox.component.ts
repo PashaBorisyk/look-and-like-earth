@@ -5,6 +5,7 @@ import {MatSnackBar} from '@angular/material';
 import {PriceService} from '../../service/price.service';
 import {Price} from '../../class/price';
 import {ResizeEvent} from "angular-resizable-element";
+import {EventService} from '../../service/event.service';
 
 
 
@@ -15,15 +16,16 @@ import {ResizeEvent} from "angular-resizable-element";
 })
 export class SandboxComponent implements OnInit {
 
-  clothesItems: ClothesItem[];
+  clothesItems: ClothesItem[] = [];
   public styleOfBoundary: object = {};
+  public styleOfPrice: object = {};
 
   constructor(private lookItemService: LookItemService,
               private priceService: PriceService,
+              private eventService: EventService,
               private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.clothesItems = [];
     this.lookItemService.currentDrop.subscribe(value => {
       if (value) {
         let sum = 0;
@@ -31,12 +33,12 @@ export class SandboxComponent implements OnInit {
           sum += item.price.value;
         });
         this.priceService.add(new Price(-sum, 'RUB'));
-       this.clothesItems = [];
+        this.clothesItems = [];
       }
     });
 
     this.lookItemService.currentRemove.subscribe(value => {
-      const temp:ClothesItem[] = [];
+      const temp: ClothesItem[] = [];
       this.clothesItems.forEach(item => {
         if (item.image !== value) {
           temp.push(item);
@@ -59,6 +61,18 @@ export class SandboxComponent implements OnInit {
           document.body.removeChild(a);
         });
       }
+    });
+
+    this.eventService.costSumPositionXEvent.subscribe(value => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const left = value - window.innerWidth;
+      console.log(left);
+      this.styleOfBoundary = {
+        left: `${left}px`,
+        height: `${height}px`,
+        width: `${width}px`,
+      };
     });
   }
 
@@ -91,5 +105,14 @@ export class SandboxComponent implements OnInit {
 
   refresh() {
     window.location.reload();
+  }
+
+  setBoxSizes() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    this.styleOfBoundary = {
+      height: `${height}px`,
+      width: `${width}px`,
+    };
   }
 }
