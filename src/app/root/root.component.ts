@@ -1,9 +1,11 @@
-import {ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, HostListener} from '@angular/core';
 import {ClothesItemService} from "../service/clothesItem.service";
 import {ClothesItem} from '../class/clothesItem';
 import {MasonryService} from '../service/masonry.service';
 import {SplitService} from '../service/split.service';
 import {EventService} from "../service/event.service";
+import {SplitComponent} from 'angular-split';
 
 @Component({
   selector: 'app-main',
@@ -12,6 +14,7 @@ import {EventService} from "../service/event.service";
 })
 export class RootComponent implements OnInit {
 
+  @ViewChild(SplitComponent) splitComponent: SplitComponent;
   clothesItems: ClothesItem[];
 
   updateMasonry = false;
@@ -45,6 +48,11 @@ export class RootComponent implements OnInit {
       this.clothesItems = data;
     });
 
+    this.splitComponent.dragProgress$.subscribe(value => {
+      if (value.sizes[0] < 60) {
+        this.splitService.iconPosition(false);
+      }
+    });
     this.calculateSplitAreaSize();
   }
 
@@ -67,6 +75,7 @@ export class RootComponent implements OnInit {
   reloadMasonry() {
     MasonryService.reload();
   }
+
 
   checkSearchField(event) {
     if (event.sizes[0] > 70) {
