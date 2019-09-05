@@ -1,5 +1,9 @@
-.main-menu:hover {
+.main-menu {
   cursor: pointer;
+}
+
+.main-menu:hover {
+  transform: scale(1.05);
 }
 
 .main-menu:active {
@@ -8,13 +12,13 @@
 
 .attribute-menu {
   cursor: pointer;
-  margin-left: 20%;
+  margin-left: 13px;
 }
 
 .attribute-icon {
   position: absolute;
-  margin-left: 20%;
-  margin-top: 15%;
+  margin-left: 12px;
+  margin-top: 5px;
 }
 
 .icon-list {
@@ -25,15 +29,43 @@
   animation: slide-left 2s;
 }
 
+@-moz-keyframes slide-right {
+  0% {
+    -moz-transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    -moz-transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    -moz-transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes slide-left {
+  0% {
+    -moz-transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    -moz-transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    -moz-transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
 @-webkit-keyframes slide-right {
   0% {
     -webkit-transform: translateX(-100px);
-    transform: translateX(-100px);
   }
 
   100% {
     -webkit-transform: translateX(0);
-    transform: translateX(0);
   }
 }
 

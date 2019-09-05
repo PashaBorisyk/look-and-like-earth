@@ -17,9 +17,14 @@ export class RootComponent implements OnInit {
   @ViewChild(SplitComponent) splitComponent: SplitComponent;
   clothesItems: ClothesItem[];
   updateMasonry = false;
-  areas;
   maxSize;
   windowWidth;
+  areas = [
+    {size: 60, order: 1},
+    {size: 40, order: 2},
+  ];
+  menuActive = 'inactived';
+
 
   constructor(private clothesItemService: ClothesItemService,
               private splitService: SplitService,
@@ -38,21 +43,8 @@ export class RootComponent implements OnInit {
 
   ngOnInit() {
     this.clothesItemService.currentSearch.subscribe(clothesItems => this.clothesItems = clothesItems);
-
-    // !!!!!!!!!!!!! WHEN SERVER WILL RUN , NEED CHECK WHICH DATA REQUIRED
-
     this.clothesItemService.recommendations().subscribe(data => {
       this.clothesItems = data;
-    });
-
-    this.splitService.currentChange.subscribe(value => {
-      if (value !== null) {
-        this.areas[0].size = value[0];
-        this.areas[1].size = value[1];
-        setTimeout(function() {
-          MasonryService.reload();
-        }, 800);
-      }
     });
 
     this.calculateSplitAreaSize();
@@ -74,7 +66,7 @@ export class RootComponent implements OnInit {
   }
 
   removeImage() {
-    let img = document.getElementById('temp-img');
+    const img = document.getElementById('temp-img');
     if (img !== null) {
       img.remove();
     }
@@ -104,11 +96,20 @@ export class RootComponent implements OnInit {
 
   @HostListener('click', ['$event'])
   listenAllClick(event) {
-    this.eventService.onClick(event.path[0].currentSrc);
-    let menuActive = 'inactive';
-    if (event.path[0].classList[0] === 'select-menu') {
-      menuActive = 'active';
+    const target = event.target;
+    this.eventService.onClick(target.currentSrc);
+
+    const element = target.classList[0];
+
+    if (element === 'select-menu') {
+      if (this.menuActive === 'active') {
+        this.menuActive = 'inactive';
+      } else {
+        this.menuActive = 'active';
+      }
+    } else if (this.menuActive === 'inactive' || this.menuActive === 'active') {
+      this.menuActive = 'inactive';
     }
-    this.eventService.rootClick(menuActive);
+    this.eventService.rootClick(this.menuActive);
   }
 }
