@@ -1,4 +1,5 @@
-import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, HostListener} from '@angular/core';
 import {ClothesItemService} from "../service/clothesItem.service";
 import {ClothesItem} from '../class/clothesItem';
 import {MasonryService} from '../service/masonry.service';
@@ -15,7 +16,10 @@ export class RootComponent implements OnInit {
 
   @ViewChild(SplitComponent) splitComponent: SplitComponent;
   clothesItems: ClothesItem[];
+
   updateMasonry = false;
+  maxSize;
+  windowWidth;
   areas = [
     {size: 60, order: 1},
     {size: 40, order: 2},
@@ -26,7 +30,17 @@ export class RootComponent implements OnInit {
   constructor(private clothesItemService: ClothesItemService,
               private splitService: SplitService,
               private eventService: EventService,
-              private masonryService: MasonryService) { }
+              private ref: ChangeDetectorRef,
+              private masonryService: MasonryService) {
+    ref.detach();
+    setInterval(() => {
+      const width = this.windowWidth;
+      if (width != null && width !== window.innerWidth) {
+        this.calculateSplitAreaSize();
+      }
+      this.ref.detectChanges();
+    }, 100);
+  }
 
   ngOnInit() {
     this.clothesItemService.currentSearch.subscribe(clothesItems => this.clothesItems = clothesItems);
@@ -39,12 +53,12 @@ export class RootComponent implements OnInit {
         this.splitService.iconPosition(false);
       }
     });
+    this.calculateSplitAreaSize();
   }
 
   reloadSearch(event) {
     if ((event.target.offsetHeight + event.target.scrollTop ) >= event.target.scrollHeight) {
       const searchValue = localStorage.getItem('searchValue');
-      console.log(searchValue);
       this.clothesItemService.search(searchValue).subscribe(data => {
         this.clothesItemService.searchAfterScroll(data);
       });
@@ -52,7 +66,7 @@ export class RootComponent implements OnInit {
   }
 
   removeImage() {
-    let img = document.getElementById('temp-img');
+    const img = document.getElementById('temp-img');
     if (img !== null) {
       img.remove();
     }
@@ -60,6 +74,25 @@ export class RootComponent implements OnInit {
 
   reloadMasonry() {
     MasonryService.reload();
+  }
+
+
+  checkSearchField(event) {
+    if (event.sizes[0] > 70) {
+      this.splitService.iconPosition(true);
+    } else {
+      this.splitService.iconPosition(false);
+    }
+  }
+
+  calculateSplitAreaSize() {
+    this.windowWidth = window.innerWidth;
+    const areaSize = this.windowWidth / 2;
+    this.maxSize = this.windowWidth - 150;
+    this.areas = [
+      {size: areaSize, order: 1},
+      {size: areaSize, order: 2},
+    ];
   }
 
   @HostListener('click', ['$event'])

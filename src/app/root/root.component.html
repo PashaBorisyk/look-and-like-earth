@@ -1,7 +1,8 @@
 <as-split
   (dragend)="removeImage()"
-  (dragEnd)="reloadMasonry()"
-  unit="percent"
+
+  (dragEnd)="reloadMasonry();checkSearchField($event)"
+  unit="pixel"
   direction="horizontal"
   restrictMove="true"
   useTransition="true"
@@ -15,7 +16,7 @@
     [order]="areas[1].order"
     [size]="areas[1].size"
     (scroll)="reloadSearch($event)"
-    maxSize="85">
+    [maxSize]="maxSize">
     <app-search></app-search>
   </as-split-area>
 </as-split>
