@@ -13,6 +13,7 @@ import {EventService} from "../service/event.service";
 export class RootComponent implements OnInit {
 
   clothesItems: ClothesItem[];
+
   updateMasonry = false;
   maxSize;
   windowWidth;

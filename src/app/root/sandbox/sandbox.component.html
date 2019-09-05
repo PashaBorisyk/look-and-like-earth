@@ -11,15 +11,19 @@
 <div (drop)="getDataFromDraggable($event)"
      (dragover)="allowDrop($event)"
      [ngStyle]="styleOfBoundary"
-     class="boundary">
-  <div *ngFor="let clothesItem of clothesItems"
-       class="box"
-       cdkDragBoundary=".boundary"
-       cdkDrag>
-    <div class="look">
-      <app-look-item
-        [clothesItem]=clothesItem>
-      </app-look-item>
+     class="row boundary">
+  <div class="col-md-2"></div>
+  <div class="col-md-10">
+    <div>
+      <div *ngFor="let lookItem of lookItems"
+           class="box"
+           cdkDragBoundary=".boundary"
+           [attr.id]="lookItem.image"
+           cdkDrag>
+        <div>
+          <app-look-item [lookItem]=lookItem></app-look-item>
+        </div>
+      </div>
     </div>
   </div>
 
