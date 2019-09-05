@@ -2,7 +2,6 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {TooltipPosition} from '@angular/material';
 import {LookItemService} from '../../../service/look-item.service';
-import {SplitService} from '../../../service/split.service';
 import {EventService} from '../../../service/event.service';
 
 @Component({
@@ -20,17 +19,18 @@ export class UtilsComponent implements OnInit {
 
   @Output() imageEvent = new EventEmitter<string>();
 
-
   constructor(private lookItemService: LookItemService,
-              private eventService: EventService,
-              private splitService: SplitService) { }
+              private eventService: EventService) { }
 
   ngOnInit() {
     this.eventService.menuEvent.subscribe(value => {
       if (value != null) {
         this.state = value;
         setTimeout(function() {
-          document.getElementById('hide-icon-list').style.display = 'none';
+          const element = document.getElementById('hide-icon-list');
+          if (element != null) {
+            element.style.display = 'none';
+          }
         }, 100);
       }
     });
