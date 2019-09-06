@@ -27,6 +27,7 @@ export class SandboxComponent implements OnInit {
               private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    this.setBoxSizes();
     this.lookItemService.currentDrop.subscribe(value => {
       if (value) {
         let sum = 0;
@@ -69,7 +70,6 @@ export class SandboxComponent implements OnInit {
        const width = window.innerWidth;
        const height = window.innerHeight;
        const left =  - value;
-       console.log(left, value, window.innerWidth);
        this.styleOfBoundary = {
          left: `${left}px`,
          height: `${height}px`,

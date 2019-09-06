@@ -39,6 +39,10 @@ export class RootComponent implements OnInit {
       }
       this.ref.detectChanges();
     }, 100);
+    setTimeout(() => {
+      const costSumPosition: number =  this.areas[1].size;
+      this.eventService.changeCostSumPosition(costSumPosition);
+    }, 105);
   }
 
   ngOnInit() {
