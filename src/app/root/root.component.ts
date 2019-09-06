@@ -79,15 +79,6 @@ export class RootComponent implements OnInit {
     }
   }
 
-
-  checkSearchField(event) {
-    if (event.sizes[0] > 70) {
-      this.splitService.iconPosition(true);
-    } else {
-      this.splitService.iconPosition(false);
-    }
-  }
-
   calculateSplitAreaSize() {
     this.windowWidth = window.innerWidth;
     const areaSize = this.windowWidth / 2;
