@@ -5,6 +5,7 @@
 
 .gender {
   cursor: pointer;
+  border-radius: 50%;
 }
 
 .dropdown-item {

@@ -1,9 +1,11 @@
 .main-icon {
-  width: 30%;
   cursor: pointer;
   position: fixed;
   margin-top: 32px;
   margin-left: 32px;
+}
+
+.logo {
 }
 
 .menu {
