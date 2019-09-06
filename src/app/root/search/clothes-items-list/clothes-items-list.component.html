@@ -1,6 +1,6 @@
 <div class="parent-loader" *ngIf="clothesItems.length === 0; else elseLoad">
   <div class="loader" >
-    <mat-spinner></mat-spinner>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
 </div>
 <ng-template #elseLoad>
