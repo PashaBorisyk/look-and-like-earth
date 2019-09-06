@@ -15,8 +15,6 @@ export class RootComponent implements OnInit {
 
   @ViewChild(SplitComponent) splitComponent: SplitComponent;
   clothesItems: ClothesItem[];
-
-  updateMasonry = false;
   maxSize;
   windowWidth;
   areas = [
@@ -29,14 +27,14 @@ export class RootComponent implements OnInit {
   constructor(private clothesItemService: ClothesItemService,
               private splitService: SplitService,
               private eventService: EventService,
-              private ref: ChangeDetectorRef,
-              private masonryService: MasonryService) {
+              private ref: ChangeDetectorRef) {
     ref.detach();
     setInterval(() => {
       const width = this.windowWidth;
       if (width != null && width !== window.innerWidth) {
         this.calculateSplitAreaSize();
       }
+      MasonryService.reload();
       this.ref.detectChanges();
     }, 100);
     setTimeout(() => {
@@ -79,10 +77,6 @@ export class RootComponent implements OnInit {
     if (img !== null) {
       img.remove();
     }
-  }
-
-  reloadMasonry() {
-    MasonryService.reload();
   }
 
 
