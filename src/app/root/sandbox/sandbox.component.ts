@@ -113,12 +113,13 @@ export class SandboxComponent implements OnInit {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     const img = new Image();
-    img.src = 'https://i2.wp.com/freepngimages.com/wp-content/uploads/2016/11/floral-dress-transparent-background.png?fit=600%2C600';
+    img.crossOrigin = 'anonymous';
+    img.src = 'https://image.shutterstock.com/image-photo/large-beautiful-drops-transparent-rain-260nw-668593321.jpg';
     img.onload = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       this.lookItems.forEach(value => {
-        context.drawImage(img, value.positionX, value.positionY);
+        context.drawImage(img, value.positionY, value.positionX);
       });
     };
     setTimeout(() => {
