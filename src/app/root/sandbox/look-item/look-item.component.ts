@@ -39,4 +39,9 @@ export class LookItemComponent implements OnInit {
       }
     });
   }
+
+  setPosition(event) {
+    this.lookItem.positionX = event.screenX;
+    this.lookItem.positionY = event.screenY;
+  }
 }

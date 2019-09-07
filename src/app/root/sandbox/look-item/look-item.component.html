@@ -1,8 +1,8 @@
 <div
-  [ngStyle]="lookItemStyle"
   (mouseleave)="description = false"
   (mouseover)="description = true"
   [ngStyle]="styleOfLook"
+  (mouseup)="setPosition($event)"
   class="look">
   <img src="{{ lookItem.image }}"
        alt="image"
