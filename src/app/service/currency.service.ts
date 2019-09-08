@@ -3,6 +3,7 @@ import {BehaviorSubject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {ClothesItem} from '../class/clothesItem';
 import {Price} from '../class/price';
+import {Rate} from "../class/rate";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,17 @@ export class CurrencyService {
       }
     });
     if (currency === 'BYN') {
-      const url = this.apiForByn;
+      let url;
+      const rates: Rate[] = [];
+      symbols.forEach(value => {
+        url = this.apiForByn + value + '?paramMode=2';
+        this.http.get(url).subscribe(item => {
+          // @ts-ignore
+          const officialRate = item.Cur_OfficialRate;
+          rates.push(new Rate(currency, value, officialRate));
+          this.currencyChange.next(rates);
+        });
+      });
     } else {
       const url = this.apiRoot + 'base=' + currency + '&symbols=' + symbols.join(',');
       this.http.get(url).subscribe(value =>  {

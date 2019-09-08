@@ -1,6 +1,7 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
 import { ClothesItem } from '../../../../class/clothesItem';
 import {CurrencyService} from '../../../../service/currency.service';
+import {Rate} from "../../../../class/rate";
 
 @Component({
   selector: 'app-clothes-item',
@@ -16,9 +17,12 @@ export class ClothesItemComponent implements OnInit {
 
   ngOnInit() {
     this.currencyService.currentChange.subscribe(value => {
-      if (value != null && value.base !== this.clothesItem.price.currency) {
-        this.currencyService.calculate(this.clothesItem.price, value);
+      if (value != null && value[0].fromCurrency !== this.clothesItem.price.currency) {
+        console.log(value);
       }
+      /*if (value != null && value.base !== this.clothesItem.price.currency) {
+        this.currencyService.calculate(this.clothesItem.price, value);
+      }*/
     });
   }
 
