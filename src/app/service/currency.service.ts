@@ -9,27 +9,31 @@ import {Price} from '../class/price';
 })
 export class CurrencyService {
 
-  private currencies = ['RUB', 'EUR', 'USD'];
+  private currencies = ['RUB', 'EUR', 'USD', 'BYN'];
   private currencyChange = new BehaviorSubject(null);
   currentChange = this.currencyChange.asObservable();
   apiRoot = 'https://api.exchangeratesapi.io/latest?';
+  apiForByn = 'http://www.nbrb.by/API/ExRates/Rates/';
  
 
   constructor(private http: HttpClient) { }
 
 
   change(currency: string) {
-    let symbols = [];
+    const symbols = [];
     this.currencies.forEach(item => {
       if (item !== currency) {
         symbols.push(item);
       }
     });
-    let url = this.apiRoot + 'base=' + currency + '&symbols=' + symbols.join(',');
-    this.http.get(url).subscribe(value =>  {
-      this.currencyChange.next(value);
-    });
-
+    if (currency === 'BYN') {
+      const url = this.apiForByn;
+    } else {
+      const url = this.apiRoot + 'base=' + currency + '&symbols=' + symbols.join(',');
+      this.http.get(url).subscribe(value =>  {
+        this.currencyChange.next(value);
+      });
+    }
   }
 
   getCurrencies() {
