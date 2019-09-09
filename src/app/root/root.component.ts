@@ -114,6 +114,7 @@ export class RootComponent implements OnInit {
   @HostListener('mousemove', ['$event'])
   mouseMove(event) {
     if (this.resizeImageSrc) {
+      console.log(document.getElementById(this.resizeImageSrc).style.transform, document.getElementById(this.resizeImageSrc).offsetTop);
       console.log(event);
       const value = {
         url: this.resizeImageSrc,
