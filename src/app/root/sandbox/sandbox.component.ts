@@ -77,6 +77,20 @@ export class SandboxComponent implements OnInit {
        };
      }
     });
+
+    this.lookItemService.currentRemove.subscribe(value => {
+      if (value) {
+        let index = -1;
+        this.lookItems.forEach(item => {
+          if (item.image === value.image) {
+            index = this.lookItems.indexOf(item);
+          }
+        });
+        if (index !== -1) {
+          this.lookItems.splice(index, 1);
+        }
+      }
+    });
   }
 
   setBackground($event) {
@@ -112,7 +126,7 @@ export class SandboxComponent implements OnInit {
     this.priceService.add(lookItem.price);
 
 
-    setTimeout(function() {
+    setTimeout(() => {
       const lookItemElement = document.getElementById(lookItem.image);
       lookItemElement.style.position = 'absolute';
       lookItemElement.style.top = `${topPosition}px`;

@@ -1,3 +1,9 @@
+<div *ngIf="showIcon">
+  <i (click)="deleteLookItem()"
+     class="material-icons delete-icon">
+    delete_outline
+  </i>
+</div>
 <div
   (mouseleave)="description = false"
   (mouseover)="description = true"
