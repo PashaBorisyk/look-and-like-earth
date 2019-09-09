@@ -28,8 +28,8 @@ export class LookItemComponent implements OnInit {
       }
     });
 
-    this.eventService.focusEvent.subscribe(value => {
-      if (value == null || value !== this.lookItem.image ) {
+    this.eventService.focusEvent.subscribe(imageSrc => {
+      if (imageSrc == null || imageSrc !== this.lookItem.image ) {
         this.styleOfLook = {
           border: 'none',
         };

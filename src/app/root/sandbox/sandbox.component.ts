@@ -20,6 +20,7 @@ export class SandboxComponent implements OnInit {
 
   lookItems: LookItem[] = [];
   emptyImage = 'https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png';
+  focusImage = null;
 
   constructor(private lookItemService: LookItemService,
               private priceService: PriceService,
@@ -91,6 +92,10 @@ export class SandboxComponent implements OnInit {
         }
       }
     });
+
+    this.eventService.focusEvent.subscribe(imageSrc => {
+      this.focusImage = imageSrc;
+    });
   }
 
   setBackground($event) {
@@ -146,5 +151,13 @@ export class SandboxComponent implements OnInit {
       height: `${height}px`,
       width: `${width}px`,
     };
+  }
+
+  log(event) {
+    console.log('log', event);
+  }
+
+  log1(event) {
+    console.log('log1', event);
   }
 }

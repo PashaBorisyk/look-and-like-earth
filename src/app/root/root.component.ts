@@ -92,7 +92,7 @@ export class RootComponent implements OnInit {
   @HostListener('click', ['$event'])
   listenAllClick(event) {
     const target = event.target;
-    this.eventService.onClick(target.currentSrc);
+    this.eventService.onClick(target.id);
 
     const element = target.classList[0];
 
