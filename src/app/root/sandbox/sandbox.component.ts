@@ -154,10 +154,7 @@ export class SandboxComponent implements OnInit {
   }
 
   log(event) {
-    console.log('log', event);
-  }
-
-  log1(event) {
-    console.log('log1', event);
+    console.log(this.lookItems.find(item => item.image === event.target.id));
+    this.eventService.beginResize(event.target.id);
   }
 }

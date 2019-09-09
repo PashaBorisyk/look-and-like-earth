@@ -17,11 +17,9 @@ export class RootComponent implements OnInit {
   clothesItems: ClothesItem[];
   maxSize;
   windowWidth;
-  areas = [
-    {size: 60, order: 1},
-    {size: 40, order: 2},
-  ];
+  areas;
   menuActive = 'inactived';
+  resizeImageSrc;
 
 
   constructor(private clothesItemService: ClothesItemService,
@@ -61,6 +59,9 @@ export class RootComponent implements OnInit {
       const costSumPosition: number =  value.sizes[1];
       this.eventService.changeCostSumPosition(costSumPosition);
     });
+    this.eventService.resizeEvent.subscribe(src => {
+      this.resizeImageSrc = src;
+    });
   }
 
   reloadSearch(event) {
@@ -91,6 +92,8 @@ export class RootComponent implements OnInit {
 
   @HostListener('click', ['$event'])
   listenAllClick(event) {
+
+    this.resizeImageSrc = null;
     const target = event.target;
     this.eventService.onClick(target.id);
 
@@ -106,5 +109,18 @@ export class RootComponent implements OnInit {
       this.menuActive = 'inactive';
     }
     this.eventService.rootClick(this.menuActive);
+  }
+
+  @HostListener('mousemove', ['$event'])
+  mouseMove(event) {
+    if (this.resizeImageSrc) {
+      console.log(event);
+      const value = {
+        url: this.resizeImageSrc,
+        width: '250px',
+        height: '270px'
+      };
+      this.eventService.setSize(value);
+    }
   }
 }

@@ -16,6 +16,8 @@ export class LookItemComponent implements OnInit {
   description = false;
   styleOfLook: object = [];
   showIcon = false;
+  width = '220px';
+  height = '280px';
 
   constructor(private currencyService: CurrencyService,
               private lookItemService: LookItemService,
@@ -32,16 +34,38 @@ export class LookItemComponent implements OnInit {
       if (imageSrc == null || imageSrc !== this.lookItem.image ) {
         this.styleOfLook = {
           border: 'none',
+          width: `${this.width}`,
+          height: `${this.height}`,
         };
         this.showIcon = false;
       } else {
         this.styleOfLook = {
           border: '1px dashed black',
           borderRadius: '15px',
+          width: `${this.width}`,
+          height: `${this.height}`,
         };
         this.showIcon = true;
       }
     });
+    this.eventService.editLookSizeEvent.subscribe(value => {
+      if (value != null && value.url === this.lookItem.image) {
+        this.width = value.width;
+        this.height = value.height;
+        this.styleOfLook = {
+          border: '1px dashed black',
+          borderRadius: '15px',
+          width: `${this.width}`,
+          height: `${this.height}`,
+        };
+      }
+    });
+  }
+
+  setPosition(event) {
+    console.log(event);
+    this.lookItem.positionX = event.screenX;
+    this.lookItem.positionY = event.screenY;
   }
 
   deleteLookItem() {
