@@ -8,6 +8,7 @@
     </svg>
   </div>
 </div>
+<div class="ex">a</div>
 <div class="menu-area"></div>
 <div (drop)="getDataFromDraggable($event)"
      (dragover)="allowDrop($event)"
@@ -21,14 +22,14 @@
            cdkDragBoundary=".boundary"
            [attr.id]="lookItem.image"
            cdkDrag>
-        <div cdkDragHandle>
+        <div id="main_{{lookItem.image}}" cdkDragHandle>
           <app-look-item [lookItem]=lookItem></app-look-item>
         </div>
         <div *ngIf="focusImage === lookItem.image"
-             id="{{ lookItem.image }}"
-             (mousedown)="log($event)"
+             id="resize_{{ lookItem.image }}"
+             (mousedown)="resize($event)"
              class="resize">
-          <svg id="{{ lookItem.image }}"
+          <svg id="resize_{{ lookItem.image }}"
                class="resize-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px"
                height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
             <g id="Bounding_Box">

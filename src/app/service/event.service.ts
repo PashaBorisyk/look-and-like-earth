@@ -25,7 +25,8 @@ export class EventService {
   constructor() { }
 
   onClick(value: string) {
-    this.focusResource.next(value);
+    const url = value.split('_')[1];
+    this.focusResource.next(url);
   }
 
   rootClick(value: string) {

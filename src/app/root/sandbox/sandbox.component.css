@@ -27,6 +27,13 @@
   padding: 10px;
 }
 
+.ex {
+  position: absolute;
+  z-index: 500;
+  top: 349px;
+  left: 0px;
+}
+
 .boundary {
   background: white;
   position: relative;
