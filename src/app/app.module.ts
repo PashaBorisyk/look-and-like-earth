@@ -24,7 +24,7 @@ import {
   MatButtonModule,
   MatCardModule,
   MatGridListModule,
-  MatListModule,
+  MatListModule, MatProgressBarModule,
   MatProgressSpinnerModule,
   MatSelectModule,
   MatTooltipModule
@@ -85,6 +85,7 @@ import {MatRippleModule} from '@angular/material/core';
     ResizableModule,
     MatRippleModule,
     MatProgressSpinnerModule,
+    MatProgressBarModule,
   ],
   exports: [
     MatDatepickerModule,

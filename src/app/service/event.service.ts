@@ -9,6 +9,10 @@ export class EventService {
   private focusMenu = new BehaviorSubject(null);
   menuEvent = this.focusMenu.asObservable();
 
+
+  private costSumPositionX = new BehaviorSubject(null);
+  costSumPositionXEvent = this.costSumPositionX.asObservable();
+
   private focusResource = new BehaviorSubject(null);
   focusEvent = this.focusResource.asObservable();
 
@@ -20,5 +24,9 @@ export class EventService {
 
   rootClick(value: string) {
     this.focusMenu.next(value);
+  }
+
+  changeCostSumPosition(x: number) {
+    this.costSumPositionX.next(x);
   }
 }

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ClothesItem} from '../../class/clothesItem';
 import {LookItemService} from '../../service/look-item.service';
 import {MatSnackBar} from '@angular/material';
 import {PriceService} from '../../service/price.service';
 import {Price} from '../../class/price';
+import {EventService} from '../../service/event.service';
 import {LookItem} from '../../class/look-item';
 
 
@@ -15,16 +15,19 @@ import {LookItem} from '../../class/look-item';
 })
 export class SandboxComponent implements OnInit {
 
-  lookItems: LookItem[];
   public styleOfBoundary: object = {};
+  public styleOfPrice: object = {};
+
+  lookItems: LookItem[] = [];
   emptyImage = 'https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png';
 
   constructor(private lookItemService: LookItemService,
               private priceService: PriceService,
+              private eventService: EventService,
               private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.lookItems = [];
+    this.setBoxSizes();
     this.lookItemService.currentDrop.subscribe(value => {
       if (value) {
         let sum = 0;
@@ -49,7 +52,7 @@ export class SandboxComponent implements OnInit {
     this.lookItemService.currentDownload.subscribe(value => {
       if (value) {
         this.lookItems.forEach(item => {
-          var binaryData = [];
+          const binaryData = [];
           binaryData.push(item.image);
 
           const a = document.createElement('a');
@@ -60,6 +63,19 @@ export class SandboxComponent implements OnInit {
           document.body.removeChild(a);
         });
       }
+    });
+
+    this.eventService.costSumPositionXEvent.subscribe(value => {
+     if (value) {
+       const width = window.innerWidth;
+       const height = window.innerHeight;
+       const left =  - value;
+       this.styleOfBoundary = {
+         left: `${left}px`,
+         height: `${height}px`,
+         width: `${width}px`,
+       };
+     }
     });
   }
 
@@ -102,10 +118,19 @@ export class SandboxComponent implements OnInit {
       lookItemElement.style.top = `${topPosition}px`;
       lookItemElement.style.left = `${leftPosition}px`;
       lookItem.image = image;
-    }, 1);
+    }, 100);
   }
 
   refresh() {
     window.location.reload();
+  }
+
+  setBoxSizes() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    this.styleOfBoundary = {
+      height: `${height}px`,
+      width: `${width}px`,
+    };
   }
 }

@@ -8,6 +8,7 @@
     </svg>
   </div>
 </div>
+<div class="menu-area"></div>
 <div (drop)="getDataFromDraggable($event)"
      (dragover)="allowDrop($event)"
      [ngStyle]="styleOfBoundary"
@@ -27,7 +28,9 @@
     </div>
   </div>
 
-  <div class="price">
+  <div
+    [ngStyle]="styleOfPrice"
+    class="price">
     <app-costs-sum></app-costs-sum>
   </div>
 </div>

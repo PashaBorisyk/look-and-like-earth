@@ -1,5 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ChangeDetectorRef, HostListener} from '@angular/core';
+import {ChangeDetectorRef, Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {ClothesItemService} from "../service/clothesItem.service";
 import {ClothesItem} from '../class/clothesItem';
 import {MasonryService} from '../service/masonry.service';
@@ -16,8 +15,6 @@ export class RootComponent implements OnInit {
 
   @ViewChild(SplitComponent) splitComponent: SplitComponent;
   clothesItems: ClothesItem[];
-
-  updateMasonry = false;
   maxSize;
   windowWidth;
   areas = [
@@ -30,16 +27,20 @@ export class RootComponent implements OnInit {
   constructor(private clothesItemService: ClothesItemService,
               private splitService: SplitService,
               private eventService: EventService,
-              private ref: ChangeDetectorRef,
-              private masonryService: MasonryService) {
+              private ref: ChangeDetectorRef) {
     ref.detach();
     setInterval(() => {
       const width = this.windowWidth;
       if (width != null && width !== window.innerWidth) {
         this.calculateSplitAreaSize();
       }
+      MasonryService.reload();
       this.ref.detectChanges();
     }, 100);
+    setTimeout(() => {
+      const costSumPosition: number =  this.areas[1].size;
+      this.eventService.changeCostSumPosition(costSumPosition);
+    }, 105);
   }
 
   ngOnInit() {
@@ -54,6 +55,12 @@ export class RootComponent implements OnInit {
       }
     });
     this.calculateSplitAreaSize();
+
+    this.splitComponent.dragProgress$.subscribe(value => {
+      // @ts-ignore
+      const costSumPosition: number =  value.sizes[1];
+      this.eventService.changeCostSumPosition(costSumPosition);
+    });
   }
 
   reloadSearch(event) {
@@ -69,19 +76,6 @@ export class RootComponent implements OnInit {
     const img = document.getElementById('temp-img');
     if (img !== null) {
       img.remove();
-    }
-  }
-
-  reloadMasonry() {
-    MasonryService.reload();
-  }
-
-
-  checkSearchField(event) {
-    if (event.sizes[0] > 70) {
-      this.splitService.iconPosition(true);
-    } else {
-      this.splitService.iconPosition(false);
     }
   }
 

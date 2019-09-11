@@ -3,15 +3,23 @@
   position: fixed;
   margin-top: 32px;
   margin-left: 32px;
+  z-index: 100;
 }
 
-.logo {
-}
+/*.menu-area {
+  position: absolute;
+  top: 0;
+  z-index: 4;
+  width: 150px;
+  height: 100%;
+  background: white;
+}*/
 
 .menu {
   position: fixed;
   margin-left: 32px;
   bottom: 50px;
+  z-index: 100;
 }
 
 .box {
@@ -22,7 +30,7 @@
 .boundary {
   background: white;
   position: relative;
-  left: 300px;
+  left: 150px;
   width: 1000px;
   height: 1000px;
 }
@@ -30,7 +38,7 @@
 .price {
   position: absolute;
   bottom: 80px;
-  margin-left: 60%;
+  right: 20px;
 }
 
 

@@ -33,11 +33,17 @@ export class SearchFieldComponent implements OnInit {
     ref.detach();
     setInterval(() => {
       const calendar = document.getElementById('calendar');
+      const icons = document.getElementById('icons');
       if (calendar) {
         const calendarRect = calendar.getBoundingClientRect();
         const calendarWidth = calendarRect.width + calendarRect.left + 10;
         if (calendarWidth > window.innerWidth) {
           this.splitState = true;
+        }
+      } else if (icons) {
+        const width = icons.offsetWidth;
+        if (width > 500) {
+          this.splitState = false;
         }
       }
       this.ref.detectChanges();
