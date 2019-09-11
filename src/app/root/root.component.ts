@@ -116,15 +116,22 @@ export class RootComponent implements OnInit {
     if (this.resizeImageSrc) {
       const url = this.resizeImageSrc.split('_')[1];
       const mainUrl = "main_" + url;
-      console.log(document.getElementById(url).offsetTop, document.getElementById(mainUrl).style);
-      //console.log(document.getElementById(this.resizeImageSrc).style.transform, document.getElementById(this.resizeImageSrc).offsetTop);
-      console.log(event);
-      const value = {
-        url: this.resizeImageSrc,
-        width: '250px',
-        height: '270px'
-      };
-      this.eventService.setSize(value);
+      const element = document.getElementById(url);
+      if (element) {
+        const transform = element.style.transform;
+        const regex = /translate3d\(\s?(?<x>[-]?\d*)px,\s?(?<y>[-]?\d*)px,\s?(?<z>[-]?\d*)px\)/;
+        const value = regex.exec(transform);
+        //console.log(value);
+        const x =  parseInt(value[1]) + element.offsetLeft + 320;
+        const y = parseInt(value[2]) + element.offsetTop;
+        //console.log(x, y);
+        const value = {
+          url: url,
+          width: '250px',
+          height: '270px'
+        };
+        this.eventService.setSize(value);
+      }
     }
   }
 }
