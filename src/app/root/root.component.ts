@@ -5,6 +5,7 @@ import {MasonryService} from '../service/masonry.service';
 import {SplitService} from '../service/split.service';
 import {EventService} from "../service/event.service";
 import {SplitComponent} from 'angular-split';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
   selector: 'app-main',
@@ -20,6 +21,9 @@ export class RootComponent implements OnInit {
   areas;
   menuActive = 'inactived';
   resizeImageSrc;
+
+  width = 220;
+  height = 280;
 
 
   constructor(private clothesItemService: ClothesItemService,
@@ -115,20 +119,14 @@ export class RootComponent implements OnInit {
   mouseMove(event) {
     if (this.resizeImageSrc) {
       const url = this.resizeImageSrc.split('_')[1];
-      const mainUrl = "main_" + url;
       const element = document.getElementById(url);
       if (element) {
-        const transform = element.style.transform;
-        const regex = /translate3d\(\s?(?<x>[-]?\d*)px,\s?(?<y>[-]?\d*)px,\s?(?<z>[-]?\d*)px\)/;
-        const value = regex.exec(transform);
-        //console.log(value);
-        const x =  parseInt(value[1]) + element.offsetLeft + 320;
-        const y = parseInt(value[2]) + element.offsetTop;
-        //console.log(x, y);
+        const x1 = event.pageX - element.getBoundingClientRect().left - 20;
+        const y1 = event.pageY - element.getBoundingClientRect().top - 20;
         const value = {
           url: url,
-          width: '250px',
-          height: '270px'
+          width: `${x1}`,
+          height: `${y1}`
         };
         this.eventService.setSize(value);
       }

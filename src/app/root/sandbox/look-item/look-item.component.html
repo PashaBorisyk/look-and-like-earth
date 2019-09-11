@@ -7,16 +7,19 @@
 <div
   (mouseleave)="description = false"
   (mouseover)="description = true"
-  [ngStyle]="styleOfLook"
+  [ngStyle]="lookStyle"
   (mouseup)="setPosition($event)"
   class="look">
   <img src="{{ lookItem.image }}"
        id="image_{{ lookItem.image }}"
        alt="image"
+       draggable="false"
        class="image">
 </div>
 
-<div *ngIf="description" class="description">
+<div *ngIf="description"
+     [ngStyle]="descriptionStyle"
+     class="description">
   <div class="row my-3">
     <div class="col-md-4 type">
       Brand:

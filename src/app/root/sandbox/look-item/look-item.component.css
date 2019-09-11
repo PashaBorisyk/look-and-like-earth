@@ -11,8 +11,6 @@
 
 .description {
   position: absolute;
-  left: 300px;
-  top: 100px;
   z-index: 100;
   width: 297px;
   min-height: 420px;
