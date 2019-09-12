@@ -17,8 +17,6 @@ export class LookItemComponent implements OnInit {
   description = false;
   lookStyle: object;
   showIcon = false;
-  width = 220;
-  height = 280;
   topDesc = 100;
   leftDesc = 300;
   descriptionStyle: object;
@@ -43,25 +41,25 @@ export class LookItemComponent implements OnInit {
       if (imageSrc == null || imageSrc !== this.lookItem.image ) {
         this.lookStyle = {
           border: 'none',
-          width: `${this.width}px`,
-          height: `${this.height}px`,
+          width: `${this.lookItem.width}px`,
+          height: `${this.lookItem.height}px`,
         };
         this.showIcon = false;
       } else {
         this.lookStyle = {
           border: '1px dashed black',
           borderRadius: '15px',
-          width: `${this.width}px`,
-          height: `${this.height}px`,
+          width: `${this.lookItem.width}px`,
+          height: `${this.lookItem.height}px`,
         };
         this.showIcon = true;
       }
     });
     this.eventService.editLookSizeEvent.subscribe(value => {
       if (value != null && value.url === this.lookItem.image) {
-        this.width = value.width;
-        this.height = value.height;
-        this.leftDesc = Math.round(this.width) + 100;
+        this.lookItem.width = value.width;
+        this.lookItem.height = value.height;
+        this.leftDesc = Math.round(this.lookItem.width) + 100;
         this.descriptionStyle = {
           left: `${this.leftDesc}px`,
           top: `${this.topDesc}px`,
@@ -69,8 +67,8 @@ export class LookItemComponent implements OnInit {
         this.lookStyle = {
           border: '1px dashed black',
           borderRadius: '15px',
-          width: `${this.width}px`,
-          height: `${this.height}px`,
+          width: `${this.lookItem.width}px`,
+          height: `${this.lookItem.height}px`,
         };
       }
     });
