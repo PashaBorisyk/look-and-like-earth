@@ -5,6 +5,8 @@ import {PriceService} from '../../service/price.service';
 import {Price} from '../../class/price';
 import {EventService} from '../../service/event.service';
 import {LookItem} from '../../class/look-item';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
+import {ImageLook} from '../../class/image-look';
 
 
 
@@ -121,7 +123,6 @@ export class SandboxComponent implements OnInit {
     this.lookItems.push(lookItem);
     this.priceService.add(lookItem.price);
 
-
     setTimeout(() => {
       const lookItemElement = document.getElementById(lookItem.image);
       lookItemElement.style.position = 'absolute';
@@ -138,20 +139,52 @@ export class SandboxComponent implements OnInit {
   download() {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
+    const images = [];
+    this.lookItems.forEach(lookItem => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.src = 'https://image.shutterstock.com/image-photo/large-beautiful-drops-transparent-rain-260nw-668593321.jpg';
+
+      const element = document.getElementById(lookItem.image);
+      const transform = element.style.transform;
+      let x;
+      let y;
+      if (transform) {
+        const regex = /translate3d\(\s?(?<x>[-]?\d*)px,\s?(?<y>[-]?\d*)px,\s?(?<z>[-]?\d*)px\)/;
+        const values = regex.exec(transform);
+        x =  parseInt(values[1]) + element.offsetLeft + 320;
+        y = parseInt(values[2]) + element.offsetTop;
+      } else {
+        x = element.style.left.replace(/\D/g,'');
+        y = element.style.top.replace(/\D/g,'');
+      }
+      const imageLook: ImageLook = {
+        img: img,
+        width: lookItem.width,
+        height: lookItem.height,
+        x: x,
+        y: y
+      };
+
+      images.push(imageLook);
+    });
+
+
+    canvas.width = window.innerWidth + 150;
+    canvas.height = window.innerHeight;
+
     const img = new Image();
     img.crossOrigin = 'anonymous';
     img.src = 'https://image.shutterstock.com/image-photo/large-beautiful-drops-transparent-rain-260nw-668593321.jpg';
-    console.log(this.lookItems);
 
-    context.translate(canvas.width, 0);
-    context.scale(-1, 1);
-    img.onload = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      this.lookItems.forEach(value => {
-        context.drawImage(img, value.positionX, value.positionY);
+    img.onload = function() {
+      images.forEach(value => {
+        context.drawImage(value.img, value.x, value.y, value.width, value.height);
       });
+      context.font = "26px Georgia";
+      context.fillText("200 RUB", canvas.width - 150, canvas.height - 10);
     };
+
     setTimeout(() => {
       const a = document.createElement('a');
       a.download = 'look.png';
@@ -172,6 +205,7 @@ export class SandboxComponent implements OnInit {
   resize(event) {
     this.eventService.beginResize(event.target.id);
   }
+
   downloadOnlyImage() {
     this.lookItems.forEach(item => {
       const binaryData = [];
@@ -184,5 +218,18 @@ export class SandboxComponent implements OnInit {
       a.click();
       document.body.removeChild(a);
     });
+  }
+
+  detectPosition(url: string): object {
+    const element = document.getElementById(url);
+    const transform = element.style.transform;
+    const regex = /translate3d\(\s?(?<x>[-]?\d*)px,\s?(?<y>[-]?\d*)px,\s?(?<z>[-]?\d*)px\)/;
+    const values = regex.exec(transform);
+    const x =  parseInt(values[1]) + element.offsetLeft + 320;
+    const y = parseInt(values[2]) + element.offsetTop;
+    return {
+      x: x,
+      y: y
+    };
   }
 }
