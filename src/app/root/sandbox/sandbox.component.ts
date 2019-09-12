@@ -9,7 +9,6 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
 import {ImageLook} from '../../class/image-look';
 
 
-
 @Component({
   selector: 'app-sandbox',
   templateUrl: './sandbox.component.html',
@@ -139,6 +138,8 @@ export class SandboxComponent implements OnInit {
   download() {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
+    canvas.width = window.innerWidth + 200;
+    canvas.height = window.innerHeight;
     const images = [];
     this.lookItems.forEach(lookItem => {
       const img = new Image();
@@ -151,38 +152,37 @@ export class SandboxComponent implements OnInit {
       let y;
       if (transform) {
         const regex = /translate3d\(\s?(?<x>[-]?\d*)px,\s?(?<y>[-]?\d*)px,\s?(?<z>[-]?\d*)px\)/;
+        // @ts-ignore
         const values = regex.exec(transform);
-        x =  parseInt(values[1]) + element.offsetLeft + 320;
+        x = parseInt(values[1]) + element.offsetLeft + 320;
         y = parseInt(values[2]) + element.offsetTop;
       } else {
         x = element.style.left.replace(/\D/g,'');
         y = element.style.top.replace(/\D/g,'');
       }
       const imageLook: ImageLook = {
-        img: img,
+        img,
         width: lookItem.width,
         height: lookItem.height,
-        x: x,
-        y: y
+        x,
+        y
       };
-
+      // @ts-ignore
       images.push(imageLook);
     });
+    const costImage = new Image();
+    costImage.src = '/assets/img/cost.png';
+    const costSum = document.getElementById("costSum").innerText;
+    console.log(costSum);
 
-
-    canvas.width = window.innerWidth + 150;
-    canvas.height = window.innerHeight;
-
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.src = 'https://image.shutterstock.com/image-photo/large-beautiful-drops-transparent-rain-260nw-668593321.jpg';
-
-    img.onload = function() {
+    costImage.onload = () => {
+      // @ts-ignore
       images.forEach(value => {
         context.drawImage(value.img, value.x, value.y, value.width, value.height);
       });
-      context.font = "26px Georgia";
-      context.fillText("200 RUB", canvas.width - 150, canvas.height - 10);
+      context.drawImage(costImage, canvas.width - 180, canvas.height - 27, 24, 24);
+      context.font = '26px Georgia';
+      context.fillText(costSum, canvas.width - 150, canvas.height - 10);
     };
 
     setTimeout(() => {
@@ -190,7 +190,7 @@ export class SandboxComponent implements OnInit {
       a.download = 'look.png';
       a.href = canvas.toDataURL('image/jpg');
       a.click();
-    }, 100);
+    }, 500);
   }
 
   setBoxSizes() {
