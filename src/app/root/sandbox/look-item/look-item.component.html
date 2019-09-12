@@ -1,20 +1,30 @@
+<div *ngIf="showIcon">
+  <i (click)="deleteLookItem()"
+     class="material-icons delete-icon">
+    delete_outline
+  </i>
+</div>
 <div
   (mouseleave)="description = false"
   (mouseover)="description = true"
-  [ngStyle]="styleOfLook"
+  [ngStyle]="lookStyle"
+  (mouseup)="setPosition($event)"
   class="look">
-  <img src="{{ clothesItem.image }}"
+  <img src="{{ lookItem.image }}"
+       id="image_{{ lookItem.image }}"
        alt="image"
        class="image">
 </div>
 
-<div *ngIf="description" class="description">
+<div *ngIf="description"
+     [ngStyle]="descriptionStyle"
+     class="description">
   <div class="row my-3">
     <div class="col-md-4 type">
       Brand:
     </div>
     <div class="col-md-8 value">
-      <strong>{{ clothesItem.shopName | uppercase }}</strong>
+      <strong>{{ lookItem.shopName | uppercase }}</strong>
     </div>
   </div>
   <div class="row my-3">
@@ -22,7 +32,7 @@
       Name:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.name }}
+      {{ lookItem.name }}
     </div>
   </div>
   <div class="row my-3">
@@ -30,7 +40,7 @@
       Color:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.color }}
+      {{ lookItem.color }}
     </div>
   </div>
   <div class="row my-3">
@@ -38,7 +48,12 @@
       Size:
     </div>
     <div class="col-md-8 value">
-      <strong>S</strong>
+      <strong *ngIf="lookItem.sizes.length !== 0; else elseEmpty">
+        [{{lookItem.sizes.slice(0, 8).toString()}}..]
+      </strong>
+      <ng-template #elseEmpty>
+        <strong>[ ]</strong>
+      </ng-template>
     </div>
   </div>
   <div class="row my-3">
@@ -46,7 +61,7 @@
       Description:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.description.slice(0, 70) }}
+      {{ lookItem.description.slice(0, 70) }}
     </div>
   </div>
   <div class="row my-3">
@@ -54,7 +69,7 @@
       Article:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.article }}
+      {{ lookItem.article }}
     </div>
   </div>
   <div class="row my-3">
@@ -62,7 +77,7 @@
       Category:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.category }}
+      {{ lookItem.category }}
     </div>
   </div>
   <div class="row my-3">
@@ -70,7 +85,7 @@
       Sex:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.sex }}
+      {{ lookItem.sex }}
     </div>
   </div>
   <div class="row my-3">
@@ -78,7 +93,7 @@
       Material:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.material.value }} {{ clothesItem.material.percent }}
+      {{ lookItem.material.value }} {{ lookItem.material.percent }}
     </div>
   </div>
   <div class="row my-3">
@@ -86,7 +101,7 @@
       Price:
     </div>
     <div class="col-md-8 value">
-      {{ clothesItem.price.value }} {{ clothesItem.price.currency }}
+      {{ lookItem.price.value }} {{ lookItem.price.currency }}
     </div>
   </div>
 </div>

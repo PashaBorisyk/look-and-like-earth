@@ -1,9 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {TooltipPosition} from '@angular/material';
-import {Observable} from 'rxjs';
 import {LookItemService} from '../../../service/look-item.service';
-import {SplitService} from '../../../service/split.service';
+import {EventService} from '../../../service/event.service';
 
 @Component({
   selector: 'app-utils',
@@ -15,23 +14,27 @@ export class UtilsComponent implements OnInit {
   positionOptions: TooltipPosition[] = ['after', 'before', 'above', 'below', 'left', 'right'];
   position = new FormControl(this.positionOptions[0]);
 
-  menu = false;
+  state;
   imageSrc = null;
 
   @Output() imageEvent = new EventEmitter<string>();
 
+
   constructor(private lookItemService: LookItemService,
-              private splitService: SplitService) { }
+              private eventService: EventService) { }
 
   ngOnInit() {
-  }
-
-  isActive() {
-    return this.menu;
-  }
-
-  doActivate() {
-    this.menu = this.menu === true ? false : true;
+    this.eventService.menuEvent.subscribe(value => {
+      if (value != null) {
+        this.state = value;
+        setTimeout(function() {
+          const element = document.getElementById('hide-icon-list');
+          if (element != null) {
+            element.style.display = 'none';
+          }
+        }, 100);
+      }
+    });
   }
 
   displayUploadFile() {
@@ -63,13 +66,5 @@ export class UtilsComponent implements OnInit {
 
   downloadLook() {
     this.lookItemService.downloadLook();
-  }
-
-  hideSearch() {
-    this.splitService.editSplitSize(100, 0);
-  }
-
-  showSearch() {
-    this.splitService.editSplitSize(60, 40);
   }
 }

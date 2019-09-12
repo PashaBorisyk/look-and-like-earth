@@ -20,7 +20,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { GenderService } from './service/gender.service';
 
-import {MatButtonModule, MatCardModule, MatGridListModule, MatListModule, MatSelectModule, MatTooltipModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatGridListModule,
+  MatListModule, MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatSelectModule,
+  MatTooltipModule
+} from '@angular/material';
 import { CurrencyService } from './service/currency.service';
 import { MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 
@@ -33,6 +41,7 @@ import { NgxMasonryModule } from 'ngx-masonry';
 
 import { MatSnackBarModule  } from '@angular/material';
 import {ResizableModule} from "angular-resizable-element";
+import {MatRippleModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -74,6 +83,9 @@ import {ResizableModule} from "angular-resizable-element";
     MatSelectModule,
     MatListModule,
     ResizableModule,
+    MatRippleModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
   ],
   exports: [
     MatDatepickerModule,

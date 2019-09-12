@@ -1,5 +1,17 @@
 .button {
   position: absolute;
   top: 0;
+}
 
+.parent-loader {
+  width: 100%;
+  height: 100%;
+}
+
+.loader {
+  position: relative;
+  top: 30%;
+  left: 20%;
+  width: 50%;
+  height: 50%;
 }
