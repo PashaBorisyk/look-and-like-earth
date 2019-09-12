@@ -5,7 +5,6 @@ import {PriceService} from '../../service/price.service';
 import {Price} from '../../class/price';
 import {EventService} from '../../service/event.service';
 import {LookItem} from '../../class/look-item';
-import {el} from '@angular/platform-browser/testing/src/browser_util';
 import {ImageLook} from '../../class/image-look';
 
 
@@ -141,6 +140,7 @@ export class SandboxComponent implements OnInit {
     canvas.width = window.innerWidth + 200;
     canvas.height = window.innerHeight;
     const images = [];
+    // @ts-ignore
     this.lookItems.forEach(lookItem => {
       const img = new Image();
       img.crossOrigin = 'anonymous';
@@ -154,11 +154,15 @@ export class SandboxComponent implements OnInit {
         const regex = /translate3d\(\s?(?<x>[-]?\d*)px,\s?(?<y>[-]?\d*)px,\s?(?<z>[-]?\d*)px\)/;
         // @ts-ignore
         const values = regex.exec(transform);
+        // tslint:disable-next-line:radix
         x = parseInt(values[1]) + element.offsetLeft + 320;
+        // tslint:disable-next-line:radix
         y = parseInt(values[2]) + element.offsetTop;
       } else {
-        x = element.style.left.replace(/\D/g,'');
-        y = element.style.top.replace(/\D/g,'');
+        // @ts-ignore
+        x = element.style.left.replace(/\D/g, '');
+        // @ts-ignore
+        y = element.style.top.replace(/\D/g, '');
       }
       const imageLook: ImageLook = {
         img,
@@ -172,7 +176,7 @@ export class SandboxComponent implements OnInit {
     });
     const costImage = new Image();
     costImage.src = '/assets/img/cost.png';
-    const costSum = document.getElementById("costSum").innerText;
+    const costSum = document.getElementById('costSum').innerText;
     console.log(costSum);
 
     costImage.onload = () => {
@@ -204,32 +208,5 @@ export class SandboxComponent implements OnInit {
 
   resize(event) {
     this.eventService.beginResize(event.target.id);
-  }
-
-  downloadOnlyImage() {
-    this.lookItems.forEach(item => {
-      const binaryData = [];
-      binaryData.push(item.image);
-
-      const a = document.createElement('a');
-      a.href = window.URL.createObjectURL(new Blob(binaryData, {type: "image/jpeg"}));
-      a.download = item.name;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    });
-  }
-
-  detectPosition(url: string): object {
-    const element = document.getElementById(url);
-    const transform = element.style.transform;
-    const regex = /translate3d\(\s?(?<x>[-]?\d*)px,\s?(?<y>[-]?\d*)px,\s?(?<z>[-]?\d*)px\)/;
-    const values = regex.exec(transform);
-    const x =  parseInt(values[1]) + element.offsetLeft + 320;
-    const y = parseInt(values[2]) + element.offsetTop;
-    return {
-      x: x,
-      y: y
-    };
   }
 }
