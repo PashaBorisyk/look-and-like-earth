@@ -3,6 +3,7 @@ import {LookItemService} from '../../service/look-item.service';
 import {MatSnackBar} from '@angular/material';
 import {PriceService} from '../../service/price.service';
 import {Price} from '../../class/price';
+import {EventService} from '../../service/event.service';
 import {LookItem} from '../../class/look-item';
 
 
@@ -14,16 +15,20 @@ import {LookItem} from '../../class/look-item';
 })
 export class SandboxComponent implements OnInit {
 
-  lookItems: LookItem[];
   public styleOfBoundary: object = {};
+  public styleOfPrice: object = {};
+
+  lookItems: LookItem[] = [];
   emptyImage = 'https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png';
+  focusImage = null;
 
   constructor(private lookItemService: LookItemService,
               private priceService: PriceService,
+              private eventService: EventService,
               private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.lookItems = [];
+    this.setBoxSizes();
     this.lookItemService.currentDrop.subscribe(value => {
       if (value) {
         let sum = 0;
@@ -61,6 +66,37 @@ export class SandboxComponent implements OnInit {
         });
       }
     });
+
+    this.eventService.costSumPositionXEvent.subscribe(value => {
+     if (value) {
+       const width = window.innerWidth;
+       const height = window.innerHeight;
+       const left =  - value;
+       this.styleOfBoundary = {
+         left: `${left}px`,
+         height: `${height}px`,
+         width: `${width}px`,
+       };
+     }
+    });
+
+    this.lookItemService.currentRemove.subscribe(value => {
+      if (value) {
+        let index = -1;
+        this.lookItems.forEach(item => {
+          if (item.image === value.image) {
+            index = this.lookItems.indexOf(item);
+          }
+        });
+        if (index !== -1) {
+          this.lookItems.splice(index, 1);
+        }
+      }
+    });
+
+    this.eventService.focusEvent.subscribe(imageSrc => {
+      this.focusImage = imageSrc;
+    });
   }
 
   setBackground($event) {
@@ -96,7 +132,7 @@ export class SandboxComponent implements OnInit {
     this.priceService.add(lookItem.price);
 
 
-    setTimeout(function() {
+    setTimeout(() => {
       const lookItemElement = document.getElementById(lookItem.image);
       lookItemElement.style.position = 'absolute';
       lookItemElement.style.top = `${topPosition}px`;
@@ -128,5 +164,18 @@ export class SandboxComponent implements OnInit {
       a.href = canvas.toDataURL('image/jpg');
       a.click();
     }, 100);
+  }
+
+  setBoxSizes() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    this.styleOfBoundary = {
+      height: `${height}px`,
+      width: `${width}px`,
+    };
+  }
+
+  resize(event) {
+    this.eventService.beginResize(event.target.id);
   }
 }

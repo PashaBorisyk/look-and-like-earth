@@ -1,11 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ChangeDetectorRef, HostListener} from '@angular/core';
+import {ChangeDetectorRef, Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {ClothesItemService} from "../service/clothesItem.service";
 import {ClothesItem} from '../class/clothesItem';
 import {MasonryService} from '../service/masonry.service';
 import {SplitService} from '../service/split.service';
 import {EventService} from "../service/event.service";
 import {SplitComponent} from 'angular-split';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
   selector: 'app-main',
@@ -16,30 +16,33 @@ export class RootComponent implements OnInit {
 
   @ViewChild(SplitComponent) splitComponent: SplitComponent;
   clothesItems: ClothesItem[];
-
-  updateMasonry = false;
   maxSize;
   windowWidth;
-  areas = [
-    {size: 60, order: 1},
-    {size: 40, order: 2},
-  ];
+  areas;
   menuActive = 'inactived';
+  resizeImageSrc;
+
+  width = 220;
+  height = 280;
 
 
   constructor(private clothesItemService: ClothesItemService,
               private splitService: SplitService,
               private eventService: EventService,
-              private ref: ChangeDetectorRef,
-              private masonryService: MasonryService) {
+              private ref: ChangeDetectorRef) {
     ref.detach();
     setInterval(() => {
       const width = this.windowWidth;
       if (width != null && width !== window.innerWidth) {
         this.calculateSplitAreaSize();
       }
+      MasonryService.reload();
       this.ref.detectChanges();
     }, 100);
+    setTimeout(() => {
+      const costSumPosition: number =  this.areas[1].size;
+      this.eventService.changeCostSumPosition(costSumPosition);
+    }, 105);
   }
 
   ngOnInit() {
@@ -54,6 +57,15 @@ export class RootComponent implements OnInit {
       }
     });
     this.calculateSplitAreaSize();
+
+    this.splitComponent.dragProgress$.subscribe(value => {
+      // @ts-ignore
+      const costSumPosition: number =  value.sizes[1];
+      this.eventService.changeCostSumPosition(costSumPosition);
+    });
+    this.eventService.resizeEvent.subscribe(src => {
+      this.resizeImageSrc = src;
+    });
   }
 
   reloadSearch(event) {
@@ -72,19 +84,6 @@ export class RootComponent implements OnInit {
     }
   }
 
-  reloadMasonry() {
-    MasonryService.reload();
-  }
-
-
-  checkSearchField(event) {
-    if (event.sizes[0] > 70) {
-      this.splitService.iconPosition(true);
-    } else {
-      this.splitService.iconPosition(false);
-    }
-  }
-
   calculateSplitAreaSize() {
     this.windowWidth = window.innerWidth;
     const areaSize = this.windowWidth / 2;
@@ -97,8 +96,10 @@ export class RootComponent implements OnInit {
 
   @HostListener('click', ['$event'])
   listenAllClick(event) {
+
+    this.resizeImageSrc = null;
     const target = event.target;
-    this.eventService.onClick(target.currentSrc);
+    this.eventService.onClick(target.id);
 
     const element = target.classList[0];
 
@@ -112,5 +113,23 @@ export class RootComponent implements OnInit {
       this.menuActive = 'inactive';
     }
     this.eventService.rootClick(this.menuActive);
+  }
+
+  @HostListener('mousemove', ['$event'])
+  mouseMove(event) {
+    if (this.resizeImageSrc) {
+      const url = this.resizeImageSrc.split('_')[1];
+      const element = document.getElementById(url);
+      if (element) {
+        const x1 = event.pageX - element.getBoundingClientRect().left - 20;
+        const y1 = event.pageY - element.getBoundingClientRect().top - 20;
+        const value = {
+          url: url,
+          width: `${x1}`,
+          height: `${y1}`
+        };
+        this.eventService.setSize(value);
+      }
+    }
   }
 }

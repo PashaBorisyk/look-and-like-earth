@@ -11,8 +11,6 @@
 
 .description {
   position: absolute;
-  left: 300px;
-  top: 100px;
   z-index: 100;
   width: 297px;
   min-height: 420px;
@@ -34,7 +32,11 @@
   font-style: normal;
 }
 
-.material-icons {
+.delete-icon {
+  position: absolute;
+  left: -15px;
+  top: -25px;
+  cursor: pointer;
   color: #C0C0C0;
   font-size: 18px;
 }
