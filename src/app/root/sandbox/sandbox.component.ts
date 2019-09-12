@@ -53,17 +53,7 @@ export class SandboxComponent implements OnInit {
 
     this.lookItemService.currentDownload.subscribe(value => {
       if (value) {
-        this.lookItems.forEach(item => {
-          const binaryData = [];
-          binaryData.push(item.image);
-
-          const a = document.createElement('a');
-          a.href = window.URL.createObjectURL(new Blob(binaryData, {type: "image/jpeg"}));
-          a.download = item.name;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        });
+       this.download();
       }
     });
 
@@ -151,11 +141,15 @@ export class SandboxComponent implements OnInit {
     const img = new Image();
     img.crossOrigin = 'anonymous';
     img.src = 'https://image.shutterstock.com/image-photo/large-beautiful-drops-transparent-rain-260nw-668593321.jpg';
+    console.log(this.lookItems);
+
+    context.translate(canvas.width, 0);
+    context.scale(-1, 1);
     img.onload = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       this.lookItems.forEach(value => {
-        context.drawImage(img, value.positionY, value.positionX);
+        context.drawImage(img, value.positionX, value.positionY);
       });
     };
     setTimeout(() => {
@@ -177,5 +171,18 @@ export class SandboxComponent implements OnInit {
 
   resize(event) {
     this.eventService.beginResize(event.target.id);
+  }
+  downloadOnlyImage() {
+    this.lookItems.forEach(item => {
+      const binaryData = [];
+      binaryData.push(item.image);
+
+      const a = document.createElement('a');
+      a.href = window.URL.createObjectURL(new Blob(binaryData, {type: "image/jpeg"}));
+      a.download = item.name;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
   }
 }
