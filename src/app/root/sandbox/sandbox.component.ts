@@ -5,6 +5,7 @@ import {PriceService} from '../../service/price.service';
 import {Price} from '../../class/price';
 import {EventService} from '../../service/event.service';
 import {LookItem} from '../../class/look-item';
+import {ImageLook} from '../../class/image-look';
 
 
 
@@ -52,17 +53,7 @@ export class SandboxComponent implements OnInit {
 
     this.lookItemService.currentDownload.subscribe(value => {
       if (value) {
-        this.lookItems.forEach(item => {
-          const binaryData = [];
-          binaryData.push(item.image);
-
-          const a = document.createElement('a');
-          a.href = window.URL.createObjectURL(new Blob(binaryData, {type: "image/jpeg"}));
-          a.download = item.name;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        });
+        this.download();
       }
     });
 
@@ -155,5 +146,67 @@ export class SandboxComponent implements OnInit {
 
   resize(event) {
     this.eventService.beginResize(event.target.id);
+  }
+
+  download() {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    canvas.width = window.innerWidth + 200;
+    canvas.height = window.innerHeight;
+    const images = [];
+    // @ts-ignore
+    this.lookItems.forEach(lookItem => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.src = 'https://image.shutterstock.com/image-photo/large-beautiful-drops-transparent-rain-260nw-668593321.jpg';
+
+      const element = document.getElementById(lookItem.image);
+      const transform = element.style.transform;
+      let x;
+      let y;
+      if (transform) {
+        const regex = /translate3d\(\s?(?<x>[-]?\d*)px,\s?(?<y>[-]?\d*)px,\s?(?<z>[-]?\d*)px\)/;
+        // @ts-ignore
+        const values = regex.exec(transform);
+        // tslint:disable-next-line:radix
+        x = parseInt(values[1]) + element.offsetLeft + 320;
+        // tslint:disable-next-line:radix
+        y = parseInt(values[2]) + element.offsetTop;
+      } else {
+        // @ts-ignore
+        x = element.style.left.replace(/\D/g, '');
+        // @ts-ignore
+        y = element.style.top.replace(/\D/g, '');
+      }
+      const imageLook: ImageLook = {
+        img,
+        width: lookItem.width,
+        height: lookItem.height,
+        x,
+        y
+      };
+      // @ts-ignore
+      images.push(imageLook);
+    });
+    const costImage = new Image();
+    costImage.src = '/assets/img/cost.png';
+    const costSum = document.getElementById('costSum').innerText;
+
+    costImage.onload = () => {
+      // @ts-ignore
+      images.forEach(value => {
+        context.drawImage(value.img, value.x, value.y, value.width, value.height);
+      });
+      context.drawImage(costImage, canvas.width - 180, canvas.height - 27, 24, 24);
+      context.font = '26px Georgia';
+      context.fillText(costSum, canvas.width - 150, canvas.height - 10);
+    };
+
+    setTimeout(() => {
+      const a = document.createElement('a');
+      a.download = 'look.png';
+      a.href = canvas.toDataURL('image/jpg');
+      a.click();
+    }, 500);
   }
 }
