@@ -21,7 +21,6 @@
            cdkDragBoundary=".boundary"
            [attr.id]="lookItem.image"
            cdkDrag>
-
         <div id="main_{{lookItem.image}}" cdkDragHandle>
           <app-look-item [lookItem]=lookItem></app-look-item>
         </div>
@@ -52,7 +51,6 @@
     <app-costs-sum></app-costs-sum>
   </div>
 </div>
-
 
 <div class="menu">
   <app-utils (imageEvent)="setBackground($event)"></app-utils>
