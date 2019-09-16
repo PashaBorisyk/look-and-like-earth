@@ -1,6 +1,7 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
 import { ClothesItem } from '../../../../class/clothesItem';
 import {CurrencyService} from '../../../../service/currency.service';
+import {Rate} from "../../../../class/rate";
 
 @Component({
   selector: 'app-clothes-item',

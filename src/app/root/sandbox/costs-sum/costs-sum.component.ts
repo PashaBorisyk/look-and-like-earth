@@ -13,7 +13,7 @@ export class CostsSumComponent implements OnInit {
 
   price: Price = {
     value: 0,
-    currency: 'RUB',
+    currency: this.currencyService.selectCurrency,
   };
 
   constructor(private priceService: PriceService,
