@@ -13,8 +13,7 @@ export class CurrencyService {
   private currencies = ['RUB', 'EUR', 'USD', 'BYN'];
   private currencyChange = new BehaviorSubject(null);
   currentChange = this.currencyChange.asObservable();
-  apiRoot = 'https://api.exchangeratesapi.io/latest?';
-  apiForByn = 'http://www.nbrb.by/API/ExRates/Rates/';
+  apiRoot = 'https://vast-brushlands-74471.herokuapp.com/api/v1/currency/?base=';
   selectCurrency = this.currencies[0];
 
   constructor(private http: HttpClient) { }
@@ -28,7 +27,7 @@ export class CurrencyService {
       }
     });
     const requestSymbols = symbols.join(',');
-    const url = 'http://localhost:8080/api/v1/currency/?base=' + currency + '&symbols=' + requestSymbols;
+    const url = this.apiRoot + currency + '&symbols=' + requestSymbols;
     this.http.get(url).subscribe(value => {
       this.currencyChange.next(value);
       this.selectCurrency = currency;
