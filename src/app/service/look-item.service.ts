@@ -32,8 +32,8 @@ export class LookItemService {
     this.dropSource.next(true);
   }
 
-  removeItem(url: string) {
-    this.removeClothes.next(url);
+  removeItem(value) {
+    this.removeClothes.next(value);
   }
 
   downloadLook() {

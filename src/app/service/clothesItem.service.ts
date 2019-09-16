@@ -33,9 +33,9 @@ export class ClothesItemService {
       return this.recommendations();
     }
 
-    const url = this.apiRoot + '/search/?query=' + value + '&top=' + this.DEFAULT_LIMIT;
+    //const url = this.apiRoot + '/search/?query=' + value + '&top=' + this.DEFAULT_LIMIT;
     //const url = 'http://www.mocky.io/v2/5d3b464b3000005600a2a068';
-    // const url = 'http://www.mocky.io/v2/5d5587f135000074af087e96';
+    const url = 'http://www.mocky.io/v2/5d5587f135000074af087e96';
 
     return this.http.get(url)
       .pipe(map((res: any[]) => {

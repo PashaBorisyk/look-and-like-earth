@@ -16,10 +16,17 @@ export class EventService {
   private focusResource = new BehaviorSubject(null);
   focusEvent = this.focusResource.asObservable();
 
+  private resizeResource = new BehaviorSubject(null);
+  resizeEvent = this.resizeResource;
+
+  private editLookSize = new BehaviorSubject(null);
+  editLookSizeEvent = this.editLookSize;
+
   constructor() { }
 
   onClick(value: string) {
-    this.focusResource.next(value);
+    const url = value.split('_')[1];
+    this.focusResource.next(url);
   }
 
   rootClick(value: string) {
@@ -28,5 +35,13 @@ export class EventService {
 
   changeCostSumPosition(x: number) {
     this.costSumPositionX.next(x);
+  }
+
+  beginResize(src) {
+    this.resizeResource.next(src);
+  }
+
+  setSize(value) {
+    this.editLookSize.next(value);
   }
 }

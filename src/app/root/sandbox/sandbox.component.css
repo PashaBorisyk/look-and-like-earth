@@ -6,13 +6,20 @@
   z-index: 100;
 }
 
-.logo {
-}
+/*.menu-area {
+  position: absolute;
+  top: 0;
+  z-index: 4;
+  width: 150px;
+  height: 100%;
+  background: white;
+}*/
 
 .menu {
   position: fixed;
   margin-left: 32px;
   bottom: 50px;
+  z-index: 100;
 }
 
 .box {
@@ -32,6 +39,21 @@
   position: absolute;
   bottom: 80px;
   right: 20px;
+}
+
+.resize {
+  position: absolute;
+  cursor: nw-resize;
+  bottom: -15px;
+  right: -15px;
+  width: 24px;
+  height: 24px;
+  transform: rotate(360grad);
+}
+
+.resize-icon {
+  fill: #C0C0C0;
+
 }
 
 
