@@ -165,7 +165,7 @@ export class SandboxComponent implements OnInit {
       let x;
       let y;
       if (transform) {
-        const regex = /translate3d\(\s?(?<x>[-]?\d*)px,\s?(?<y>[-]?\d*)px,\s?(?<z>[-]?\d*)px\)/;
+        const regex = new RegExp('translate3d\\(\\s?(?<x>[-]?\\d*)px,\\s?(?<y>[-]?\\d*)px,\\s?(?<z>[-]?\\d*)px\\)');
         // @ts-ignore
         const values = regex.exec(transform);
         // tslint:disable-next-line:radix
