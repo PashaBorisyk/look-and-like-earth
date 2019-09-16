@@ -15,7 +15,7 @@ export class CurrencyService {
   currentChange = this.currencyChange.asObservable();
   apiRoot = 'https://api.exchangeratesapi.io/latest?';
   apiForByn = 'http://www.nbrb.by/API/ExRates/Rates/';
- 
+  selectCurrency = this.currencies[0];
 
   constructor(private http: HttpClient) { }
 
@@ -27,24 +27,12 @@ export class CurrencyService {
         symbols.push(item);
       }
     });
-    if (currency === 'BYN') {
-      let url;
-      const rates: Rate[] = [];
-      symbols.forEach(value => {
-        url = this.apiForByn + value + '?paramMode=2';
-        this.http.get(url).subscribe(item => {
-          // @ts-ignore
-          const officialRate = item.Cur_OfficialRate;
-          rates.push(new Rate(currency, value, officialRate));
-          this.currencyChange.next(rates);
-        });
-      });
-    } else {
-      const url = this.apiRoot + 'base=' + currency + '&symbols=' + symbols.join(',');
-      this.http.get(url).subscribe(value =>  {
-        this.currencyChange.next(value);
-      });
-    }
+    const requestSymbols = symbols.join(',');
+    const url = 'http://localhost:8080/api/v1/currency/?base=' + currency + '&symbols=' + requestSymbols;
+    this.http.get(url).subscribe(value => {
+      this.currencyChange.next(value);
+      this.selectCurrency = currency;
+    });
   }
 
   getCurrencies() {
@@ -52,18 +40,9 @@ export class CurrencyService {
   }
 
   calculate(price: Price, value) {
-    switch (price.currency) {
-      case 'RUB' : {
-        price.value = Math.round(price.value / value.rates.RUB);
-        break;
-      }
-      case 'EUR' : {
-        price.value = Math.round(price.value / value.rates.EUR);
-        break;
-      }
-      case 'USD' : {
-        price.value = Math.round(price.value / value.rates.USD);
-        break;
+    for (let i = 0; i < value.rates.length; i++) {
+      if (value.rates[i].symbol === price.currency) {
+        price.value = Math.round(price.value / value.rates[i].value);
       }
     }
     price.currency = value.base;

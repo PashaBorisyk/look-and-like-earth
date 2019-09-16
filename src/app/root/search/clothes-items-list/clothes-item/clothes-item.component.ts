@@ -17,12 +17,9 @@ export class ClothesItemComponent implements OnInit {
 
   ngOnInit() {
     this.currencyService.currentChange.subscribe(value => {
-      if (value != null && value[0].fromCurrency !== this.clothesItem.price.currency) {
-        console.log(value);
-      }
-      /*if (value != null && value.base !== this.clothesItem.price.currency) {
+      if (value != null && value.base !== this.clothesItem.price.currency) {
         this.currencyService.calculate(this.clothesItem.price, value);
-      }*/
+      }
     });
   }
 

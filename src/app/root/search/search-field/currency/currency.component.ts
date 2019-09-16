@@ -16,11 +16,11 @@ export class CurrencyComponent implements OnInit {
 
   ngOnInit() {
     this.currencies = this.currencyService.getCurrencies();
-    this.choiceCurrency = this.currencies[0];
+    this.choiceCurrency = this.currencyService.selectCurrency;
   }
 
   choice(event) {
-    let currency = event.target.innerText;
+    const currency = event.target.innerText;
     this.currencies.forEach(item => {
       if (item === currency) {
         this.choiceCurrency = currency;
