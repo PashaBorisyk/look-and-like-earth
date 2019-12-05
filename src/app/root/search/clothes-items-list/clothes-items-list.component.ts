@@ -43,6 +43,9 @@ export class ResultsListComponent implements OnInit {
     this.clothesItemService.recommendations().subscribe(data => {
       this.clothesItems = data;
     });
-    MasonryService.currentUpdate.subscribe(updateMasonry => this.updateMasonry = updateMasonry);
+    MasonryService.currentUpdate.subscribe(updateMasonry => {
+      console.log('update');
+      this.updateMasonry = updateMasonry;
+    });
   }
 }

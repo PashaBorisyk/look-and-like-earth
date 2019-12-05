@@ -5,7 +5,6 @@ import {MasonryService} from '../service/masonry.service';
 import {SplitService} from '../service/split.service';
 import {EventService} from "../service/event.service";
 import {SplitComponent} from 'angular-split';
-import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
   selector: 'app-main',
@@ -21,6 +20,7 @@ export class RootComponent implements OnInit {
   areas;
   menuActive = 'inactived';
   resizeImageSrc;
+  beginSize;
 
   width = 220;
   height = 280;
@@ -30,13 +30,22 @@ export class RootComponent implements OnInit {
               private splitService: SplitService,
               private eventService: EventService,
               private ref: ChangeDetectorRef) {
+    let element;
+    setTimeout(() => {
+      element = document.getElementById('split-sandbox');
+    }, 200);
     ref.detach();
     setInterval(() => {
       const width = this.windowWidth;
+
       if (width != null && width !== window.innerWidth) {
         this.calculateSplitAreaSize();
       }
-      MasonryService.reload();
+      if (element != null && element.offsetWidth !== this.beginSize) {
+        this.beginSize = element.offsetWidth;
+        MasonryService.reload();
+        console.log('work');
+      }
       this.ref.detectChanges();
     }, 100);
     setTimeout(() => {
@@ -88,6 +97,7 @@ export class RootComponent implements OnInit {
     this.windowWidth = window.innerWidth;
     const areaSize = this.windowWidth / 2;
     this.maxSize = this.windowWidth - 150;
+    this.beginSize = areaSize;
     this.areas = [
       {size: areaSize, order: 1},
       {size: areaSize, order: 2},
