@@ -6,6 +6,7 @@ import {Price} from '../../class/price';
 import {EventService} from '../../service/event.service';
 import {LookItem} from '../../class/look-item';
 import {ImageLook} from '../../class/image-look';
+import {browser} from 'protractor';
 
 
 
@@ -165,7 +166,7 @@ export class SandboxComponent implements OnInit {
       let x;
       let y;
       if (transform) {
-        const regex = new RegExp('translate3d\\(\\s?(?<x>[-]?\\d*)px,\\s?(?<y>[-]?\\d*)px,\\s?(?<z>[-]?\\d*)px\\)');
+        const regex = new RegExp('translate3d\\(\\s?([-]?\\d*)px,\\s?([-]?\\d*)px,\\s?([-]?\\d*)px\\)');
         // @ts-ignore
         const values = regex.exec(transform);
         // tslint:disable-next-line:radix
@@ -202,11 +203,15 @@ export class SandboxComponent implements OnInit {
       context.fillText(costSum, canvas.width - 150, canvas.height - 10);
     };
 
+    canvas.toDataURL('image/jpg');
+
     setTimeout(() => {
       const a = document.createElement('a');
       a.download = 'look.png';
       a.href = canvas.toDataURL('image/jpg');
+      document.body.appendChild(a);
       a.click();
-    }, 500);
+      document.body.removeChild(a);
+    }, 1000);
   }
 }
